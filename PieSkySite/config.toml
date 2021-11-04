@@ -52,7 +52,7 @@ disqusShortname = ""
 
   [[menu.main]]
   name = "Order / Contact"
-  URL = "/#contactus"
+  URL = "/contact"
   absurl = false
   weight = 4
 
