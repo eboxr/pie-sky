@@ -111,7 +111,7 @@
             <i class="{{ .icon }}"></i>
           </div>
           <div class="card-body">
-            <h4>{{ .title | markdownify }}</h4>
+            <h3>{{ .title | markdownify }}</h3>
             <p>{{ .subtitle | markdownify }}</p>
             <p>{{ .content | markdownify }}</p>
             <p><strong>{{ .price | markdownify }}</strong></p>
@@ -125,6 +125,38 @@
 {{ end }}
 {{ end }}
 <!-- /pies -->
+
+<!-- fruitPies -->
+{{ if site.Data.homepage.fruitPies.enable }}
+<section class="section pb-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center mb-4">
+        {{ with site.Data.homepage.fruitPies }}
+        <h2>{{ .title | markdownify }}</h2>
+        {{ end }}
+      </div>
+      {{ range first 10 (where site.RegularPages "Type" "pie") }}
+      <div class="col-lg-4 col-sm-6 mb-4">
+        <div class="card border-0 text-center">
+          <a href="{{ .Permalink }}">
+            {{ range first 1 .Params.Images }}
+            <img src="{{ .image | absURL }}" alt="{{ .Title }}" class="card-img-top">
+            {{ end }}
+          </a>
+          <div class="card-body">
+            <h3>{{ .Title }}</h3>
+            <h4>{{ .Params.Description }}</h4>
+            <p>{{ .Params.shortDescription}}</p>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+<!-- /fruitPies -->
 
 <!-- promo video -->
 {{ if site.Data.homepage.video.enable }}

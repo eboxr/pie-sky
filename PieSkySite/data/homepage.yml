@@ -93,9 +93,16 @@ video:
   videoURL : "https://www.youtube.com/embed/wf4F2-9UXUo"
 
 
+######################## Fruit Pies #############################
+fruitPies:
+  enable : true
+  title : "Fruit Pies"
+  # product item comes from "content/fruit-pies"
+
+
 ######################## Products #############################
 products:
-  enable : true
+  enable : false
   title : "Products List"
   # product item comes from "content/products"
 
