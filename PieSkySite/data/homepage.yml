@@ -42,33 +42,33 @@ cta:
 ######################## pies #######################
 pies:
   enable : true
-  title : "The Pies' Categories"
+  title : "The Pies"
   subtitle :
   pieCategory:
     # material item loop
     - title : "Fruit Pies"
-      icon : fas fa-headphones-alt #https://fontawesome.com/v5.15/icons
+      icon : fas fa-apple-alt #https://fontawesome.com/v5.15/icons/apple-alt?style=solid
       subtitle: "Available in season and slightly beyond"
       content : "strawberry-rhubarb, cherry, peach, peach-berry, apple..."
       price: "$20"
       
     # material item loop
     - title : "Cream Pies"
-      icon : fas fa-headphones-alt #https://fontawesome.com/v5.15/icons
+      icon : fab fa-cloudversify #https://fontawesome.com/v5.15/icons/cloudversify?style=brands
       subtitle: "Available all year round. Comes with Graham cracker crust"
       content : "chocolate, banana, coconut"
       price: "$20"
       
     # material item loop
     - title : "Specialty Pies"
-      icon : fas fa-headphones-alt #https://fontawesome.com/v5.15/icons
+      icon : fas fa-candy-cane #https://fontawesome.com/v5.15/icons/candy-cane?style=solid
       subtitle: "Availability depends on the season"
       content : "Pumpkin chiffon pie, Pecan pie, Caramel apple pie,..."
       price: "$20"
 
     # material item loop
     - title : "Dinner Pies"
-      icon : fas fa-headphones-alt #https://fontawesome.com/v5.15/icons
+      icon : fas fa-utensils #https://fontawesome.com/v5.15/icons/utensils?style=solid
       subtitle: "Available all year round and in different sizes"
       content : "Chicken, Turkey, Beef, or Vegetarian"
       price: "Starting at $22"
