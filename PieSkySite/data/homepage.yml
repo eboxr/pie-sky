@@ -126,6 +126,15 @@ specialPies:
   # product item comes from "content/special-pies"
 
 
+######################## Special Pies #############################
+dinnerPies:
+  enable : true
+  title : "Dinner Pies"
+  description: "Available in 2 sizes: **6\" personal size** (serves 1-2) and **12\" family size** (serves 4-6)"
+  price: ""
+  # product item comes from "content/dinner-pies"
+
+
 ######################## Products #############################
 products:
   enable : false
