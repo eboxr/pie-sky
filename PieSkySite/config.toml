@@ -45,7 +45,7 @@ disqusShortname = ""
 
   [[menu.main]]
   name = "Dinner Pies"
-  URL = "/#dinner"
+  URL = "/#dinnerpies"
   weight = 2
 
   [[menu.main]]
