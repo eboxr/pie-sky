@@ -109,6 +109,13 @@ creamPies:
   # product item comes from "content/cream-pies"
 
 
+######################## Special Pies #############################
+specialPies:
+  enable : true
+  title : "Specialty Pies"
+  # product item comes from "content/special-pies"
+
+
 ######################## Products #############################
 products:
   enable : false
