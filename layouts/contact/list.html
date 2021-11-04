@@ -13,7 +13,7 @@
         {{ end }}
 
         <ul class="list-unstyled">
-          <li class="mb-3"><a class="text-color" href="tel:{{ site.Params.mobile }}"><i
+          <li class="mb-3"><a class="text-color" href="sms:{{ site.Params.mobile }}&body={{ site.Params.textmsg | safeHTML }}"><i
                 class="ti-mobile text-primary mr-2"></i>
              {{ site.Params.mobile }}</a></li>
           <li class="mb-3"><a class="text-color" href="mailto:{{ site.Params.email }}"><i

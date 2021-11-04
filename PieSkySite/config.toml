@@ -125,6 +125,7 @@ googleAnalitycsID = "" # Your ID
 mobile = "801-941-1855"
 email = "order@pieinthesky-eden.com"
 location = "Eden, UT"
+textmsg = "Hi Kelly, here is my pie order for the"
 # copyright
 copyright = "Copyright &copy; 2021 Pie in The Sky Eden"
 enable_social = false
