@@ -132,6 +132,8 @@ enable_social = false
 # Snipcart Credentials
 snipcartApiKey = "deadbeefdeadbeef"
 currencySymbol = "$"
+# MailChimp
+mailchimpURL="https://pieinthesky-eden.us7.list-manage.com/subscribe/post?u=ec64ff3c588869ba913df4cd1&amp;id=7a5ae3439d"
 
   # Preloader
   [params.preloader]

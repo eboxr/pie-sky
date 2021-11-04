@@ -21,15 +21,7 @@
         </ul>
         {{ end }}
       </div>
-      <div class="col-lg-4 col-md-5" id="contactus">
-        <h5 class="font-weight-medium mb-4">Contact us</h5>
-        <form action="{{ site.Params.contact.formAction }}" method="POST">
-          <input type="text" class="form-control mb-2" id="name" name="name" placeholder="Your Name">
-          <input type="email" class="form-control mb-2" id="email" name="email" placeholder="Your Email">
-          <textarea name="message" id="message" class="form-control mb-2" placeholder="Your Message"></textarea>
-          <button type="submit" value="send" class="btn btn-block btn-outline-primary rounded">Send Now</button>
-        </form>
-      </div>
+        {{ if isset .Site.Params "mailchimpurl" }}{{ partial "mailchimp-signup" . }}{{ end }}
     </div>
     <div class="row">
       <div class="col-12 text-center py-4">

@@ -1,0 +1,14 @@
+<div class="col-lg-4 col-md-5" id="newsletter">
+    <h5 class="font-weight-medium mb-4">Subscribe to our Newsletter</h5>
+    <!-- Begin Mailchimp Signup Form -->
+    <form action="{{ .Site.Params.mailchimpURL }}" method="POST" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+        <input type="email" placeholder="Enter your email to signup" value="" name="EMAIL" class="form-control mb-2" id="mce-EMAIL" required>
+    {{ if false }}
+        <input type="submit" value="Sign Up" name="subscribe" id="mc-embedded-subscribe" class="button">
+    {{ end }}
+        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_ec64ff3c588869ba913df4cd1_7a5ae3439d" tabindex="-1" value=""></div>    
+        <button type="submit" value="Sign Up" name="subscribe" class="btn btn-block btn-outline-primary rounded">Sign Up</button>        
+        <p><a href="http://eepurl.com/hMDkFn" title="Mailchimp - email marketing made easy and fun"><img class="referralBadge" src="https://eep.io/mc-cdn-images/template_images/branding_logo_text_dark_dtp.svg"></a></p>
+    </form>
+    <!--End mc_embed_signup-->
+</div>
