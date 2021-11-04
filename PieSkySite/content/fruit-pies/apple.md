@@ -7,7 +7,7 @@ draft: false
 description : "From September through Christmas"
 
 # type must be "products"
-type: "pie"
+type: "fruit"
 
 # product Images
 # first image will be shown in the product page

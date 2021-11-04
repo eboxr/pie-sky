@@ -10,7 +10,7 @@ description : "From August through Thanksgiving"
 shortDescription: ""
 
 # type must be "products"
-type: "pie-draft"
+type: "fruit-draft"
 
 # product Images
 # first image will be shown in the product page

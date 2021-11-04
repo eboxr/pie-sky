@@ -10,7 +10,7 @@ description : "From July 4th through Thanksgiving"
 shortDescription: ""
 
 # type must be "products"
-type: "pie"
+type: "fruit"
 
 # product Images
 # first image will be shown in the product page

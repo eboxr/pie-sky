@@ -10,7 +10,7 @@ description : "From August through Thanksgiving"
 shortDescription: "raspberry, blackberry & strawberry"
 
 # type must be "products"
-type: "pie"
+type: "fruit"
 
 # product Images
 # first image will be shown in the product page
