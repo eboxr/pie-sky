@@ -1,3 +1,3 @@
 #!/bin/bash
-cd exampleSite 
+cd PieSkySite 
 hugo server --themesDir ../..
