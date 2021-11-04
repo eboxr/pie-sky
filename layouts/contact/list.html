@@ -37,7 +37,7 @@
       <div class="col-lg-6">
         <h3 class="
         mb-4">Contact us</h3>
-        <form action="{{ site.Params.contact.formAction }}" method="POST">
+        <form name="contact" method="POST" data-netlify="true">
           <input type="text" class="form-control mb-2" id="name" name="name" placeholder="Your Name">
           <input type="email" class="form-control mb-2" id="email" name="email" placeholder="Your Email">
           <textarea name="message" id="message" class="form-control mb-2" placeholder="Your Message"></textarea>
