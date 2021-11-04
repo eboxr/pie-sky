@@ -90,8 +90,8 @@ disqusShortname = ""
 logo = "images/logo.png"
 home = "Home"
 # Meta data
-description = "This is meta description"
-author = "Themefisher"
+description = "Fresh sweet pies and dinner pies made in Eden Utah"
+author = "Kelly"
 # google map
 gmapAPI = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&libraries=places"
 mapLatitude = "51.5223477"
@@ -100,8 +100,8 @@ mapMarker = "images/marker.png"
 # Google Analitycs
 googleAnalitycsID = "" # Your ID
 # Contact Information
-mobile = "0124857985320"
-email = "contact@pieinthesky-eden.com"
+mobile = "801-941-1855"
+email = "order@pieinthesky-eden.com"
 location = "Eden, UT"
 # copyright
 copyright = "| Copyright &copy; 2021 Pie in The Sky |"
