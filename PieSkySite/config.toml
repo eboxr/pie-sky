@@ -39,19 +39,14 @@ disqusShortname = ""
 [menu]
 
   [[menu.main]]
-  name = "Products"
+  name = "Desert Pies"
   URL = "products"
   weight = 1
 
   [[menu.main]]
-  name = "Blog"
+  name = "Dinner Pies"
   URL = "blog"
   weight = 2
-
-  [[menu.main]]
-  name = "FAQ"
-  URL = "faq"
-  weight = 3
 
   [[menu.main]]
   name = "Order / Contact"
