@@ -82,10 +82,10 @@ advantage:
   image : "images/fresh-products.jpg"
   advantageList:
     # advantage list loop
-    - listItem : "handmade crust"
+    - listItem : "design & made in Utah"
+    - listItem : "unique handmade crust"
     - listItem : "handmade sauce or gravy"
-    - listItem : "fresh meat"
-    - listItem : "fresh seasonal fruits"
+    - listItem : "fresh fruits or meat"
     - listItem : "Fruit pies that are slightly beyond have been previously frozen."
 
 
