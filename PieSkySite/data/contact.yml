@@ -3,7 +3,7 @@ contact:
   enable : true
   # office
   office:
-    title : "Order or Contact us"
+    title : "Order your Pies"
     content : "You can order your **pies** by text, phone call or email. You can also use the contact form."
     # other information comes from "config.toml"
 
