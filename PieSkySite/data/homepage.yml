@@ -23,8 +23,6 @@ seasonal:
     Currently all pies on the website are available.
 
     Orders accepted now until November 18th.
-
-    Text Kelli at 801-941-1855
   image : "images/thxgiving.png"
 
 
@@ -35,7 +33,6 @@ cta:
   content : |
     #### Currently all pies on the website are available.
     #### Orders accepted now until November 18th.
-    #### Text Kelli at 801-941-1855
   image : "images/thxgiving.png"
   overlayImage : "images/cta-overlay.png"
 
@@ -76,17 +73,14 @@ pies:
 ########################### Advantage #########################
 advantage:
   enable : true
-  title : "Advantages Of Using <br> Our Product"
+  title : "Fresh Pies using Fresh products"
   subtitle : "Lorem ipsum dolor sit amet, da decal consetetur<br> sadipscing elitr, sed diam nonumya eirmod"
   image : "images/advantage.png"
   advantageList:
     # advantage list loop
-    - listItem : "Extremely lightweight"
-    - listItem : "Excellent breathability"
-    - listItem : "Can increase Cell activation"
-    - listItem : "Glowing Skin In 7 Days"
-    - listItem : "Increasing Glow Of Face"
-    - listItem : "More Beautiful Face Skin"
+    - listItem : "handmade crust"
+    - listItem : "made with local or home grown produce when at all possible"
+    - listItem : "Fruit pies that are slightly beyond have been previously frozen."
 
 
 ######################## Promo Video ##########################

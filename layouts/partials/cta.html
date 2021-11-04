@@ -8,6 +8,10 @@
       <div class="col-lg-8 col-md-7">
         <h2 class="text-white">{{ .title | markdownify }}</h2>
         <div class="text-white">{{ .content | markdownify | replaceRE "<h4" "<h4 class=\"text-white\"" | safeHTML }}</div>
+        <a class="text-color btn btn-light" href="tel:{{ site.Params.mobile }}">
+            <i class="ti-mobile text-primary mr-2"></i>
+            Text Kelli {{ site.Params.mobile }}
+        </a>
         {{ with .button }}
         <a href="{{ .link | absURL }}" class="btn btn-light">{{ .label }}</a>
         {{ end }}
