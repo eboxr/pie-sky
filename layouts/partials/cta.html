@@ -1,12 +1,13 @@
 <!-- call to  action -->
 {{ with site.Data.homepage.cta }}
+<div style="padding-top: 80px">
 <section class="py-4 bg-gradient position-relative">
   <img src="{{ .overlayImage | absURL }}" class="img-fluid overlay-image" alt="">
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-7">
         <h2 class="text-white">{{ .title | markdownify }}</h2>
-        <p class="text-white">{{ .content | markdownify }}</p>
+        <div class="text-white">{{ .content | markdownify | replaceRE "<h4" "<h4 class=\"text-white\"" | safeHTML }}</div>
         {{ with .button }}
         <a href="{{ .link | absURL }}" class="btn btn-light">{{ .label }}</a>
         {{ end }}
@@ -17,5 +18,6 @@
     </div>
   </div>
 </section>
+</div>
 {{ end }}
 <!-- /call to action -->

@@ -43,6 +43,10 @@
 {{ end }}
 <!-- /banner -->
 
+{{ if site.Data.homepage.cta.enable }}
+{{ partial "cta.html" . }}
+{{ end }}
+
 <!-- seasonal -->
 {{ if site.Data.homepage.seasonal.enable }}
 {{ with site.Data.homepage.seasonal }}
@@ -87,10 +91,6 @@
 {{ end }}
 {{ end }}
 <!-- /advantage -->
-
-{{ if site.Data.homepage.cta.enable }}
-{{ partial "cta.html" . }}
-{{ end }}
 
 <!-- pies -->
 {{ if site.Data.homepage.pies.enable }}
