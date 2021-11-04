@@ -104,7 +104,7 @@ mobile = "801-941-1855"
 email = "order@pieinthesky-eden.com"
 location = "Eden, UT"
 # copyright
-copyright = "| Copyright &copy; 2021 Pie in The Sky |"
+copyright = "Copyright &copy; 2021 Pie in The Sky Eden"
 enable_social = false
 # Snipcart Credentials
 snipcartApiKey = "deadbeefdeadbeef"
