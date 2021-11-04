@@ -43,9 +43,9 @@
 {{ end }}
 <!-- /banner -->
 
-<!-- about -->
-{{ if site.Data.homepage.about.enable }}
-{{ with site.Data.homepage.about }}
+<!-- seasonal -->
+{{ if site.Data.homepage.seasonal.enable }}
+{{ with site.Data.homepage.seasonal }}
 <section class="section">
   <div class="container">
     <div class="row justify-content-around align-items-center">
@@ -61,41 +61,7 @@
 </section>
 {{ end }}
 {{ end }}
-<!-- /about -->
-
-{{ if site.Data.homepage.cta.enable }}
-{{ partial "cta.html" . }}
-{{ end }}
-
-<!-- material -->
-{{ if site.Data.homepage.material.enable }}
-{{ with site.Data.homepage.material }}
-<section class="section pb-0">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-6 mx-auto text-center">
-        <h2>{{ .title | markdownify }}</h2>
-        <p>{{ .subtitle | markdownify }}</p>
-      </div>
-    </div>
-    <div class="row">
-      {{ range .materialItem }}
-      <div class="col-lg-3 col-md-4 col-sm-6">
-        <div class="card border-0 text-center">
-          <img src="{{ .image | absURL }}" alt="material" class="card-img-top border-0">
-          <div class="card-body">
-            <h4>{{ .title | markdownify }}</h4>
-            <p>{{ .content | markdownify }}</p>
-          </div>
-        </div>
-      </div>
-      {{ end }}
-    </div>
-  </div>
-</section>
-{{ end }}
-{{ end }}
-<!-- /material -->
+<!-- /seasonal -->
 
 <!-- advantage -->
 {{ if site.Data.homepage.advantage.enable }}
@@ -121,6 +87,42 @@
 {{ end }}
 {{ end }}
 <!-- /advantage -->
+
+{{ if site.Data.homepage.cta.enable }}
+{{ partial "cta.html" . }}
+{{ end }}
+
+<!-- pies -->
+{{ if site.Data.homepage.pies.enable }}
+{{ with site.Data.homepage.pies }}
+<section class="section pb-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 mx-auto text-center">
+        <h2>{{ .title | markdownify }}</h2>
+        <p>{{ .subtitle | markdownify }}</p>
+      </div>
+    </div>
+    <div class="row">
+      {{ range .pieCategory }}
+      <div class="col-lg-3 col-md-4 col-sm-6">
+        <div class="card border-0 text-center">
+          <img src="{{ .image | absURL }}" alt="pies" class="card-img-top border-0">
+          <div class="card-body">
+            <h4>{{ .title | markdownify }}</h4>
+            <p>{{ .subtitle | markdownify }}</p>
+            <p>{{ .content | markdownify }}</p>
+            <p><strong>{{ .price | markdownify }}</strong></p>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- /pies -->
 
 <!-- promo video -->
 {{ if site.Data.homepage.video.enable }}

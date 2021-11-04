@@ -1,6 +1,6 @@
 ############################ banner ##########################
 banner:
-  enable : true
+  enable : false
   title : "Best Beauty Cream For Your Skin"
   content : "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
           dolore magna aliquyam erat, sed dia"
@@ -15,13 +15,16 @@ banner:
     enable : true
     videoURL : "https://www.youtube.com/embed/wf4F2-9UXUo"
 
-########################## About ##############################
-about:
+########################## Seasonal ##############################
+seasonal:
   enable : true
-  title : "About Our Product"
-  content : "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-          clita kasd gubergren,"
+  title : "Thanksgiving Pies"
+  content : |
+    Currently all pies on the website are available.
+
+    Orders accepted now until November 18th.
+
+    Text Kelli at 801-941-1855
   image : "images/about.png"
 
 
@@ -36,32 +39,44 @@ cta:
     label : "All Products"
     link : "products"
 
-######################## raw material #######################
-material:
+######################## pies #######################
+pies:
   enable : true
-  title : "Ingredients Of Our Products"
-  subtitle : "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-          dol."
-  materialItem:
+  title : "About The Pies"
+  subtitle : |
+    Good flavor comes with the best ingredients.
+
+    All pies are made with local or home grown produce when at all possible.
+
+    Fruit pies that are slightly beyond have been previously frozen.
+  pieCategory:
     # material item loop
-    - title : "Matcha Seeds"
+    - title : "Fruit Pies"
       image : "images/material/material-1.png"
-      content : "Lorem ipsum dolor sit amet,be consetetur sadipscing elitr, sed diam nonumy eirmod tem"
+      subtitle: "AVAILABLE IN SEASON and slightly beyond."
+      content : "strawberry, strawberry/rhubarb, cherry, peach, peach/berry, apple..."
+      price: "$20"
       
     # material item loop
-    - title : "Aloe Vera"
+    - title : "Cream Pies"
       image : "images/material/material-2.png"
+      subtitle: ""
       content : "Lorem ipsum dolor sit amet,be consetetur sadipscing elitr, sed diam nonumy eirmod tem"
+      price: ""
       
     # material item loop
-    - title : "Turmeric"
+    - title : "Specialty Pies"
       image : "images/material/material-3.png"
+      subtitle: ""
       content : "Lorem ipsum dolor sit amet,be consetetur sadipscing elitr, sed diam nonumy eirmod tem"
-      
+      price: ""
+
     # material item loop
-    - title : "Tulshi leaf"
+    - title : "Dinner Pies"
       image : "images/material/material-4.png"
+      subtitle: ""
       content : "Lorem ipsum dolor sit amet,be consetetur sadipscing elitr, sed diam nonumy eirmod tem"
+      price: ""
 
 ########################### Advantage #########################
 advantage:
