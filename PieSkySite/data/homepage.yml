@@ -102,6 +102,13 @@ fruitPies:
   # product item comes from "content/fruit-pies"
 
 
+######################## Cream Pies #############################
+creamPies:
+  enable : true
+  title : "Cream Pies"
+  # product item comes from "content/cream-pies"
+
+
 ######################## Products #############################
 products:
   enable : false
