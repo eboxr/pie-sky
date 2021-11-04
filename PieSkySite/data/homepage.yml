@@ -99,6 +99,8 @@ video:
 fruitPies:
   enable : true
   title : "Fruit Pies"
+  description: "Available in season and slightly beyond"
+  price: "$20"
   # product item comes from "content/fruit-pies"
 
 
@@ -106,6 +108,8 @@ fruitPies:
 creamPies:
   enable : true
   title : "Cream Pies"
+  description: "Available all year round"
+  price: "$20"
   # product item comes from "content/cream-pies"
 
 
@@ -113,6 +117,8 @@ creamPies:
 specialPies:
   enable : true
   title : "Specialty Pies"
+  description: ""
+  price: "$20"
   # product item comes from "content/special-pies"
 
 

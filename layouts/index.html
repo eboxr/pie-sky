@@ -134,6 +134,8 @@
       <div class="col-12 text-center mb-4">
         {{ with site.Data.homepage.fruitPies }}
         <h2>{{ .title | markdownify }}</h2>
+        <h4>{{ .description | markdownify }}</h4>
+        <h4><strong>{{ .price | markdownify }}</strong></h4>
         {{ end }}
       </div>
       {{ range first 10 (where site.RegularPages "Type" "fruit") }}
@@ -166,6 +168,8 @@
       <div class="col-12 text-center mb-4">
         {{ with site.Data.homepage.creamPies }}
         <h2>{{ .title | markdownify }}</h2>
+        <h4>{{ .description | markdownify }}</h4>
+        <h4><strong>{{ .price | markdownify }}</strong></h4>
         {{ end }}
       </div>
       {{ range first 10 (where site.RegularPages "Type" "cream") }}
@@ -198,6 +202,8 @@
       <div class="col-12 text-center mb-4">
         {{ with site.Data.homepage.specialPies }}
         <h2>{{ .title | markdownify }}</h2>
+        <h4>{{ .description | markdownify }}</h4>
+        <h4><strong>{{ .price | markdownify }}</strong></h4>
         {{ end }}
       </div>
       {{ range first 10 (where site.RegularPages "Type" "special") }}
