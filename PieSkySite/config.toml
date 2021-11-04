@@ -1,7 +1,7 @@
 ######################## default configuration ####################
-baseURL = "https://examplesite.com"
+baseURL = "https://pieinthesky-eden.com"
 languageCode = "en"
-title = "Hargo | Hugo Ecommerce Site"
+title = "Pie in the Sky in Eden by Kelly"
 theme = "pie-sky"
 summaryLength = "20"
 paginate = 10
@@ -119,8 +119,8 @@ currencySymbol = "$"
   # it works with https://rating-widget.com/ , you will get the ID and publicKey after creating your account there.
   [params.rating]
   enable = true
-  websiteID = "444334"
-  publicKey = "811cf0927332bf51f2e12f84608594ac"
+  websiteID = "12345"
+  publicKey = "deadbeef"
 
   # Social Site
   [[params.social]]
