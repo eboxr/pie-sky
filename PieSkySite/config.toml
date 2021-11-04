@@ -54,9 +54,33 @@ disqusShortname = ""
   weight = 3
 
   [[menu.main]]
-  name = "Contact"
+  name = "Order / Contact"
   URL = "contact"
   weight = 4
+
+  ## multi menu
+  # [[menu.main]]
+  # weight = 5
+  # name = "More"
+  # hasChildren = true
+
+  #      [[menu.main]]
+  #      parent = "More"
+  #      name = "Service"
+  #      url = "service/"
+  #      weight = 1
+
+  #      [[menu.main]]
+  #      parent = "More"
+  #      name = "Pricing"
+  #      url = "pricing/"
+  #      weight = 2
+
+  #      [[menu.main]]
+  #      parent = "More"
+  #      name = "FAQ"
+  #      url = "faq/"
+  #      weight = 3
 
   ############# footer menu #############
   # [[menu.footer]]
