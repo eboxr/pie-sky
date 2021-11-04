@@ -95,7 +95,7 @@
 <!-- pies -->
 {{ if site.Data.homepage.pies.enable }}
 {{ with site.Data.homepage.pies }}
-<section class="section pb-0">
+<section class="section pb-0" id="allpies">
   <div class="container">
     <div class="row">
       <div class="col-lg-6 mx-auto text-center">
@@ -108,10 +108,10 @@
       <div class="col-lg-3 col-md-4 col-sm-6">
         <div class="card border-0 text-center">
           <div class="pieCategory">
-            <i class="{{ .icon }}"></i>
+            <a href="#{{ .anchor }}"><i class="{{ .icon }}"></i></a>
           </div>
           <div class="card-body">
-            <h3>{{ .title | markdownify }}</h3>
+            <h3><a href="#{{ .anchor }}" class="pietitle">{{ .title | markdownify }}</a></h3>
             <p>{{ .subtitle | markdownify }}</p>
             <p>{{ .content | markdownify }}</p>
             <p><strong>{{ .price | markdownify }}</strong></p>
@@ -128,7 +128,7 @@
 
 <!-- fruitPies -->
 {{ if site.Data.homepage.fruitPies.enable }}
-<section class="section pb-0">
+<section class="section pb-0" id="fruitpies">
   <div class="container">
     <div class="row">
       <div class="col-12 text-center mb-4">
@@ -162,7 +162,7 @@
 
 <!-- creamPies -->
 {{ if site.Data.homepage.creamPies.enable }}
-<section class="section pb-0">
+<section class="section pb-0" id="creampies">
   <div class="container">
     <div class="row">
       <div class="col-12 text-center mb-4">
@@ -196,7 +196,7 @@
 
 <!-- specialPies -->
 {{ if site.Data.homepage.specialPies.enable }}
-<section class="section pb-0">
+<section class="section pb-0" id="specialtypies">
   <div class="container">
     <div class="row">
       <div class="col-12 text-center mb-4">
