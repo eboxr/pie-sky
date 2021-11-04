@@ -42,41 +42,36 @@ cta:
 ######################## pies #######################
 pies:
   enable : true
-  title : "About The Pies"
-  subtitle : |
-    Good flavor comes with the best ingredients.
-
-    All pies are made with local or home grown produce when at all possible.
-
-    Fruit pies that are slightly beyond have been previously frozen.
+  title : "The Pies' Categories"
+  subtitle :
   pieCategory:
     # material item loop
     - title : "Fruit Pies"
       image : "images/material/material-1.png"
-      subtitle: "AVAILABLE IN SEASON and slightly beyond."
-      content : "strawberry, strawberry/rhubarb, cherry, peach, peach/berry, apple..."
+      subtitle: "Available in season and slightly beyond"
+      content : "strawberry-rhubarb, cherry, peach, peach-berry, apple..."
       price: "$20"
       
     # material item loop
     - title : "Cream Pies"
       image : "images/material/material-2.png"
-      subtitle: ""
-      content : "Lorem ipsum dolor sit amet,be consetetur sadipscing elitr, sed diam nonumy eirmod tem"
-      price: ""
+      subtitle: "Available all year round. Comes with Graham cracker crust"
+      content : "chocolate, banana, coconut"
+      price: "$20"
       
     # material item loop
     - title : "Specialty Pies"
       image : "images/material/material-3.png"
-      subtitle: ""
-      content : "Lorem ipsum dolor sit amet,be consetetur sadipscing elitr, sed diam nonumy eirmod tem"
-      price: ""
+      subtitle: "Availability depends on the season"
+      content : "Pumpkin chiffon pie, Pecan pie, Caramel apple pie,..."
+      price: "$20"
 
     # material item loop
     - title : "Dinner Pies"
       image : "images/material/material-4.png"
-      subtitle: ""
-      content : "Lorem ipsum dolor sit amet,be consetetur sadipscing elitr, sed diam nonumy eirmod tem"
-      price: ""
+      subtitle: "Available all year round and in different sizes"
+      content : "Chicken, Turkey, Beef, or Vegetarian"
+      price: "Starting at $22"
 
 ########################### Advantage #########################
 advantage:
