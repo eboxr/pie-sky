@@ -26,7 +26,12 @@ seasonal:
   image : "images/thxgiving.png"
 
 
-###################### Call to action ########################
+########################## Seasonal ##############################
+##
+##  also adjust gradient in assets/scss/_variables.scss
+##
+
+### Thanksgiving Pies
 cta:
   enable : true
   title : "Thanksgiving Pies"
@@ -35,6 +40,16 @@ cta:
     #### Orders accepted now until November 18th.
   image : "images/thxgiving.png"
   overlayImage : "images/cta-overlay.png"
+
+## XMas Pies
+# cta:
+#   enable : true
+#   title : "Christmas Pies"
+#   content : |
+#     #### Currently all pies on the website are available.
+#     #### Orders accepted now until December 18th.
+#   image : "images/xmaspie.png"
+#   overlayImage : "images/xmas-overlay.png"
 
 ######################## pies #######################
 pies:
