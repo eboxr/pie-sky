@@ -17,6 +17,12 @@ disqusShortname = ""
   link = "plugins/slick/slick.css"
   [[params.plugins.css]]
   link = "plugins/themify-icons/themify-icons.css"
+  [[params.plugins.css]]
+  link = "plugins/font-awesome/fontawesome.min.css"
+  [[params.plugins.css]]
+  link = "plugins/font-awesome/brands.css"
+  [[params.plugins.css]]
+  link = "plugins/font-awesome/solid.css"
 
   # JS Plugins
   [[params.plugins.js]]

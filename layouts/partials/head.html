@@ -13,6 +13,8 @@
   <link rel="stylesheet" href="{{ .link | absURL }}">
   {{ end }}
 
+   <link rel="preconnect" href="https://use.fontawesome.com" crossorigin>
+
   {{ with site.Params.snipcartApiKey }}
   {{ "<!-- Snipcart -->" | safeHTML }}
   <link rel="preconnect" href="https://app.snipcart.com/">
