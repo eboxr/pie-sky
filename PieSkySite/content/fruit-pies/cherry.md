@@ -9,6 +9,10 @@ description : "From July 4th through Thanksgiving"
 # Product Short Description
 shortDescription: ""
 
+# product Price
+price: "20"
+priceBefore: "40"
+
 # type must be "products"
 type: "fruit"
 
@@ -17,3 +21,4 @@ type: "fruit"
 images:
   - image: "images/fruit-pies/cherry.jpg"
 ---
+

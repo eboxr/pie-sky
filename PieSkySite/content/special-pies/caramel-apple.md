@@ -6,6 +6,10 @@ draft: false
 # meta description
 description : "Available September 15th through Christmas"
 
+# product Price
+price: "20"
+priceBefore: ""
+
 # type must be "products"
 type: "special"
 

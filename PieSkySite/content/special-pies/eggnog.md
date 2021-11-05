@@ -9,6 +9,10 @@ description : "Available from Thanksgiving through New Year's"
 # Product Short Description
 shortDescription: "Chocolate ganache with whipped eggnog"
 
+# product Price
+price: "20"
+priceBefore: ""
+
 # type must be "products"
 type: "special"
 

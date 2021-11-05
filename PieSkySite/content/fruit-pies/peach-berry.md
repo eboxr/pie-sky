@@ -9,6 +9,10 @@ description : "From August through Thanksgiving"
 # Product Short Description
 shortDescription: "raspberry, blackberry & strawberry"
 
+# product Price
+price: "20"
+priceBefore: ""
+
 # type must be "products"
 type: "fruit"
 

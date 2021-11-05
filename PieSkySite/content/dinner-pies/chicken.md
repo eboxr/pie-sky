@@ -9,6 +9,10 @@ description : "Available all year round"
 # Product Short Description
 shortDescription: "personal size **$7.50**, family size **$22**"
 
+# product Price
+price: "22"
+priceBefore: ""
+
 # type must be "products"
 type: "dinner"
 
@@ -17,3 +21,6 @@ type: "dinner"
 images:
   - image: "images/dinner-pies/chicken.jpg"
 ---
+
+- personal size (serves 1-2) **$7.50**
+- family size (serves 4-6) **$22**

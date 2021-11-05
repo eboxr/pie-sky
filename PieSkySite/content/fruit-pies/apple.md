@@ -6,6 +6,13 @@ draft: false
 # meta description
 description : "From September through Christmas"
 
+# Product Short Description
+shortDescription: ""
+
+# product Price
+price: "20"
+priceBefore: ""
+
 # type must be "products"
 type: "fruit"
 

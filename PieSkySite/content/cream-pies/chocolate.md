@@ -6,6 +6,10 @@ draft: false
 # meta description
 description : "Available all year"
 
+# product Price
+price: "20"
+priceBefore: ""
+
 # type must be "products"
 type: "cream"
 

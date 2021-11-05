@@ -1,21 +1,37 @@
 {{ define "main" }}
 
+{{ partial "page-title.html" . }}
+
 <section class="section pt-0">
   <div class="container">
     <div class="row">
-      <div class="col-lg-8 mx-auto">
-        <article>
-          <h2>{{ .Title }}</h2>
-          <ul class="list-inline mb-4">
-            <li class="list-inline-item"><i class="ti-pencil-alt text-primary mr-2"></i> By {{ .Params.Author }}</li>
-            <li class="list-inline-item"><i class="ti-calendar text-primary mr-2"></i>
-              {{ .PublishDate.Format "02 Jan, 2006" }}</li>
-          </ul>
-          <img src="{{ .Params.Image | absURL }}" alt="{{ .Title }}" class="img-fluid w-100 mb-4">
-          <div class="content">
-            {{.Content}}
+      <div class="col-lg-5 mb-4 mb-lg-0">
+        <!-- product image slider -->
+        <div class="product-slider">
+          {{ range .Params.Images }}
+          <div data-image="{{ .image | absURL }}">
+            <img class="img-fluid w-100" src="{{ .image | absURL }}" alt="product-img">
           </div>
-        </article>
+          {{ end }}
+        </div>
+      </div>
+      <div class="col-lg-5 offset-lg-1">
+        <h2 class="font-weight-medium">{{ .Title | markdownify }}</h2>
+        <h4>{{ .Description | markdownify }}</h4>
+        <!-- rating star -->
+        {{ if site.Params.rating.enable }}
+        <div class="rw-ui-container"></div>
+        {{ end }}
+        <div class="my-4">
+          {{ if .Params.PriceBefore }}
+          <s>{{ site.Params.currencySymbol }}{{ .Params.PriceBefore }}</s>
+          {{ end }}
+          <span class="lead text-primary font-weight-medium">{{ site.Params.currencySymbol }}{{ .Params.Price }}</span>
+        </div>
+        {{ if .Content }}
+        <h5>Description</h5>
+        <div class="content">{{ .Content }}</div>
+        {{ end }}
       </div>
     </div>
   </div>

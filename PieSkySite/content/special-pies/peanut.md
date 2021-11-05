@@ -9,6 +9,10 @@ description : "Available all year"
 # Product Short Description
 shortDescription: "Whipped fluffy peanut butter cream with a chocolate peanut butter cup topping"
 
+# product Price
+price: "20"
+priceBefore: ""
+
 # type must be "products"
 type: "special"
 

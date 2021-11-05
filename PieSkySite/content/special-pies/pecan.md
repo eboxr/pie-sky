@@ -9,6 +9,10 @@ description : "Available for Thanksgiving and Christmas"
 # Product Short Description
 shortDescription: ""
 
+# product Price
+price: "20"
+priceBefore: ""
+
 # type must be "products"
 type: "special"
 

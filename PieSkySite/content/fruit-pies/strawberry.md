@@ -9,6 +9,10 @@ description : "From May through Thanksgiving"
 # Product Short Description
 shortDescription: ""
 
+# product Price
+price: "20"
+priceBefore: ""
+
 # type must be "products"
 type: "fruit"
 

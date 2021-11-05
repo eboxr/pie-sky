@@ -9,6 +9,10 @@ description : "Available all year"
 # Product Short Description
 shortDescription: "Toffee, banana, whipped cream in a graham cracker crust"
 
+# product Price
+price: "20"
+priceBefore: ""
+
 # type must be "products"
 type: "special"
 
