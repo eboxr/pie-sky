@@ -1,5 +1,6 @@
+{{ if site.Data.homepage.seasonal.enable }}
 <!-- call to  action -->
-{{ with site.Data.homepage.cta }}
+{{ with site.Data.homepage.seasonal }}
 <div style="padding-top: 80px">
 <section class="py-4 bg-gradient position-relative">
   <img src="{{ .overlayImage | absURL }}" class="img-fluid overlay-image" alt="">
@@ -25,3 +26,4 @@
 </div>
 {{ end }}
 <!-- /call to action -->
+{{ end }}

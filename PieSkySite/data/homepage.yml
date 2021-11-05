@@ -21,7 +21,7 @@ banner:
 ##
 
 ### Thanksgiving Pies
-cta:
+seasonal:
   enable : true
   title : "Thanksgiving Pies"
   content : |
@@ -31,7 +31,7 @@ cta:
   overlayImage : "images/cta-overlay.png"
 
 ## XMas Pies
-# cta:
+# seasonal:
 #   enable : true
 #   title : "Christmas Pies"
 #   content : |
