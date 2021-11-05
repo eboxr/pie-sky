@@ -148,7 +148,7 @@ products:
 
 ########################## Testimonial ########################
 testimonial:
-  enable : true
+  enable : false
   title : "They have tried our Pies"
   testimonialItem:
     # testimonial item loop
