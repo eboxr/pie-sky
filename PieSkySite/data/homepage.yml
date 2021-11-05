@@ -16,17 +16,6 @@ banner:
     videoURL : "https://www.youtube.com/embed/wf4F2-9UXUo"
 
 ########################## Seasonal ##############################
-seasonal:
-  enable : false
-  title : "Thanksgiving Pies"
-  content : |
-    Currently all pies on the website are available.
-
-    Orders accepted now until November 18th.
-  image : "images/thxgiving.png"
-
-
-########################## Seasonal ##############################
 ##
 ##  also adjust gradient in assets/scss/_variables.scss
 ##

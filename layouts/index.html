@@ -47,26 +47,6 @@
 {{ partial "cta.html" . }}
 {{ end }}
 
-<!-- seasonal -->
-{{ if site.Data.homepage.seasonal.enable }}
-{{ with site.Data.homepage.seasonal }}
-<section class="section">
-  <div class="container">
-    <div class="row justify-content-around align-items-center">
-      <div class="col-lg-5 col-md-6">
-        <img class="img-fluid" src="{{ .image | absURL }}" alt="">
-      </div>
-      <div class="col-md-6 col-lg-5">
-        <h2>{{ .title | markdownify }}</h2>
-        <p>{{ .content | markdownify }}</p>
-      </div>
-    </div>
-  </div>
-</section>
-{{ end }}
-{{ end }}
-<!-- /seasonal -->
-
 <!-- advantage -->
 {{ if site.Data.homepage.advantage.enable }}
 {{ with site.Data.homepage.advantage }}
