@@ -20,34 +20,14 @@ banner:
 ##  also adjust gradient in assets/scss/_variables.scss
 ##
 
-### Thanksgiving Pies
 seasonal:
   enable : true
   title : "Thanksgiving Pies"
   content : |
     #### Currently all pies on the website are available.
     #### Orders accepted now until November 18th.
-  image : "images/seasonal/thxgiving/clipart.png"
-  overlayImage : "images/seasonal/thxgiving/overlay.png"
-
-## XMas Pies
-# seasonal:
-#   enable : true
-#   title : "Christmas Pies"
-#   content : |
-#     #### Currently all pies on the website are available.
-#     #### Orders accepted now until December 18th.
-#   image : "images/seasonal/xmas/clipart.png"
-#   overlayImage : "images/seasonal/xmas/overlay.png"
-
-# seasonal:
-#   enable : true
-#   title : "Thanksgiving Pies"
-#   content : |
-#     #### Currently all pies on the website are available.
-#     #### Orders accepted now until November 18th.
-#   image : "images/seasonal/thxgiving/clipart.png"
-#   overlayImage : "images/seasonal/thxgiving/overlay.png"
+  event: thxgiving
+  possible: regular, newyear, valentine, patrick, easter, national, thxgiving, xmas, newyear
 
 ######################## pies #######################
 pies:
