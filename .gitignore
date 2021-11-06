@@ -9,3 +9,4 @@ builds
 package-lock.json
 *.lock
 resources/_gen/*
+public
