@@ -138,13 +138,6 @@ dinnerPies:
   # product item comes from "content/dinner-pies"
 
 
-######################## Products #############################
-products:
-  enable : false
-  title : "Products List"
-  # product item comes from "content/products"
-
-
 ########################## Testimonial ########################
 testimonial:
   enable : false
