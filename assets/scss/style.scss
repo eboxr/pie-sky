@@ -9,7 +9,26 @@ VERSION:	1.0
 [TABLE OF CONTENTS]
 -------------------------------------------------------------------*/
 
-@import 'variables';
+/*------------------------------------------------------------------
+[COLOR VARIABLES]
+-------------------------------------------------------------------*/
+{{ with .Site.Params.style }}
+$primary-color: {{ .primary_color }};
+$text-color: {{ .text_color }};
+$text-color-dark: {{ .text_color_dark }};
+$body-color: {{ .body_color | default "#fff" }};
+$border-color: {{ .border_color }};
+$black: {{ .black | default "#000" }};
+$white: {{ .white | default "#fff" }};
+$light: {{ .light }};
+$primary-gradient: linear-gradient( {{ .gradient }} );
+
+{{ end }}
+
+// Font Variables
+$primary-font: 'Quicksand', sans-serif;
+$icon-font: 'themify';
+/*------------------------------------------------------------------*/
 
 @import 'mixins';
 

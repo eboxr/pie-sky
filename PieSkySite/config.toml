@@ -7,111 +7,84 @@ summaryLength = "20"
 paginate = 10
 disqusShortname = ""
 
-############################# Plugins ##############################
-[params.plugins]
-
-  # CSS Plugins
-  [[params.plugins.css]]
-  link = "plugins/bootstrap/bootstrap.min.css"
-  [[params.plugins.css]]
-  link = "plugins/slick/slick.css"
-  [[params.plugins.css]]
-  link = "plugins/themify-icons/themify-icons.css"
-  [[params.plugins.css]]
-  link = "plugins/font-awesome/fontawesome.min.css"
-  [[params.plugins.css]]
-  link = "plugins/font-awesome/brands.css"
-  [[params.plugins.css]]
-  link = "plugins/font-awesome/solid.css"
-
-  # JS Plugins
-  [[params.plugins.js]]
-  link = "plugins/jQuery/jquery.min.js"
-  [[params.plugins.js]]
-  link = "plugins/bootstrap/bootstrap.min.js"
-  [[params.plugins.js]]
-  link = "plugins/slick/slick.min.js"
-  [[params.plugins.js]]
-  link = "plugins/google-map/gmap.js"
-
-
 ############################## navigation ###############################
 [menu]
 
-  [[menu.main]]
-  name = "Dessert Pies"
-  URL = "/#fruitpies"
-  weight = 1
+[[menu.main]]
+name = "Dessert Pies"
+URL = "/#fruitpies"
+weight = 1
 
-  [[menu.main]]
-  name = "Dinner Pies"
-  URL = "/#dinnerpies"
-  weight = 2
+[[menu.main]]
+name = "Dinner Pies"
+URL = "/#dinnerpies"
+weight = 2
 
-  [[menu.main]]
-  name = "Newsletter"
-  URL = "/#newsletter"
-  weight = 3
+[[menu.main]]
+name = "Newsletter"
+URL = "/#newsletter"
+weight = 3
 
-  [[menu.main]]
-  name = "Order"
-  URL = "/contact"
-  absurl = false
-  weight = 4
+[[menu.main]]
+name = "Order"
+URL = "/contact"
+absurl = false
+weight = 4
 
-  ## multi menu
-  # [[menu.main]]
-  # weight = 5
-  # name = "More"
-  # hasChildren = true
+## multi menu
+# [[menu.main]]
+# weight = 5
+# name = "More"
+# hasChildren = true
 
-  #      [[menu.main]]
-  #      parent = "More"
-  #      name = "Service"
-  #      url = "service/"
-  #      weight = 1
+#      [[menu.main]]
+#      parent = "More"
+#      name = "Service"
+#      url = "service/"
+#      weight = 1
 
-  #      [[menu.main]]
-  #      parent = "More"
-  #      name = "Pricing"
-  #      url = "pricing/"
-  #      weight = 2
+#      [[menu.main]]
+#      parent = "More"
+#      name = "Pricing"
+#      url = "pricing/"
+#      weight = 2
 
-  #      [[menu.main]]
-  #      parent = "More"
-  #      name = "FAQ"
-  #      url = "faq/"
-  #      weight = 3
+#      [[menu.main]]
+#      parent = "More"
+#      name = "FAQ"
+#      url = "faq/"
+#      weight = 3
 
-  ############# footer menu #############
-  # [[menu.footer]]
-  # name = "Products"
-  # URL = "products"
-  # weight = 1
+############# footer menu #############
+# [[menu.footer]]
+# name = "Products"
+# URL = "products"
+# weight = 1
 
-  # [[menu.footer]]
-  # name = "Blog"
-  # URL = "blog"
-  # weight = 2
+# [[menu.footer]]
+# name = "Blog"
+# URL = "blog"
+# weight = 2
 
-  # [[menu.footer]]
-  # name = "FAQ"
-  # URL = "faq"
-  # weight = 3
+# [[menu.footer]]
+# name = "FAQ"
+# URL = "faq"
+# weight = 3
 
-  # [[menu.footer]]
-  # name = "Terms & Conditions"
-  # URL = "terms-conditions"
-  # weight = 4
+# [[menu.footer]]
+# name = "Terms & Conditions"
+# URL = "terms-conditions"
+# weight = 4
 
-  # [[menu.footer]]
-  # name = "Contact"
-  # URL = "contact"
-  # weight = 5
+# [[menu.footer]]
+# name = "Contact"
+# URL = "contact"
+# weight = 5
 
 
 #################### default parameters ################################
 [params]
+ccc = "#00CC00"
 logo = "images/logo.png"
 home = "Home"
 # Meta data
@@ -138,39 +111,79 @@ currencySymbol = "$"
 # MailChimp
 mailchimpURL="https://pieinthesky-eden.us7.list-manage.com/subscribe/post?u=ec64ff3c588869ba913df4cd1&amp;id=7a5ae3439d"
 
-  # Preloader
-  [params.preloader]
-  enable = true
-  preloader = "" # use .png , .svg or .gif format
+# Preloader
+[params.preloader]
+enable = true
+preloader = "" # use .png , .svg or .gif format
 
-  # Product Rating
-  # it works with https://rating-widget.com/ , you will get the ID and publicKey after creating your account there.
-  [params.rating]
-  enable = true
-  websiteID = "12345"
-  publicKey = "deadbeef"
+# Product Rating
+# it works with https://rating-widget.com/ , you will get the ID and publicKey after creating your account there.
+[params.rating]
+enable = true
+websiteID = "12345"
+publicKey = "deadbeef"
 
-  # Social Site
-  [[params.social]]
-  icon = "ti-facebook"
-  link = "#"
+# Social Site
+[[params.social]]
+icon = "ti-facebook"
+link = "#"
 
-  [[params.social]]
-  icon = "ti-twitter-alt"
-  link = "#"
+[[params.social]]
+icon = "ti-twitter-alt"
+link = "#"
 
-  [[params.social]]
-  icon = "ti-youtube"
-  link = "#"
+[[params.social]]
+icon = "ti-youtube"
+link = "#"
 
-  [[params.social]]
-  icon = "ti-instagram"
-  link = "#"
+[[params.social]]
+icon = "ti-instagram"
+link = "#"
 
-  [[params.social]]
-  icon = "ti-pinterest"
-  link = "#"
+[[params.social]]
+icon = "ti-pinterest"
+link = "#"
 
-  # Contact Form
-  [params.contact]
-  formAction = "#" # contact form works with formspree.io
+# Contact Form
+[params.contact]
+formAction = "#" # contact form works with formspree.io
+
+############################# Style ##############################
+[params.style]
+primary_color = "#C6600D"
+text_color = "#333333"
+text_color_dark = "#222222"
+body_color = "#fff"
+border_color = "#D1D1D1"
+black = "#000"
+white = "#fff"
+light = "rgb(223, 223, 223)"
+gradient = "27deg, rgb(166,98,5) 0%, rgb(214,148,58) 100%" # ThanksGiving
+#gradient = "27deg, rgb(194,31,31) 0%, rgb(110,4,7) 100%" # XMas 
+
+############################# Plugins ##############################
+[params.plugins]
+
+# CSS Plugins
+[[params.plugins.css]]
+link = "plugins/bootstrap/bootstrap.min.css"
+[[params.plugins.css]]
+link = "plugins/slick/slick.css"
+[[params.plugins.css]]
+link = "plugins/themify-icons/themify-icons.css"
+[[params.plugins.css]]
+link = "plugins/font-awesome/fontawesome.min.css"
+[[params.plugins.css]]
+link = "plugins/font-awesome/brands.css"
+[[params.plugins.css]]
+link = "plugins/font-awesome/solid.css"
+
+# JS Plugins
+[[params.plugins.js]]
+link = "plugins/jQuery/jquery.min.js"
+[[params.plugins.js]]
+link = "plugins/bootstrap/bootstrap.min.js"
+[[params.plugins.js]]
+link = "plugins/slick/slick.min.js"
+[[params.plugins.js]]
+link = "plugins/google-map/gmap.js"

@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="{{ with site.LanguageCode }}{{ . }}{{ else }}en{{ end }}">
+  <head>
   {{- partial "head.html" . -}}
+  <!-- cache partial only in production -->
+  {{ if hugo.IsProduction }}
+     {{ partialCached "style.html" . }}
+  {{ else }}
+     {{ partial "style.html" . }}
+  {{ end }}
+  </head>
   <body>
     {{- partial "preloader.html" . -}}
     {{- partial "header.html" . -}}
