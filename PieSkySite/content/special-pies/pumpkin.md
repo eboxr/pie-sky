@@ -7,7 +7,7 @@ draft: false
 description : "Available November through Christmas"
 
 # Product Short Description
-shortDescription: ""
+shortDescription: "with Graham cracker crust"
 
 # product Price
 price: "20"
