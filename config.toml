@@ -164,6 +164,8 @@ gradient = "27deg, rgb(166,98,5) 0%, rgb(214,148,58) 100%"
 gradient = "27deg, rgb(194,31,31) 0%, rgb(110,4,7) 100%"
 # Newyear
 gradient = "27deg, rgb(191,25,141) 0%, rgb(91,8,66) 100%"
+# Valentine
+gradient = "27deg, rgb(243,49,236) 0%, rgb(108,21,105) 100%"
 
 ############################# Plugins ##############################
 [params.plugins]
