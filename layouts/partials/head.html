@@ -8,6 +8,11 @@
 {{ with site.Params.author }}<meta name="author" content="{{ . }}">{{ end }}
 {{ hugo.Generator }}
 
+{{ "<!-- Plugins -->" | safeHTML }}
+{{ range site.Params.plugins.css }}
+<link rel="stylesheet" href="{{ .link | absURL }}">
+{{ end }}
+
 {{ if false }}
 {{ with site.Params.snipcartApiKey }}
 {{ "<!-- Snipcart -->" | safeHTML }}
