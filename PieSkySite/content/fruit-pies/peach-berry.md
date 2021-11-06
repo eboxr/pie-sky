@@ -7,7 +7,7 @@ draft: false
 description : "From August through Thanksgiving"
 
 # Product Short Description
-shortDescription: "raspberry, blackberry & strawberry"
+shortDescription: "raspberry, blackberry & blueberry"
 
 # product Price
 price: "20"

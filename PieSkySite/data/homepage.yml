@@ -49,7 +49,7 @@ pies:
     # material item loop
     - title : "Fruit Pies"
       icon : fas fa-apple-alt CatColor1 #https://fontawesome.com/v5.15/icons/apple-alt?style=solid
-      subtitle: "Available in season and slightly beyond"
+      subtitle: "Available in season until sold out"
       content : "strawberry-rhubarb, cherry, peach, peach-berry, apple..."
       price: "$20"
       anchor: "fruitpies"
@@ -64,7 +64,7 @@ pies:
       
     # material item loop
     - title : "Specialty Pies"
-      icon : fas fa-candy-cane CatColor3 #https://fontawesome.com/v5.15/icons/candy-cane?style=solid
+      icon : fas fa-crown CatColor3 #https://fontawesome.com/v5.15/icons/crown?style=solid
       subtitle: "Availability depends on the season"
       content : "Pumpkin chiffon pie, Pecan pie, Caramel apple pie,..."
       price: "$20"
@@ -81,16 +81,15 @@ pies:
 ########################### Advantage #########################
 advantage:
   enable : true
-  title : "Fresh products"
-  subtitle : "All pies are made with **local** or **home grown** produce when at all possible."
+  title : "Fresh ingredients"
+  subtitle : "All pies are made with **local** and **home grown** produce when at all possible."
   image : "images/fresh-products.jpg"
   advantageList:
     # advantage list loop
-    - listItem : "design & made in Utah"
-    - listItem : "unique handmade crust"
-    - listItem : "handmade sauce or gravy"
-    - listItem : "fresh fruits or meat"
-    - listItem : "Fruit pies that are slightly beyond have been previously frozen."
+    - listItem : "all handmade crusts"
+    - listItem : "cream whipped by hand"
+    - listItem : "made with real butter and eggs"
+    - listItem : "recipes meticulously tested"
 
 
 ######################## Promo Video ##########################
@@ -107,7 +106,7 @@ video:
 fruitPies:
   enable : true
   title : "Fruit Pies"
-  description: "Available in season and slightly beyond"
+  description: "Available in season until sold out"
   price: "$20"
   # product item comes from "content/fruit-pies"
 
@@ -116,7 +115,7 @@ fruitPies:
 creamPies:
   enable : true
   title : "Cream Pies"
-  description: "Available all year round"
+  description: "Available all year round made with Graham cracker crust"
   price: "$20"
   # product item comes from "content/cream-pies"
 

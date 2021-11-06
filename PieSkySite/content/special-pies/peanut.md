@@ -7,7 +7,7 @@ draft: false
 description : "Available all year"
 
 # Product Short Description
-shortDescription: "Whipped fluffy peanut butter cream with a chocolate peanut butter cup topping"
+shortDescription: "Whipped peanut butter cream covered with whipped chocolate ganache garnished with peanut butter cups"
 
 # product Price
 price: "20"

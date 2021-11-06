@@ -1,5 +1,5 @@
 ---
-title: "Cherry Pie"
+title: "Sweet Cherry Pie"
 date: 2019-10-17T11:22:16+06:00
 draft: false
 
@@ -7,7 +7,7 @@ draft: false
 description : "From July 4th through Thanksgiving"
 
 # Product Short Description
-shortDescription: ""
+shortDescription: "Made with bing cherries"
 
 # product Price
 price: "20"
