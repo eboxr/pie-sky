@@ -2,7 +2,7 @@
 baseURL = "https://pieinthesky-eden.com"
 languageCode = "en"
 title = "Pie in the Sky in Eden by Kelly"
-theme = "pie-sky"
+#theme = "pie-sky"
 summaryLength = "20"
 paginate = 10
 disqusShortname = ""

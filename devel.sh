@@ -1,3 +1,2 @@
 #!/bin/bash
-cd PieSkySite 
-hugo server --themesDir ../..
+hugo server
