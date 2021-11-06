@@ -1,6 +1,11 @@
 <footer class="section pb-0">
   <div class="container">
     <div class="row border-bottom pb-5 justify-content-between">
+
+      <div class="col-md-2 col-sm-6">
+        <img class="mw-100" src="{{ "images/venmo.png" | absURL }}">
+      </div>
+
       <div class="col-md-4 col-sm-6">
         <h5 class="font-weight-medium mb-4">Connect With Kelli</h5>
         <ul class="list-unstyled mb-5">
@@ -21,6 +26,11 @@
         </ul>
         {{ end }}
       </div>
+
+      <div class="col-md-2 col-sm-6">
+        &nbsp;
+      </div>
+
         {{ if isset .Site.Params "mailchimpurl" }}{{ partial "mailchimp-signup" . }}{{ end }}
     </div>
     <div class="row">
