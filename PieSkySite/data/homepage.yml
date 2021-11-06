@@ -83,7 +83,7 @@ advantage:
   enable : true
   title : "Fresh ingredients"
   subtitle : "All pies are made with **local** and **home grown** produce when at all possible."
-  image : "images/fresh-products.jpg"
+  image : "images/produces.jpg"
   advantageList:
     # advantage list loop
     - listItem : "all handmade crusts"
