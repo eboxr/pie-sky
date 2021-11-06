@@ -14,7 +14,10 @@
 {{ $scripts := $scripts | append (resources.Get "js/script.js" | minify) }}
 {{ $scripts := $scripts | resources.Concat "js/script.js" | minify | fingerprint "sha512" }}
 {{ "<!-- JS Plugins + Main script -->" | safeHTML }}
+{{ if false }}
 <script crossorigin="anonymous" defer="defer" integrity="{{ $scripts.Data.Integrity }}" type="application/javascript">{{$scripts.Content | safeJS}}</script>
+{{ end }}
+<script type="text/javascript" src="{{ $scripts.Permalink }}"></script>
 
 {{ with site.Params.googleAnalitycsID }}
 {{ "<!-- Google Analytics -->" | safeHTML }}
