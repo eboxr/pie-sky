@@ -9,7 +9,7 @@
 {{ hugo.Generator }}
 
 {{ "<!-- Plugins -->" | safeHTML }}
-{{ range site.Params.plugins.css }}
+{{ range site.Params.plugins.static_css }}
 <link rel="stylesheet" href="{{ .link | absURL }}">
 {{ end }}
 

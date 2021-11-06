@@ -167,16 +167,21 @@ gradient = "27deg, rgb(166,98,5) 0%, rgb(214,148,58) 100%" # ThanksGiving
 # CSS Plugins
 [[params.plugins.css]]
 link = "plugins/bootstrap/bootstrap.min.css"
+
 [[params.plugins.css]]
 link = "plugins/slick/slick.css"
-[[params.plugins.css]]
-link = "plugins/themify-icons/themify-icons.css"
+
 [[params.plugins.css]]
 link = "plugins/font-awesome/fontawesome.min.css"
+
 [[params.plugins.css]]
 link = "plugins/font-awesome/brands.css"
+
 [[params.plugins.css]]
 link = "plugins/font-awesome/solid.css"
+
+[[params.plugins.static_css]]
+link = "plugins/themify-icons/themify-icons.css"
 
 # JS Plugins
 [[params.plugins.js]]
