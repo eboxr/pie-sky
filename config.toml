@@ -168,6 +168,8 @@ gradient = "27deg, rgb(191,25,141) 0%, rgb(91,8,66) 100%"
 gradient = "27deg, rgb(243,49,236) 0%, rgb(108,21,105) 100%"
 # Patrick
 gradient = "27deg, rgb(156,203,59) 0%, rgb(77,184,72) 100%"
+# Easter
+gradient = "27deg, rgb(209,197,41) 0%, rgb(220,205,5) 100%"
 
 ############################# Plugins ##############################
 [params.plugins]
