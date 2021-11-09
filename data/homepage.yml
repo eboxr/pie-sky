@@ -136,7 +136,7 @@ testimonial:
     - name : "Erik Y."
       image : "images/clients/client-1.jpg" # size 100px*100px
       designation : ""
-      content : "OMG... once you taste Kelly's pie you cannot stop eating it!"
+      content : "OMG... once you taste Kelli's pie you cannot stop eating it!"
       rating : "five" # rating star, one to five
       
     # testimonial item loop

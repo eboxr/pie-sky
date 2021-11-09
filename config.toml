@@ -1,7 +1,7 @@
 ######################## default configuration ####################
 baseURL = "https://pieinthesky-eden.com"
 languageCode = "en"
-title = "Pie in the Sky in Eden by Kelly"
+title = "Pie in the Sky in Eden by Kelli"
 #theme = "pie-sky"
 summaryLength = "20"
 paginate = 10
@@ -88,7 +88,7 @@ logo = "images/logo.png"
 home = "Home"
 # Meta data
 description = "Fresh sweet pies and dinner pies made in Eden Utah"
-author = "Kelly"
+author = "Kelli"
 # google map
 gmapAPI = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&libraries=places"
 mapLatitude = "51.5223477"
@@ -100,7 +100,7 @@ googleAnalitycsID = "" # Your ID
 mobile = "801-941-1855"
 email = "order@pieinthesky-eden.com"
 location = "Eden, UT"
-textmsg = "Hi Kelly, here is my pie order for the"
+textmsg = "Hi Kelli, here is my pie order for the"
 # copyright
 copyright = "Copyright &copy; 2021 Pie in The Sky Eden"
 enable_social = false
