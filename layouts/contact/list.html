@@ -33,13 +33,16 @@
         </ul>
         {{ end }}
       </div>
-{{ end }}      
+{{ end }}
       <div class="col-lg-6">
         <h3 class="
         mb-4">Contact us</h3>
         <form name="contact" method="POST" data-netlify="true">
           <input type="text" class="form-control mb-2" id="name" name="name" placeholder="Your Name">
-          <input type="email" class="form-control mb-2" id="email" name="email" placeholder="Your Email">
+          <input type="email" class="form-control mb-2" id="email" name="email" placeholder="Your Email" autocorrect="off">
+          <input type="tel" class="form-control mb-2" id="phone" name="phone" placeholder="Your Phone Number" autocorrect="off">
+          <label for="pickupdate">Pickup Date:</label>
+          <input type="date" id="pickupdate" name="pickup-date" value="2021-12-14" min="2021-11-01" max="2032-12-31">
           <textarea name="message" id="message" class="form-control mb-2" placeholder="List the pies you want to order. Do not forget to mention the expected pickup/delivery date."></textarea>
           <button type="submit" value="send" class="btn btn-block btn-outline-primary rounded">Send Now</button>
         </form>
@@ -47,6 +50,17 @@
     </div>
   </div>
 </section>
+<script type="text/javascript">
+Date.prototype.toDateInputValue = (function() {
+    var local = new Date(this);
+    local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+    return local.toJSON().slice(0,10);
+});
+document.addEventListener("DOMContentLoaded", function(event) {
+    var d = new Date();
+    document.getElementById('pickupdate').value = d.toDateInputValue();
+});
+</script>
 {{ end }}
 
 {{ if site.Data.contact.map.enable }}
