@@ -16,6 +16,12 @@ priceBefore: ""
 # type must be "products"
 type: "dinner"
 
+# Availability
+big_sold_out: false
+big_sold_out_comment: "*Family size pies are temporary **SOLD OUT***"
+small_sold_out: false
+small_sold_out_comment: "*Personal size pies are temporary SOLD OUT*"
+
 # product Images
 # first image will be shown in the product page
 images:

@@ -230,6 +230,12 @@
             <h3>{{ .Title }}</h3>
             <h4>{{ .Params.Description | markdownify }}</h4>
             <p>{{ .Params.shortDescription | markdownify }}</p>
+            {{ if .Params.small_sold_out }}
+              <p>{{ .Params.small_sold_out_comment | markdownify }}</p>
+            {{ end }}
+            {{ if .Params.big_sold_out }}
+              <p style="color: red">{{ .Params.big_sold_out_comment | markdownify }}</p>
+            {{ end }}
           </div>
         </div>
       </div>
