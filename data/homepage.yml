@@ -22,10 +22,10 @@ banner:
 
 seasonal:
   enable : true
-  title : "Thanksgiving Pies"
+  title : "I'M SURPRISED TOO... THANKSGIVING PIES ARE **SOLD OUT**!"
   content : |
-    #### Currently all pies on the website are available.
-    #### Orders accepted now until November 18th.
+    ####
+    #### Thank you for your overwhelming interest, I am a tiny operation and **no longer accept orders for the dates of 11/17 - 11/25**.
   event: thxgiving
   possible: regular, newyear, valentine, patrick, easter, national, thxgiving, xmas, newyear
 
