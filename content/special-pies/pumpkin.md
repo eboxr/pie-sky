@@ -19,5 +19,8 @@ type: "special"
 # product Images
 # first image will be shown in the product page
 images:
-  - image: "images/special-pies/pumpkin.jpg"
+  - image: "images/special-pies/pumpkin1.jpg"
+  - image: "images/special-pies/pumpkin2.jpg"
+  - image: "images/special-pies/pumpkin3.jpg"
+  - image: "images/special-pies/pumpkin4.jpg"
 ---

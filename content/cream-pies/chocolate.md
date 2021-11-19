@@ -16,5 +16,8 @@ type: "cream"
 # product Images
 # first image will be shown in the product page
 images:
-  - image: "images/cream-pies/chocolate.jpg"
+  - image: "images/cream-pies/chocolate1.jpg"
+  - image: "images/cream-pies/chocolate2.jpg"
+  - image: "images/cream-pies/chocolate3.jpg"
+  - image: "images/cream-pies/chocolate4.jpg"
 ---

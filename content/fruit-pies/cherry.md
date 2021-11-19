@@ -19,6 +19,9 @@ type: "fruit"
 # product Images
 # first image will be shown in the product page
 images:
-  - image: "images/fruit-pies/cherry.jpg"
+  - image: "images/fruit-pies/cherry4.jpg"
+  - image: "images/fruit-pies/cherry1.jpg"
+  - image: "images/fruit-pies/cherry2.jpg"
+  - image: "images/fruit-pies/cherry3.jpg"
 ---
 
