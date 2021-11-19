@@ -22,7 +22,9 @@ banner:
 
 seasonal:
   enable : true
-  title : "I'M SURPRISED TOO... THANKSGIVING PIES ARE **SOLD OUT**!"
+  title : |
+    I'M SURPRISED TOO... THANKSGIVING PIES ARE\
+    **SOLD OUT**!
   content : |
     ####
     #### Thank you for your overwhelming interest, I am a tiny operation and **no longer accept orders for the dates of 11/17 - 11/25**.
