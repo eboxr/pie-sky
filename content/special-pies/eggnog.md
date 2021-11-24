@@ -19,5 +19,7 @@ type: "special"
 # product Images
 # first image will be shown in the product page
 images:
-  - image: "images/special-pies/eggnog.jpg"
+  - image: "images/special-pies/eggnog1.jpg"
+  - image: "images/special-pies/eggnog2.jpg"
+  - image: "images/special-pies/eggnog3.jpg"
 ---
