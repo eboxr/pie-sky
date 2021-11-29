@@ -7,7 +7,7 @@ draft: false
 description : "Available all year round"
 
 # Product Short Description
-shortDescription: "personal size **$7.50**, family size **$22**"
+shortDescription: "personal size **$7.50**, family size **$25**"
 
 # product Price
 price: "22"

@@ -4,7 +4,7 @@ date: 2019-10-17T11:22:16+06:00
 draft: false
 
 # meta description
-description : "Available all year"
+description : "Available spring and summer"
 
 # Product Short Description
 shortDescription: ""
