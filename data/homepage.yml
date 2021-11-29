@@ -25,8 +25,8 @@ seasonal:
   title : |
     Christmas Pies
   content : |
-    #### Say Merry Christmas with a Pie!
-    #### Currently all pies on the website are available.
+    #### Only those fruit pies are available:
+    #### ***Apple, Caramel apple, Peach, Peach-Berry, Strawberry, Strawberry-Rhubarb***
     #### Orders accepted now until December 18th.
   event: xmas
   possible: regular, newyear, valentine, patrick, easter, national, thxgiving, xmas, newyear
