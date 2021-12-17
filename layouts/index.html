@@ -230,11 +230,15 @@
             <h3>{{ .Title }}</h3>
             <h4>{{ .Params.Description | markdownify }}</h4>
             <p>{{ .Params.shortDescription | markdownify }}</p>
-            {{ if .Params.small_sold_out }}
-              <p>{{ .Params.small_sold_out_comment | markdownify }}</p>
-            {{ end }}
-            {{ if .Params.big_sold_out }}
-              <p style="color: red">{{ .Params.big_sold_out_comment | markdownify }}</p>
+            {{ if ( and (.Params.small_sold_out) (.Params.big_sold_out)) }}
+              <p style="color: red">{{ "**SOLD OUT**" | markdownify }}</p>
+            {{ else }}
+              {{ if .Params.small_sold_out }}
+                <p style="color: red">{{ .Params.small_sold_out_comment | markdownify }}</p>
+              {{ end }}
+              {{ if .Params.big_sold_out }}
+                <p style="color: red">{{ .Params.big_sold_out_comment | markdownify }}</p>
+              {{ end }}
             {{ end }}
           </div>
         </div>
