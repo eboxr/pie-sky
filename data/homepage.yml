@@ -23,12 +23,10 @@ banner:
 seasonal:
   enable : true
   title : |
-    Christmas Pies
+    Happy New Year 2022!
   content : |
-    #### I still have a few fruit pies for Christmas:
-    #### ***Apple, Caramel apple, Peach, Peach-Berry, Strawberry, Strawberry-Rhubarb***
-    #### Orders accepted now until December 18th.
-  event: xmas
+    #### Stay tune for a new year with new recipes!
+  event: newyear
   possible: regular, newyear, valentine, patrick, easter, national, thxgiving, xmas, newyear
 
 ######################## pies #######################
