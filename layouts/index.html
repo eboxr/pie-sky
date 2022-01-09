@@ -83,7 +83,7 @@
     </div>
     <div class="row">      
       {{ range .pieCategory }}
-      <div class="col-lg-3 col-md-4 col-sm-6">
+      <div class="col-lg-4 col-md-4 col-sm-6">
         <div class="card border-0 text-center">
           <div class="pieCategory">
             <a href="#{{ .anchor }}"><i class="{{ .icon }}"></i></a>
@@ -249,6 +249,42 @@
 </section>
 {{ end }}
 <!-- /dinnerPies -->
+
+
+<!-- handPies -->
+{{ if site.Data.homepage.handPies.enable }}
+<section class="section pb-0" id="handpies">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center mb-4">
+        {{ with site.Data.homepage.handPies }}
+        <h2>{{ .title | markdownify }}</h2>
+        <h4>{{ .description | markdownify }}</h4>
+        <h4><strong>{{ .price | markdownify }}</strong></h4>
+        {{ end }}
+      </div>
+      {{ range first 10 (where site.RegularPages "Type" "hand") }}
+      <div class="col-lg-4 col-sm-6 mb-4">
+        <div class="card border-0 text-center">
+          <a href="{{ .Permalink }}">
+            {{ range first 1 .Params.Images }}
+            <img src="{{ .image | absURL }}" alt="{{ .Title }}" class="card-img-top">
+            {{ end }}
+          </a>
+          <div class="card-body">
+            <h3>{{ .Title }}</h3>
+            <h4>{{ .Params.Description }}</h4>
+            <p>{{ .Params.shortDescription}}</p>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+<!-- /handPies -->
+
 
 <!-- promo video -->
 {{ if site.Data.homepage.video.enable }}

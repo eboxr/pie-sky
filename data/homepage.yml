@@ -67,6 +67,14 @@ pies:
       price: "Starting at $22"
       anchor: "dinnerpies"
 
+    # material item loop
+    - title : "Hand Pies"
+      icon : fas fa-hard-hat CatColor5 #https://fontawesome.com/v5.15/icons/hard-hat?style=solid
+      subtitle: "Availability depends on the flavour"
+      content : "Fruits and Savory"
+      price: "$4 each, sold by 4 minimum"
+      anchor: "handpies"
+
 ########################### Advantage #########################
 advantage:
   enable : true
@@ -118,13 +126,22 @@ specialPies:
   # product item comes from "content/special-pies"
 
 
-######################## Special Pies #############################
+######################## Dinner Pies #############################
 dinnerPies:
   enable : true
   title : "Dinner Pies"
   description: "Available in 2 sizes: **6\" personal size** (serves 1-2) and **12\" family size** (serves 4-6)"
   price: ""
   # product item comes from "content/dinner-pies"
+
+
+######################## Hand Pies #############################
+handPies:
+  enable : true
+  title : "Hand Pies"
+  description: "Mix and match the flavours to create your bundle"
+  price: "$4 each, sold by 4 minimum"
+  # product item comes from "content/hand-pies"
 
 
 ########################## Testimonial ########################
