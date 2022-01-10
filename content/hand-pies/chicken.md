@@ -7,7 +7,7 @@ draft: false
 description : "Available all year"
 
 # Product Short Description
-shortDescription: ""
+shortDescription: "Chicken, peas, carrots, and gravy"
 
 # product Price
 price: "4"
@@ -23,3 +23,5 @@ images:
   - image: "images/hand-pies/chicken/chicken1.jpg"
   - image: "images/hand-pies/chicken/chicken2.jpg"
 ---
+
+Chicken, peas, carrots, and gravy

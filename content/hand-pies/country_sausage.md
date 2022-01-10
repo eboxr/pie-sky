@@ -7,7 +7,7 @@ draft: false
 description : "Available all year"
 
 # Product Short Description
-shortDescription: ""
+shortDescription: "Sausage, potatoes, sweet peppers, and country gravy"
 
 # product Price
 price: "4"
@@ -23,3 +23,5 @@ images:
   - image: "images/hand-pies/c-sausage/sausage1.jpg"
   - image: "images/hand-pies/c-sausage/sausage2.jpg"
 ---
+
+Sausage, potatoes, sweet peppers and country gravy.

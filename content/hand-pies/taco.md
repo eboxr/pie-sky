@@ -7,7 +7,7 @@ draft: false
 description : "Available all year"
 
 # Product Short Description
-shortDescription: ""
+shortDescription: "Ground beef, tomato, green onion, and cheese"
 
 # product Price
 price: "4"
@@ -25,3 +25,5 @@ images:
   - image: "images/hand-pies/taco/taco3.jpg"
   - image: "images/hand-pies/taco/taco4.jpg"
 ---
+
+Ground beef, tomato, green onion, cheese
