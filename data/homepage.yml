@@ -139,8 +139,8 @@ dinnerPies:
 handPies:
   enable : true
   title : "Hand Pies"
-  description: "Mix and match the flavours to create your bundle"
-  price: "$4 each, sold by 4 minimum"
+  description: "Mix and match the flavors to create your bundle"
+  price: "$4 each, sold by 4 minimum per flavor"
   # product item comes from "content/hand-pies"
 
 
