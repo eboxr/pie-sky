@@ -7,7 +7,7 @@ draft: false
 description : "Available all year round"
 
 # Product Short Description
-shortDescription: "personal size **$7.50**, family size **$25**"
+shortDescription: "personal size **$8**, family size **$35**"
 
 # product Price
 price: "30"
@@ -17,11 +17,11 @@ priceBefore: ""
 type: "dinner"
 
 # Availability
-big_sold_out: true
+big_sold_out: false
 big_sold_out_comment: "*Family size pies are temporary **SOLD OUT***"
-small_sold_out: true
+small_sold_out: false
 small_sold_out_comment: "*Personal size pies are temporary SOLD OUT*"
-shortDescription: "~~personal size **$7.50**, family size **$25**~~"
+#shortDescription: "~~personal size **$8**, family size **$35**~~"
 
 # product Images
 # first image will be shown in the product page

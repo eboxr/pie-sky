@@ -21,7 +21,7 @@ big_sold_out: true
 big_sold_out_comment: "*Family size pies are temporary **SOLD OUT***"
 small_sold_out: true
 small_sold_out_comment: "*Personal size pies are temporary SOLD OUT*"
-shortDescription: "~~personal size **$7.50**, family size **$22**~~"
+shortDescription: "~~personal size **$7.50**, family size **$25**~~"
 
 # product Images
 # first image will be shown in the product page
