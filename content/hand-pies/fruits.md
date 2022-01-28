@@ -25,3 +25,4 @@ images:
   - image: "images/hand-pies/fruits/fruit1.jpg"
 ---
 
+Apple, Blueberry, Strawberry, Sweet Cherry, Peach
