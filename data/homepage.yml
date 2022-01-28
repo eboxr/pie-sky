@@ -17,16 +17,16 @@ banner:
 
 ########################## Seasonal ##############################
 ##
-##  also adjust gradient in assets/scss/_variables.scss
+##  also adjust gradient in config.toml in Style L166
 ##
-
 seasonal:
   enable : true
   title : |
-    Happy New Year 2022!
+    Happy Valentine!
   content : |
-    #### Stay tune for a new year with new recipes!
-  event: newyear
+    #### Hand pies are a sweet way to say I love you
+    #### Check them out!
+  event: valentine
   possible: regular, newyear, valentine, patrick, easter, national, thxgiving, xmas, newyear
 
 ######################## pies #######################
