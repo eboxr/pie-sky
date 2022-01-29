@@ -62,17 +62,17 @@ pies:
     # material item loop
     - title : "Dinner Pies"
       icon : fas fa-utensils CatColor4 #https://fontawesome.com/v5.15/icons/utensils?style=solid
-      subtitle: "Available all year round and in different sizes"
-      content : "Chicken, Turkey, Beef, or Vegetarian"
-      price: "Starting at $22"
+      subtitle: "Available in two different sizes"
+      content : "Chicken, Turkey, Beef, or Vegetable"
+      price: "Starting at $25"
       anchor: "dinnerpies"
 
     # material item loop
     - title : "Hand Pies"
       icon : fas fa-hard-hat CatColor5 #https://fontawesome.com/v5.15/icons/hard-hat?style=solid
-      subtitle: "Availability depends on the flavour"
-      content : "Fruits and Savory"
-      price: "$4 each, sold by 4 minimum"
+      subtitle: "Sweet and Savory"
+      content : "Create your bundle"
+      price: "$4 each, sold by 2 minimum per flavor"
       anchor: "handpies"
 
 ########################### Advantage #########################
@@ -103,7 +103,7 @@ video:
 fruitPies:
   enable : true
   title : "Fruit Pies"
-  description: "Available in season until sold out"
+  description: "Available in season and beyond until sold out"
   price: "$20"
   # product item comes from "content/fruit-pies"
 
@@ -140,7 +140,7 @@ handPies:
   enable : true
   title : "Hand Pies"
   description: "Mix and match the flavors to create your bundle"
-  price: "$4 each, sold by 4 minimum per flavor"
+  price: "$4 each, a minimum of 2 per flavor"
   # product item comes from "content/hand-pies"
 
 
