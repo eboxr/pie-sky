@@ -22,11 +22,10 @@ banner:
 seasonal:
   enable : true
   title : |
-    Happy Valentine's!
+    Happy Easter!
   content : |
-    #### Hand pies are a sweet way to say I love you
-    #### Check them out!
-  event: valentine
+    #### Subscribe to my newsletter to stay tuned!
+  event: easter
   possible: regular, newyear, valentine, patrick, easter, national, thxgiving, xmas, newyear
 
 ######################## pies #######################
