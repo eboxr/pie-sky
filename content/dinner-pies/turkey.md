@@ -10,7 +10,7 @@ description : "Available November through December"
 shortDescription: "personal size **$7.50**, family size **$25**"
 
 # product Price
-price: "22"
+price: "25"
 priceBefore: ""
 
 # type must be "products"
@@ -30,4 +30,4 @@ images:
 ---
 
 - personal size (serves 1-2) **$7.50**
-- family size (serves 4-6) **$22**
+- family size (serves 4-6) **$25**

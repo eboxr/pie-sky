@@ -10,7 +10,7 @@ description : ""
 shortDescription: "Apple, Blueberry, Strawberry, Sweet Cherry, Peach"
 
 # product Price
-price: "4"
+price: "3"
 priceBefore: ""
 
 

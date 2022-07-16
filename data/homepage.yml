@@ -38,7 +38,7 @@ pies:
     - title : "Fruit Pies"
       icon : fas fa-apple-alt CatColor1 #https://fontawesome.com/v5.15/icons/apple-alt?style=solid
       subtitle: "Available in season until sold out"
-      content : "strawberry-rhubarb, cherry, peach, peach-berry, apple..."
+      content : "strawberry-rhubarb, cherry, cherry-blueberry, peach, peach-berry, apple..."
       price: "$20"
       anchor: "fruitpies"
       
@@ -71,7 +71,7 @@ pies:
       icon : fas fa-hard-hat CatColor5 #https://fontawesome.com/v5.15/icons/hard-hat?style=solid
       subtitle: "Sweet and Savory"
       content : "Create your bundle"
-      price: "$4 each, sold by 2 minimum per flavor"
+      price: "$3 each, sold by 2 minimum per flavor"
       anchor: "handpies"
 
 ########################### Advantage #########################
@@ -138,8 +138,8 @@ dinnerPies:
 handPies:
   enable : true
   title : "Hand Pies"
-  description: "Mix and match the flavors to create your bundle"
-  price: "$4 each, a minimum of 2 per flavor"
+  description: "Mix and match the flavors. Savory pies sold frozen ready to bake"
+  price: "$3 each, a minimum of 2 per flavor"
   # product item comes from "content/hand-pies"
 
 
