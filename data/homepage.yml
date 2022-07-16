@@ -22,11 +22,11 @@ banner:
 seasonal:
   enable : true
   title : |
-    Happy Easter!
+    Enjoy your summer!
   content : |
     #### Subscribe to my newsletter to stay tuned!
-  event: easter
-  possible: regular, newyear, valentine, patrick, easter, national, thxgiving, xmas, newyear
+  event: summer
+  possible: regular, newyear, valentine, patrick, easter, national, summer, thxgiving, xmas, newyear
 
 ######################## pies #######################
 pies:
