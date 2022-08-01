@@ -10,7 +10,7 @@ description : "Available all year"
 shortDescription: "Chicken, Taco, Philly Cheese Steak, Veggie"
 
 # product Price
-price: "3"
+price: "4"
 priceBefore: ""
 
 

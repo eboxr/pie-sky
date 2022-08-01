@@ -71,7 +71,7 @@ pies:
       icon : fas fa-hard-hat CatColor5 #https://fontawesome.com/v5.15/icons/hard-hat?style=solid
       subtitle: "Sweet and Savory"
       content : "Create your bundle"
-      price: "$3 each, sold by 2 minimum per flavor"
+      price: "$4 each, sold by 2 minimum per flavor"
       anchor: "handpies"
 
 ########################### Advantage #########################
@@ -139,7 +139,7 @@ handPies:
   enable : true
   title : "Hand Pies"
   description: "Mix and match the flavors. Savory pies sold frozen ready to bake"
-  price: "$3 each, a minimum of 2 per flavor"
+  price: "$4 each, a minimum of 2 per flavor"
   # product item comes from "content/hand-pies"
 
 
