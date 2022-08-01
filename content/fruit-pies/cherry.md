@@ -11,7 +11,7 @@ shortDescription: "Made with bing cherries"
 
 # product Price
 price: "20"
-priceBefore: "40"
+priceBefore: ""
 
 # type must be "products"
 type: "fruit"

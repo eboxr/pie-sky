@@ -11,7 +11,7 @@ shortDescription: "Made with bing cherries and blueberries"
 
 # product Price
 price: "20"
-priceBefore: "40"
+priceBefore: ""
 
 # type must be "products"
 type: "fruit"
@@ -21,6 +21,7 @@ sold_out: false
 # product Images
 # first image will be shown in the product page
 images:
+  - image: "images/fruit-pies/cherry-blueberry2.jpg"
   - image: "images/fruit-pies/cherry-blueberry1.jpg"
 ---
 
