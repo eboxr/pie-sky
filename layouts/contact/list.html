@@ -43,6 +43,7 @@
           <input type="tel" class="form-control mb-2" id="phone" name="phone" placeholder="Your Phone Number" autocorrect="off">
           <label for="pickupdate">Pickup Date:</label>
           <input type="date" id="pickupdate" name="pickup-date" value="2021-12-14" min="2021-11-01" max="2032-12-31">
+          <input type="text" id="firstpickupdate" name="firstpickupdate" value="xxx" size="35" disabled>
           <textarea name="message" id="message" class="form-control mb-2" placeholder="List the pies you want to order. Do not forget to mention the expected pickup/delivery date."></textarea>
           <button type="submit" value="send" class="btn btn-block btn-outline-primary rounded">Send Now</button>
         </form>
@@ -59,6 +60,8 @@ Date.prototype.toDateInputValue = (function() {
 document.addEventListener("DOMContentLoaded", function(event) {
     var d = new Date();
     document.getElementById('pickupdate').value = d.toDateInputValue();
+    d.setMinutes(60 * 24 * 2 + d.getMinutes() - d.getTimezoneOffset());
+    document.getElementById('firstpickupdate').value = "First available Pickup Date is " + d;
 });
 </script>
 {{ end }}
