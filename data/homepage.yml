@@ -22,11 +22,11 @@ banner:
 seasonal:
   enable : true
   title : |
-    Enjoy your summer!
+    Cozy Fall is here
   content : |
     #### Subscribe to my newsletter to stay tuned!
-  event: summer
-  possible: regular, newyear, valentine, patrick, easter, national, summer, thxgiving, xmas, newyear
+  event: fall
+  possible: regular, newyear, valentine, patrick, easter, national, summer, fall, thxgiving, xmas, newyear
 
 ######################## pies #######################
 pies:
