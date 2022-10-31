@@ -22,10 +22,10 @@ banner:
 seasonal:
   enable : true
   title : |
-    Cozy Fall is here
+    Happy Thanksgiving!
   content : |
-    #### Subscribe to my newsletter to stay tuned!
-  event: fall
+    #### Final day for Thanksgiving pie orders is November, 18th
+  event: thxgiving
   possible: regular, newyear, valentine, patrick, easter, national, summer, fall, thxgiving, xmas, newyear
 
 ######################## pies #######################
