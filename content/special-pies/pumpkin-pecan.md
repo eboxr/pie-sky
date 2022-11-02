@@ -21,7 +21,8 @@ sold_out: false
 # product Images
 # first image will be shown in the product page
 images:
-  - image: "images/special-pies/pumpkin-pecan-1.jpg"
-  - image: "images/special-pies/pumpkin-pecan-2.jpg"
+  - image: "images/special-pies/pumpkin-pecan-5.jpg"
+  - image: "images/special-pies/pumpkin-pecan-6.jpg"
   - image: "images/special-pies/pumpkin-pecan-3.jpg"
+  - image: "images/special-pies/pumpkin-pecan-7.jpg"
 ---
