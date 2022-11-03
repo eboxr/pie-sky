@@ -7,21 +7,21 @@ draft: false
 description : "Available November through December"
 
 # Product Short Description
-shortDescription: "personal size **$7.50**, family size **$25**"
+shortDescription: "personal size **$8**, family size **$30**"
 
 # product Price
-price: "25"
+price: "30"
 priceBefore: ""
 
 # type must be "products"
 type: "dinner"
 
 # Availability
-big_sold_out: true
-big_sold_out_comment: "*Family size pies are temporary **SOLD OUT***"
-small_sold_out: true
-small_sold_out_comment: "*Personal size pies are temporary SOLD OUT*"
-shortDescription: "~~personal size **$7.50**, family size **$25**~~"
+big_sold_out: false
+# big_sold_out_comment: "*Family size pies are temporary **SOLD OUT***"
+small_sold_out: false
+# small_sold_out_comment: "*Personal size pies are temporary SOLD OUT*"
+# shortDescription: "~~personal size **$8**, family size **$30**~~"
 
 # product Images
 # first image will be shown in the product page
@@ -29,5 +29,5 @@ images:
   - image: "images/dinner-pies/turkey.jpg"
 ---
 
-- personal size (serves 1-2) **$7.50**
-- family size (serves 4-6) **$25**
+- personal size (serves 1-2) **$8**
+- family size (serves 4-6) **$30**
