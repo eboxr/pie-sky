@@ -22,9 +22,10 @@ banner:
 seasonal:
   enable : true
   title : |
-    Happy Thanksgiving!
+    Happy Thanksgiving 🦃 to all!
   content : |
-    #### Final day for Thanksgiving pie orders is November, 18th
+    #### Thank you for all of your Thanksgiving orders. Pie in the sky is completely full and no more orders will be taken for dessert pie’s until November 30th.
+    #### However, I can still take orders for Chicken and Veggie pot pies.
   event: thxgiving
   possible: regular, newyear, valentine, patrick, easter, national, summer, fall, thxgiving, xmas, newyear
 
