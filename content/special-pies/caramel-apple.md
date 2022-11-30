@@ -7,7 +7,7 @@ draft: false
 description : "Available September 15th through Christmas"
 
 # product Price
-price: "20"
+price: "25"
 priceBefore: ""
 
 # type must be "products"

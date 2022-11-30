@@ -7,7 +7,7 @@ draft: false
 description : "Available all year"
 
 # product Price
-price: "20"
+price: "25"
 priceBefore: ""
 
 # Product Short Description

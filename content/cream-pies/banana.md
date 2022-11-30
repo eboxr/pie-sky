@@ -10,7 +10,7 @@ description : "Available all year"
 shortDescription: ""
 
 # product Price
-price: "20"
+price: "25"
 priceBefore: ""
 
 

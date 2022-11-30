@@ -22,11 +22,12 @@ banner:
 seasonal:
   enable : true
   title : |
-    Happy Thanksgiving 🦃 to all!
+    Happy Holidays to all!
   content : |
-    #### Thank you for all of your Thanksgiving orders. Pie in the sky is completely full and no more orders will be taken for dessert pie’s until November 30th.
-    #### However, I can still take orders for Chicken and Veggie pot pies.
-  event: thxgiving
+    #### Final day for holiday pie orders is December, 18th
+    #### Unfortunately, I have to raise my prices on cream and specialty pies, hopefully, this will be temporary.
+    #### Thank you for trusting me with your holiday deserts.
+  event: xmas
   possible: regular, newyear, valentine, patrick, easter, national, summer, fall, thxgiving, xmas, newyear
 
 ######################## pies #######################
@@ -48,7 +49,7 @@ pies:
       icon : fab fa-cloudversify CatColor2 #https://fontawesome.com/v5.15/icons/cloudversify?style=brands
       subtitle: "Available all year round. Comes with Graham cracker crust"
       content : "chocolate, banana, coconut"
-      price: "$20"
+      price: "$25"
       anchor: "creampies"
       
     # material item loop
@@ -56,7 +57,7 @@ pies:
       icon : fas fa-crown CatColor3 #https://fontawesome.com/v5.15/icons/crown?style=solid
       subtitle: "Availability depends on the season"
       content : "Pumpkin chiffon pie, Pecan pie, Caramel apple pie,..."
-      price: "$20"
+      price: "$25"
       anchor: "specialtypies"
 
     # material item loop
@@ -113,7 +114,7 @@ creamPies:
   enable : true
   title : "Cream Pies"
   description: "Available all year round made with Graham cracker crust"
-  price: "$20"
+  price: "$25"
   # product item comes from "content/cream-pies"
 
 
@@ -122,7 +123,7 @@ specialPies:
   enable : true
   title : "Specialty Pies"
   description: ""
-  price: "$20"
+  price: "$25"
   # product item comes from "content/special-pies"
 
 

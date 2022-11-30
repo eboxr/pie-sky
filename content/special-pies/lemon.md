@@ -10,7 +10,7 @@ description : "Available spring and summer"
 shortDescription: ""
 
 # product Price
-price: "20"
+price: "25"
 priceBefore: ""
 
 # type must be "products"

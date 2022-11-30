@@ -10,7 +10,7 @@ description : "Available November through Christmas"
 shortDescription: "with Graham cracker crust"
 
 # product Price
-price: "20"
+price: "25"
 priceBefore: ""
 
 # type must be "products"
