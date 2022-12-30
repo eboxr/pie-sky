@@ -22,11 +22,10 @@ banner:
 seasonal:
   enable : true
   title : |
-    Happy Holidays to all!
+    Happy New Year 2023!
   content : |
-    #### Thank you for all of your support this Holiday Season, Pie In The Sky is no longer taking Holiday orders after the 18th of December.
-    #### I hope your Holidays are filled with friends and family.
-  event: xmas
+    #### Stay tune for a new year with new recipes!
+  event: newyear
   possible: regular, newyear, valentine, patrick, easter, national, summer, fall, thxgiving, xmas, newyear
 
 ######################## pies #######################
