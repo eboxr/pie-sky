@@ -83,7 +83,7 @@ special_event:
   special_eventList:
     # special event list loop
     - listItem : "4\" size with a flaky shortbread crust"
-    - listItem : "Vanilla comes with a variety of fruits"
+    - listItem : "Vanilla comes with a variety of fruit"
     - listItem : "Lemon comes with raspberries"
     - listItem : "Chocolate custard is topped with strawberries or whipped cream and candy with a chocolate drizzle"
     - listItem : "**$5 each**"
