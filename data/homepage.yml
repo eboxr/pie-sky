@@ -22,7 +22,7 @@ banner:
 seasonal:
   enable : true
   title : |
-    Happy Valentine!
+    Happy Valentine's!
   content : |
 #    #### This year show your love with a cute little tart
   event: valentine
