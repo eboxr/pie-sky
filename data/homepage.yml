@@ -22,10 +22,10 @@ banner:
 seasonal:
   enable : true
   title : |
-    Happy New Year 2023!
+    Happy Valentine!
   content : |
-    #### Stay tune for a new year with new recipes!
-  event: newyear
+#    #### This year show your love with a cute little tart
+  event: valentine
   possible: regular, newyear, valentine, patrick, easter, national, summer, fall, thxgiving, xmas, newyear
 
 ######################## pies #######################
@@ -73,6 +73,20 @@ pies:
       content : "Create your bundle"
       price: "$4 each, sold by 2 minimum per flavor"
       anchor: "handpies"
+
+########################### Special Event #########################
+special_event:
+  enable : true
+  title : "Special for Valentine's Day"
+  subtitle : "**Fruit tarts with vanilla custard, lemon cream or chocolate custard**"
+  image : "images/special_event/valentine_2023.jpg"
+  special_eventList:
+    # special event list loop
+    - listItem : "4\" size with a flaky shortbread crust"
+    - listItem : "Vanilla comes with a variety of fruits"
+    - listItem : "Lemon comes with raspberries"
+    - listItem : "Chocolate custard is topped with strawberries or whipped cream and candy with a chocolate drizzle"
+    - listItem : "**$5 each**"
 
 ########################### Advantage #########################
 advantage:
