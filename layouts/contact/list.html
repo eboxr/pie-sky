@@ -16,7 +16,7 @@
           <li class="mb-3"><a class="text-color" href="sms:{{ site.Params.mobile }}&body={{ site.Params.textmsg | safeHTML }}"><i
                 class="ti-mobile text-primary mr-2"></i>
              {{ site.Params.mobile }}</a></li>
-          <li class="mb-3"><a class="text-color" href="mailto:{{ site.Params.email }}"><i
+          <li class="mb-3"><a class="text-color" href="/contact"><i
                 class="ti-email text-primary mr-2"></i>{{ site.Params.email }}</a></li>
           <li class="mb-3"><i class="ti-location-pin text-primary mr-2"></i>{{ site.Params.location }}
           </li>
@@ -38,13 +38,13 @@
         <h3 class="
         mb-4">Contact us</h3>
         <form name="contact" method="POST" data-netlify="true">
-          <input type="text" class="form-control mb-2" id="name" name="name" placeholder="Your Name">
-          <input type="email" class="form-control mb-2" id="email" name="email" placeholder="Your Email" autocorrect="off">
-          <input type="tel" class="form-control mb-2" id="phone" name="phone" placeholder="Your Phone Number" autocorrect="off">
+          <input type="text" class="form-control mb-2" id="name" name="name" placeholder="Your Name" required>
+          <input type="email" class="form-control mb-2" id="email" name="email" placeholder="Your Email" autocorrect="off" required>
+          <input type="tel" class="form-control mb-2" id="phone" name="phone" placeholder="Your Phone Number" autocorrect="off" required>
           <label for="pickupdate">Pickup Date:</label>
           <input type="date" id="pickupdate" name="pickup-date" value="2021-12-14" min="2021-11-01" max="2032-12-31">
           <input type="text" id="firstpickupdate" name="firstpickupdate" value="xxx" size="45" disabled class="small">
-          <textarea name="message" id="message" class="form-control mb-2" placeholder="List the pies you want to order. Do not forget to mention the expected pickup/delivery date."></textarea>
+          <textarea name="message" id="message" class="form-control mb-2" placeholder="List the pies you want to order. Do not forget to mention the expected pickup/delivery date." required></textarea>
           <button type="submit" value="send" class="btn btn-block btn-outline-primary rounded">Send Now</button>
         </form>
       </div>
