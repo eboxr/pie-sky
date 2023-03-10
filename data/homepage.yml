@@ -22,11 +22,11 @@ banner:
 seasonal:
   enable : true
   title : |
-    Happy Valentine's!
+    Enjoy spring!
   content : |
 #    #### This year show your love with a cute little tart
-  event: valentine
-  possible: regular, newyear, valentine, patrick, easter, national, summer, fall, thxgiving, xmas, newyear
+  event: spring
+  possible: regular, newyear, valentine, patrick, spring, easter, national, summer, fall, thxgiving, xmas, newyear
 
 ######################## pies #######################
 pies:
@@ -76,7 +76,7 @@ pies:
 
 ########################### Special Event #########################
 special_event:
-  enable : true
+  enable : false
   title : "Special for Valentine's Day"
   subtitle : "**Fruit tarts with vanilla custard, lemon cream or chocolate custard**"
   image : "images/special_event/valentine_2023.jpg"
