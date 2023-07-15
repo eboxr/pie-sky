@@ -176,9 +176,9 @@ light = "rgb(223, 223, 223)"
 # Easter
 # gradient = "27deg, rgb(209,197,41) 0%, rgb(220,205,5) 100%"
 # Spring
-gradient = "27deg, rgb(59,170,223) 0%, rgb(247,248,249) 100%"
+#gradient = "27deg, rgb(59,170,223) 0%, rgb(247,248,249) 100%"
 # Summer
-#gradient = "27deg, rgb(135,206,235) 0%, rgb(248,255,52) 100%"
+gradient = "27deg, rgb(135,206,235) 0%, rgb(248,255,52) 100%"
 # Fall
 #gradient = "27deg, rgb(99,49,4) 0%, rgb(255,209,3) 100%"
 
