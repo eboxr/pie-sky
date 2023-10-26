@@ -7,10 +7,10 @@ draft: false
 description : "Available all year round"
 
 # Product Short Description
-shortDescription: "personal size **$9**, family size **$35**"
+shortDescription: "family size **$30**"
 
 # product Price
-price: "35"
+price: "30"
 priceBefore: ""
 
 # type must be "products"
@@ -29,5 +29,4 @@ images:
   - image: "images/dinner-pies/beef.jpg"
 ---
 
-- personal size (serves 1-2) **$9**
-- family size (serves 4-6) **$35**
+- family size (serves 4-6) **$30**
