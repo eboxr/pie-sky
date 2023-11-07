@@ -29,4 +29,4 @@ images:
   - image: "images/dinner-pies/turkey.jpg"
 ---
 
-- family size (serves 4-6) **$30**
+- family size (serves 4-6) **$25**
