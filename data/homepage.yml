@@ -22,10 +22,10 @@ banner:
 seasonal:
   enable : true
   title : |
-    Welcome Fall
+    Happy Thanksgiving 🦃 to all!
   content : |
 #    #### This year show your love with a cute little tart
-  event: fall
+  event: thxgiving
   possible: regular, newyear, valentine, patrick, spring, easter, national, summer, fall, thxgiving, xmas, newyear
 
 ######################## pies #######################
@@ -76,21 +76,18 @@ pies:
 
 ########################### Special Event #########################
 special_event:
-  enable : false
-  title : "Special for Valentine's Day"
-  subtitle : "**Fruit tarts with vanilla custard, lemon cream or chocolate custard**"
-  image : "images/special_event/valentine_2023.jpg"
+  enable : true
+  title : "Thanksgiving Pies"
+  subtitle : "**I am taking orders for Holiday pies through November 17th**"
+  image : "images/special_event/thanksgiving-special.jpg"
   special_eventList:
     # special event list loop
-    - listItem : "4\" size with a flaky shortbread crust"
-    - listItem : "Vanilla custard with a variety of fruit"
-    - listItem : "Lemon cream with raspberries"
-    - listItem : "Chocolate custard is topped with strawberries or whipped cream and candy with a chocolate drizzle"
-    - listItem : "**$5 each**"
+    - listItem : "Pick ups will be available in Eden until Noon on Thanksgiving"
+    - listItem : "Pick up at Holy Cross Hospital (formerly Salt Lake Regional Medical Center) will be at 3pm on November 22nd and Noon on Thanksgiving Day"
 
 ########################### Advantage #########################
 advantage:
-  enable : true
+  enable : false
   title : "Fresh ingredients"
   subtitle : "All pies are made with **local** and **home grown** produce when at all possible."
   image : "images/produces.jpg"
