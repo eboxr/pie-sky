@@ -4,7 +4,7 @@ date: 2019-10-17T11:22:16+06:00
 draft: false
 
 # meta description
-description : "Available November through December"
+description : "Turkey, carrots, peas, onion in a rich gravy"
 
 # Product Short Description
 shortDescription: "family size **$25**"

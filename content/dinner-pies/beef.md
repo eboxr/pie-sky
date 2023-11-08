@@ -4,7 +4,7 @@ date: 2019-10-17T11:22:16+06:00
 draft: false
 
 # meta description
-description : "Available all year round"
+description : "Roast, potatoes, carrots, peas in a rich brown gravy"
 
 # Product Short Description
 shortDescription: "family size **$30**"
