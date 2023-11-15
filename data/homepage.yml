@@ -78,7 +78,7 @@ pies:
 special_event:
   enable : true
   title : "Thanksgiving Pies"
-  subtitle : "**I am taking orders for Holiday pies through November 17th**"
+  subtitle : "**I am taking orders for Holiday pies through November 19th**"
   image : "images/special_event/thanksgiving-special.jpg"
   special_eventList:
     # special event list loop
