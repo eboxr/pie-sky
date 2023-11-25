@@ -22,10 +22,10 @@ banner:
 seasonal:
   enable : true
   title : |
-    Happy Thanksgiving 🦃 to all!
+    Here comes winter ❄️☃️!
   content : |
 #    #### This year show your love with a cute little tart
-  event: thxgiving
+  event: xmas
   possible: regular, newyear, valentine, patrick, spring, easter, national, summer, fall, thxgiving, xmas, newyear
 
 ######################## pies #######################
@@ -76,7 +76,7 @@ pies:
 
 ########################### Special Event #########################
 special_event:
-  enable : true
+  enable : false
   title : "Thanksgiving Pies"
   subtitle : "**I am taking orders for Holiday pies through November 19th**"
   image : "images/special_event/thanksgiving-special.jpg"
@@ -87,7 +87,7 @@ special_event:
 
 ########################### Advantage #########################
 advantage:
-  enable : false
+  enable : true
   title : "Fresh ingredients"
   subtitle : "All pies are made with **local** and **home grown** produce when at all possible."
   image : "images/produces.jpg"
