@@ -21,5 +21,5 @@ sold_out: false
 # product Images
 # first image will be shown in the product page
 images:
-  - image: "images/special-pies/peanut-butter-pie.jpg"
+  - image: "images/special-pies/peanut-butter-site1.jpg"
 ---

@@ -22,5 +22,5 @@ sold_out: false
 # product Images
 # first image will be shown in the product page
 images:
-  - image: "images/special-pies/cranberry-apple-walnut.jpg"
+  - image: "images/special-pies/cranberry-apple-site1.jpg"
 ---

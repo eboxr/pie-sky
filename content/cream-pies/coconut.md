@@ -4,7 +4,7 @@ date: 2019-10-17T11:22:16+06:00
 draft: false
 
 # meta description
-description : "Available all year"
+description : ""
 
 # product Price
 price: "25"
@@ -19,5 +19,6 @@ type: "cream"
 # product Images
 # first image will be shown in the product page
 images:
-  - image: "images/cream-pies/coconut.jpg"
+  - image: "images/cream-pies/coconut-site2.jpg"
+  - image: "images/cream-pies/coconut-site1.jpg"
 ---

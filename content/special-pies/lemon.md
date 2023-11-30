@@ -21,5 +21,5 @@ sold_out: false
 # product Images
 # first image will be shown in the product page
 images:
-  - image: "images/special-pies/lemon-meringue.jpg"
+  - image: "images/special-pies/lemon-meringue-site1.jpg"
 ---
