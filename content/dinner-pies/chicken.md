@@ -4,7 +4,9 @@ date: 2019-10-17T11:22:16+06:00
 draft: false
 
 # meta description
-description : "Chicken, carrots, peas in a chicken cream sauce"
+description : ""
+
+ingredients: "Chicken, carrots, peas in a chicken cream sauce"
 
 # Product Short Description
 shortDescription: "personal size **$7.50**, family size **$25**"

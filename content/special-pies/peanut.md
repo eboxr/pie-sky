@@ -9,6 +9,8 @@ description : "Available all year"
 # Product Short Description
 shortDescription: "Whipped peanut butter cream covered with whipped chocolate ganache garnished with peanut butter cups"
 
+ingredients: ""
+
 # product Price
 price: "25"
 priceBefore: ""

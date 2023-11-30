@@ -28,6 +28,13 @@
           {{ end }}
           <span class="lead text-primary font-weight-medium">{{ site.Params.currencySymbol }}{{ .Params.Price }}</span>
         </div>
+        <div class="my-3">
+          {{ if .Params.ingredients }}
+          <h5>Ingredients</h5>
+          <div class="content">{{ .Params.ingredients }}</div>
+          {{ end }}
+        </div>
+
         {{ if .Content }}
         <h5>Description</h5>
         <div class="content">{{ .Content }}</div>
