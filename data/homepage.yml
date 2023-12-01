@@ -30,7 +30,7 @@ seasonal:
 
 ######################## pies #######################
 pies:
-  enable : true
+  enable : false
   title : "The Pies"
   subtitle :
   pieCategory:
