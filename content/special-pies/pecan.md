@@ -21,7 +21,7 @@ sold_out: false
 # product Images
 # first image will be shown in the product page
 images:
-  - image: "images/special-pies/pecan-site1.jpg"
   - image: "images/special-pies/pecan-site2.jpg"
+#  - image: "images/special-pies/pecan-site1.jpg"
   - image: "images/special-pies/pecan-site3.jpg"
 ---

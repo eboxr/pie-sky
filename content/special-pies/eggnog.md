@@ -21,8 +21,8 @@ sold_out: false
 # product Images
 # first image will be shown in the product page
 images:
-  - image: "images/special-pies/eggnog-site4.jpg"
   - image: "images/special-pies/eggnog-site1.jpg"
+  - image: "images/special-pies/eggnog-site4.jpg"
   - image: "images/special-pies/eggnog-site2.jpg"
   - image: "images/special-pies/eggnog-site3.jpg"
 ---
