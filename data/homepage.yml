@@ -22,7 +22,7 @@ banner:
 seasonal:
   enable : true
   title : |
-    Here comes winter ❄️☃️!
+    🎄🎁️ Merry Christmas  🎁🎄!
   content : |
 #    #### This year show your love with a cute little tart
   event: xmas
@@ -76,18 +76,29 @@ pies:
 
 ########################### Special Event #########################
 special_event:
-  enable : false
-  title : "Thanksgiving Pies"
-  subtitle : "**I am taking orders for Holiday pies through November 19th**"
-  image : "images/special_event/thanksgiving-special.jpg"
+  enable : true
+  title : "Christmas Pies"
+  subtitle : "
+  **Taking Christmas Pie orders through Dec. 20th & New Years Eve/Day orders through Dec. 28th**
+  
+  
+  **Don't forget the sweet or savory hand pies**. They are perfect for serving to family and large groups. Sold frozen, cook at home for a super fresh dinner or dessert.
+
+
+  **Fruit pies** are still available too: blueberry/cherry, caramel apple,...
+
+
+  **New for this year is Kentucky Pie**. It is made with a pastry crust, walnuts, bourbon and chocolate chips. Best served warmed with whipped cream."
+  image : "images/special_event/xmas-special-2023.jpg"
   special_eventList:
     # special event list loop
-    - listItem : "Pick ups will be available in Eden until Noon on Thanksgiving"
-    - listItem : "Pick up at Holy Cross Hospital (formerly Salt Lake Regional Medical Center) will be at 3pm on November 22nd and Noon on Thanksgiving Day"
+    - listItem : "Delivery to Holy Cross Hospital in SLC December 23rd at 8am and December 24th at 2:30pm"
+    - listItem : "Delivery to McKay Dee Hospital in Ogden December 24th at 1:30pm"
+    - listItem : "Eden pick-ups any day at 4pm until the December 24th at 12:30pm"
 
 ########################### Advantage #########################
 advantage:
-  enable : true
+  enable : false
   title : "Fresh ingredients"
   subtitle : "All pies are made with **local** and **home grown** produce when at all possible."
   image : "images/produces.jpg"
