@@ -22,11 +22,11 @@ banner:
 seasonal:
   enable : true
   title : |
-    🎄🎁️ Merry Christmas  🎁🎄!
+    Survive the winter with pies!
   content : |
 #    #### This year show your love with a cute little tart
-  event: xmas
-  possible: regular, newyear, valentine, patrick, spring, easter, national, summer, fall, thxgiving, xmas, newyear
+  event: winter
+  possible: regular, newyear, valentine, patrick, spring, easter, national, summer, fall, thxgiving, xmas
 
 ######################## pies #######################
 pies:
@@ -76,7 +76,7 @@ pies:
 
 ########################### Special Event #########################
 special_event:
-  enable : true
+  enable : false
   title : "Christmas Pies"
   subtitle : "
   **Taking Christmas Pie orders through Dec. 20th & New Years Eve/Day orders through Dec. 28th**
@@ -98,7 +98,7 @@ special_event:
 
 ########################### Advantage #########################
 advantage:
-  enable : false
+  enable : true
   title : "Fresh ingredients"
   subtitle : "All pies are made with **local** and **home grown** produce when at all possible."
   image : "images/produces.jpg"
