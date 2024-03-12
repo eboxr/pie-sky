@@ -22,10 +22,10 @@ banner:
 seasonal:
   enable : true
   title : |
-    Survive the winter with pies!
+    Welcome to Spring!
   content : |
 #    #### This year show your love with a cute little tart
-  event: winter
+  event: spring
   possible: regular, newyear, valentine, patrick, spring, easter, national, summer, fall, thxgiving, xmas
 
 ######################## pies #######################
