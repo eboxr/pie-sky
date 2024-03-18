@@ -5,10 +5,12 @@ author: "Kelli"
 draft: false
 
 # meta description
-description : "Available from Thanksgiving through New Year's"
+description : ""
 
 # Product Short Description
-shortDescription: ""
+shortDescription: "Available from Thanksgiving through New Year's"
+
+ingredients: ""
 
 # product Price
 price: "25"

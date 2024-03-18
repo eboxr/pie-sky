@@ -4,12 +4,12 @@ date: 2019-10-17T11:22:16+06:00
 draft: false
 
 # meta description
-description : "Available all year"
+description : ""
 
 # Product Short Description
-shortDescription: "Walnuts, chocolate chips and bourbon"
+shortDescription: "Available all year"
 
-ingredients: ""
+ingredients: "Walnuts, chocolate chips and bourbon"
 
 # product Price
 price: "25"
