@@ -7,7 +7,7 @@ draft: false
 description : ""
 
 # Product Short Description
-shortDescription: "Available all year"
+shortDescription: ""
 
 ingredients: "Walnuts, chocolate chips and bourbon"
 

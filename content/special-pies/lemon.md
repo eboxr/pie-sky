@@ -7,7 +7,7 @@ draft: false
 description : ""
 
 # Product Short Description
-shortDescription: "Available spring and summer"
+shortDescription: ""
 
 ingredients: "Graham cracker crust, Fresh lemons, topped with meringue"
 

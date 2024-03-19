@@ -7,7 +7,7 @@ draft: false
 description : ""
 
 # Product Short Description
-shortDescription: "Available spring and summer"
+shortDescription: ""
 
 ingredients: "Double pastry crust filled with fresh lemons"
 
