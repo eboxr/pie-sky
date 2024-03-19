@@ -4,10 +4,12 @@ date: 2019-10-17T11:22:16+06:00
 draft: false
 
 # meta description
-description : "Available all year"
+description : ""
 
 # Product Short Description
-shortDescription: "Toffee, banana, whipped cream in a graham cracker crust"
+shortDescription: ""
+
+ingredients: "Toffee, banana, whipped cream in a graham cracker crust"
 
 # product Price
 price: "25"

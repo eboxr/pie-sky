@@ -4,10 +4,12 @@ date: 2019-10-17T11:22:16+06:00
 draft: false
 
 # meta description
-description : "Available from Thanksgiving through New Year's"
+description : ""
 
 # Product Short Description
-shortDescription: "Chocolate ganache with whipped eggnog"
+shortDescription: ""
+
+ingredients: "Chocolate ganache with whipped eggnog"
 
 # product Price
 price: "25"
@@ -16,7 +18,7 @@ priceBefore: ""
 # type must be "products"
 type: "special"
 
-sold_out: false
+sold_out: true
 
 # product Images
 # first image will be shown in the product page

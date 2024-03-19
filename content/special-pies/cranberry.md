@@ -8,7 +8,7 @@ draft: false
 description : ""
 
 # Product Short Description
-shortDescription: "Available from Thanksgiving through New Year's"
+shortDescription: ""
 
 ingredients: ""
 
@@ -19,7 +19,7 @@ priceBefore: ""
 # type must be "products"
 type: "special"
 
-sold_out: false
+sold_out: true
 
 # product Images
 # first image will be shown in the product page
