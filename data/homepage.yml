@@ -22,10 +22,10 @@ banner:
 seasonal:
   enable : true
   title : |
-    Summer fruit is ready for pies!
+    Welcome fall
   content : |
 #    #### This year show your love with a cute little tart
-  event: summer
+  event: fall
   possible: regular, newyear, valentine, patrick, spring, easter, national, summer, fall, thxgiving, xmas
 
 ######################## pies #######################
