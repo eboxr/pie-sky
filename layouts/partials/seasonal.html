@@ -1,11 +1,10 @@
 {{ if site.Data.homepage.seasonal.enable }}
 <!-- call to  action -->
 {{ with site.Data.homepage.seasonal }}
-{{ $clipart := .event | printf "images/seasonal/%s/clipart.png" }}
 {{ $overlay := .event | printf "images/seasonal/%s/overlay.png" }}
 
 <div style="padding-top: 80px">
-<section class="py-4 bg-gradient position-relative">
+<section class="py-4 position-relative" style="height: 350px">
   <img src="{{ $overlay | absURL }}" class="img-fluid overlay-image" alt="">
   <div class="container">
     <div class="row">
@@ -19,9 +18,6 @@
         {{ with .button }}
         <a href="{{ .link | absURL }}" class="btn btn-light">{{ .label }}</a>
         {{ end }}
-      </div>
-      <div class="col-lg-4 col-md-5 position-relative">
-        <img class="cta-image" src="{{ $clipart | absURL }}" alt="">
       </div>
     </div>
   </div>

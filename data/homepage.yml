@@ -22,10 +22,9 @@ banner:
 seasonal:
   enable : true
   title : |
-    Welcome fall
   content : |
 #    #### This year show your love with a cute little tart
-  event: fall
+  event: thxgiving
   possible: regular, newyear, valentine, patrick, spring, easter, national, summer, fall, thxgiving, xmas
 
 ######################## pies #######################
