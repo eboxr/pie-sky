@@ -76,29 +76,22 @@ pies:
 
 ########################### Special Event #########################
 special_event:
-  enable : false
-  title : "Christmas Pies"
+  enable : true
+  title : "Thanksgiving pies"
   subtitle : "
-  **Taking Christmas Pie orders through Dec. 20th & New Years Eve/Day orders through Dec. 28th**
+  **Last orders for Thanksgiving Day will be Saturday November 23rd.**
   
   
-  **Don't forget the sweet or savory hand pies**. They are perfect for serving to family and large groups. Sold frozen, cook at home for a super fresh dinner or dessert.
-
-
-  **Fruit pies** are still available too: blueberry/cherry, caramel apple,...
-
-
-  **New for this year is Kentucky Pie**. It is made with a pastry crust, walnuts, bourbon and chocolate chips. Best served warmed with whipped cream."
-  image : "images/special_event/xmas-special-2023.jpg"
+  **All other days for pick ups can be arranged by contacting 801-941-1855**"
+  image : "images/special_event/thanksgiving-special-2024-smaller.jpg"
   special_eventList:
     # special event list loop
-    - listItem : "Delivery to Holy Cross Hospital in SLC December 24th at 3:30pm"
-    - listItem : "Delivery to McKay Dee Hospital in Ogden December 24th at 2:30pm"
-    - listItem : "Eden pick-ups any day at 4pm until the December 24th at 1:30pm"
+    - listItem : "Delivery to Salt Lake City will be Wednesday November 27th at 3pm to Holy Cross Hospital at 1050 East South Temple"
+    - listItem : "Pick up orders will be November 27th at 5pm and Thanksgiving at 12pm"
 
 ########################### Advantage #########################
 advantage:
-  enable : true
+  enable : false
   title : "Fresh ingredients"
   subtitle : "All pies are made with **local** and **home grown** produce when at all possible."
   image : "images/produces.jpg"
