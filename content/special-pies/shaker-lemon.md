@@ -16,13 +16,13 @@ price: "25"
 priceBefore: ""
 
 # type must be "products"
-type: "cream"
+type: "special"
 
 sold_out: false
 
 # product Images
 # first image will be shown in the product page
 images:
-  - image: "images/cream-pies/shaker-lemon-site1.jpg"
-  - image: "images/cream-pies/shaker-lemon-site2.jpg"
+  - image: "images/special-pies/shaker-lemon-site1.jpg"
+  - image: "images/special-pies/shaker-lemon-site2.jpg"
 ---

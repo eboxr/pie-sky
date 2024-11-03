@@ -219,7 +219,7 @@
         <h4><strong>{{ .price | markdownify }}</strong></h4>
         {{ end }}
       </div>
-      {{ range first 10 (where site.RegularPages "Type" "special") }}
+      {{ range first 20 (where site.RegularPages "Type" "special") }}
       <div class="col-lg-4 col-sm-6 mb-4">
         <div class="card border-0 text-center">
           <a href="{{ .Permalink }}">
@@ -259,7 +259,7 @@
         <h4><strong>{{ .price | markdownify }}</strong></h4>
         {{ end }}
       </div>
-      {{ range first 10 (where site.RegularPages "Type" "dinner") }}
+      {{ range first 20 (where site.RegularPages "Type" "dinner") }}
       <div class="col-lg-4 col-sm-6 mb-4">
         <div class="card border-0 text-center">
           <a href="{{ .Permalink }}">
@@ -307,7 +307,7 @@
         <h4><strong>{{ .price | markdownify }}</strong></h4>
         {{ end }}
       </div>
-      {{ range first 10 (where site.RegularPages "Type" "hand") }}
+      {{ range first 20 (where site.RegularPages "Type" "hand") }}
       <div class="col-lg-4 col-sm-6 mb-4">
         <div class="card border-0 text-center">
           <a href="{{ .Permalink }}">

@@ -10,7 +10,7 @@ description : ""
 # Product Short Description
 shortDescription: ""
 
-ingredients: ""
+ingredients: "Finley chopped fresh cranberries, apples, walnuts, orange zest and fall spices"
 
 # product Price
 price: "25"
@@ -19,7 +19,7 @@ priceBefore: ""
 # type must be "products"
 type: "special"
 
-sold_out: true
+sold_out: false
 
 # product Images
 # first image will be shown in the product page
