@@ -81,12 +81,18 @@ special_event:
   **Last orders for Thanksgiving Day will be Saturday November 23rd.**
   
   
-  **All other days for pick ups can be arranged by contacting 801-941-1855**"
+  All other days for pick ups can be arranged by contacting 801-941-1855
+
+
+  **Due to an extremely high order volume, the only time I have for pick ups is November 28th at noon.**
+
+
+  Thank you for understanding"
   image : "images/special_event/thanksgiving-special-2024-smaller.jpg"
-  special_eventList:
+#  special_eventList:
     # special event list loop
-    - listItem : "Delivery to Salt Lake City will be Wednesday November 27th at 3pm to Holy Cross Hospital at 1050 East South Temple"
-    - listItem : "Pick up orders will be November 27th at 5pm and Thanksgiving at 12pm"
+#    - listItem : "Delivery to Salt Lake City will be Wednesday November 27th at 3pm to Holy Cross Hospital at 1050 East South Temple"
+#    - listItem : "Pick up orders will be November 27th at 5pm and Thanksgiving at 12pm"
 
 ########################### Advantage #########################
 advantage:
