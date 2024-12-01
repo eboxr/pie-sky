@@ -75,7 +75,7 @@ pies:
 
 ########################### Special Event #########################
 special_event:
-  enable : true
+  enable : false
   title : "Thanksgiving pies"
   subtitle : "
   **Last orders for Thanksgiving Day will be Saturday November 23rd.**
@@ -96,7 +96,7 @@ special_event:
 
 ########################### Advantage #########################
 advantage:
-  enable : false
+  enable : true
   title : "Fresh ingredients"
   subtitle : "All pies are made with **local** and **home grown** produce when at all possible."
   image : "images/produces.jpg"
