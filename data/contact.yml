@@ -4,7 +4,7 @@ contact:
   # office
   office:
     title : "Order your Pies"
-    content : "You can order your **pies** by text, phone call or email. You can also use the contact form."
+    content : "You can order your **pies** by text or phone call."
     # other information comes from "config.toml"
 
   # opennig hour
