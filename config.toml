@@ -31,7 +31,7 @@ URL = "/#newsletter"
 weight = 4
 
 [[menu.main]]
-name = "Order"
+name = "Contact"
 URL = "/contact"
 absurl = false
 weight = 5

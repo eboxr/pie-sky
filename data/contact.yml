@@ -3,8 +3,8 @@ contact:
   enable : true
   # office
   office:
-    title : "Order your Pies"
-    content : "You can order your **pies** by text or phone call."
+    title : "How to order your pies?"
+    content : "You can order your pies by **text** or **phone call** only."
     # other information comes from "config.toml"
 
   # opennig hour
