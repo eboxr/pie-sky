@@ -75,20 +75,20 @@ pies:
 
 ########################### Special Event #########################
 special_event:
-  enable : false
-  title : "Thanksgiving pies"
+  enable : true
+  title : "Holiday pies"
   subtitle : "
-  **Last orders for Thanksgiving Day will be Saturday November 23rd.**
+  **Orders for Christmas Eve and Christmas Day will be taken through December 19th**
   
   
-  All other days for pick ups can be arranged by contacting 801-941-1855
+  I will have **pick up** times on **December 23rd at 5pm** or **December 24th at 11am**
 
 
-  **Due to an extremely high order volume, the only time I have for pick ups is November 28th at noon.**
+  **Delivery to Salt Lake will be on December 24th at 3pm**
 
 
-  Thank you for understanding"
-  image : "images/special_event/thanksgiving-special-2024-smaller.jpg"
+  All orders must be taken by phone call or text at 801-941-1855."
+  image : "images/special_event/xmas-special-2024.jpg"
 #  special_eventList:
     # special event list loop
 #    - listItem : "Delivery to Salt Lake City will be Wednesday November 27th at 3pm to Holy Cross Hospital at 1050 East South Temple"
@@ -96,7 +96,7 @@ special_event:
 
 ########################### Advantage #########################
 advantage:
-  enable : true
+  enable : false
   title : "Fresh ingredients"
   subtitle : "All pies are made with **local** and **home grown** produce when at all possible."
   image : "images/produces.jpg"
