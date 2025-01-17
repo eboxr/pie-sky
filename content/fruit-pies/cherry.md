@@ -10,7 +10,7 @@ description : ""
 shortDescription: "Made with bing cherries"
 
 # product Price
-price: "20"
+price: "25"
 priceBefore: ""
 
 # type must be "products"

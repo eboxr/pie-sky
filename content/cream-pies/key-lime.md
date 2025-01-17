@@ -12,7 +12,7 @@ shortDescription: ""
 ingredients: "Graham cracker crust, fresh squeezed limes and whipped cream"
 
 # product Price
-price: "25"
+price: "28"
 priceBefore: ""
 
 # type must be "products"
