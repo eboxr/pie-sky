@@ -151,7 +151,7 @@ specialPies:
   enable : true
   title : "Specialty Pies"
   description: ""
-  price: "$25"
+  price: "$25 except for the Pumpkin Chiffon Pie at $30"
   # product item comes from "content/special-pies"
 
 
