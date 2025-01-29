@@ -22,9 +22,12 @@ banner:
 seasonal:
   enable : true
   title : |
-    Survive the winter with pies!
+    Pie in the sky will be **closed** at 10am on **February 8th** and will 
+    reopen at noon on **February 11th**.
   content : |
-#    #### This year show your love with a cute little tart
+    #### If you need to place an order for Super Bowl weekend, please order early and be prepared to pick up in the morning of February 8th
+    #### Thank you
+
 # To change for thxgiving and xmas banner
 # - change the event here
 # - in seasonal.html:
