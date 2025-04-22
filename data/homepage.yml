@@ -85,28 +85,24 @@ pies:
 
 ########################### Special Event #########################
 special_event:
-  enable : false
-  title : "Holiday pies"
+  enable : true
+  title : "Pie in the sky will be closed"
   subtitle : "
-  **Orders for Christmas Eve and Christmas Day will be taken through December 19th**
+  **- April 24 - 28th**
   
   
-  I will have **pick up** times on **December 23rd at 5pm** or **December 24th at 11am**
-
-
-  **Delivery to Salt Lake will be on December 24th at 3pm**
-
-
-  All orders must be taken by phone call or text at 801-941-1855."
-  image : "images/special_event/xmas-special-2024.jpg"
-#  special_eventList:
+  **- May 24 - June 5th**
+"
+#  image : "images/special_event/xmas-special-2024.jpg"
+  image: "images/produces.jpg"
+    #  special_eventList:
     # special event list loop
 #    - listItem : "Delivery to Salt Lake City will be Wednesday November 27th at 3pm to Holy Cross Hospital at 1050 East South Temple"
 #    - listItem : "Pick up orders will be November 27th at 5pm and Thanksgiving at 12pm"
 
 ########################### Advantage #########################
 advantage:
-  enable : true
+  enable : false
   title : "Fresh ingredients"
   subtitle : "All pies are made with **local** and **home grown** produce when at all possible."
   image : "images/produces.jpg"

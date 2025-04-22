@@ -82,7 +82,7 @@
         <p class="mb-4">{{ .subtitle | markdownify }}</p>
         <ul class="list-unstyled" style="columns: 2;">
           {{ range .advantageList }}
-          <li class="mb-3"><i class="ti-arrow-circle-right text-primary mr-2"></i>{{ .listItem }}</li>
+          <li class="mb-3"><i class="ti-arrow-circle-right text-primary mr-2"></i>{{ .listItem | markdownify }}</li>
           {{ end }}
         </ul>
       </div>
