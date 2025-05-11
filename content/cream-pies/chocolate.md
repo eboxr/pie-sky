@@ -7,7 +7,7 @@ draft: false
 description : ""
 
 # product Price
-price: "28"
+price: "25"
 priceBefore: ""
 
 # type must be "products"

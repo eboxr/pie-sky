@@ -10,7 +10,7 @@ description : ""
 shortDescription: ""
 
 # product Price
-price: "28"
+price: "25"
 priceBefore: ""
 
 

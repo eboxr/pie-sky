@@ -138,7 +138,7 @@ creamPies:
   enable : true
   title : "Cream Pies"
   description: "Available all year round made with Graham cracker crust"
-  price: "$28"
+  price: "$25"
   # product item comes from "content/cream-pies"
 
 
