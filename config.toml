@@ -25,10 +25,10 @@ name = "Dinner Pies"
 URL = "/#dinnerpies"
 weight = 3
 
-[[menu.main]]
-name = "Newsletter"
-URL = "/#newsletter"
-weight = 4
+# [[menu.main]]
+# name = "Newsletter"
+# URL = "/#newsletter"
+# weight = 4
 
 [[menu.main]]
 name = "Contact"
@@ -113,7 +113,7 @@ enable_social = false
 snipcartApiKey = "deadbeefdeadbeef"
 currencySymbol = "$"
 # MailChimp
-mailchimpURL="https://pieinthesky-eden.us7.list-manage.com/subscribe/post?u=ec64ff3c588869ba913df4cd1&amp;id=7a5ae3439d"
+# mailchimpURL="https://pieinthesky-eden.us7.list-manage.com/subscribe/post?u=ec64ff3c588869ba913df4cd1&amp;id=7a5ae3439d"
 venmoURL = "https://venmo.com/code?user_id=2465549355319296376&created=1636077899"
 
 # Preloader
