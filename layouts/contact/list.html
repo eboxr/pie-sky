@@ -35,11 +35,15 @@
       <div class="col-lg-6">
         <h3 class="
         mb-4">Contact us</h3>
-        <form name="contact" method="POST" data-netlify="true">
+        <form name="contact" method="POST" data-netlify="true" netlify-recaptcha>
           <input type="text" class="form-control mb-2" id="name" name="name" placeholder="Your Name" required>
           <input type="email" class="form-control mb-2" id="email" name="email" placeholder="Your Email" autocorrect="off" required>
           <input type="tel" class="form-control mb-2" id="phone" name="phone" placeholder="Your Phone Number" autocorrect="off" required>
           <textarea name="message" id="message" class="form-control mb-2" placeholder="No order will be accepted by email. Please call or text to make an order." required></textarea>
+
+          <!-- reCAPTCHA widget placeholder -->
+          <div data-netlify-recaptcha="true"></div>
+
           <button type="submit" value="send" class="btn btn-block btn-outline-primary rounded">Send Now</button>
         </form>
       </div>
@@ -59,6 +63,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     document.getElementById('firstpickupdate').value = "First available Pickup Date is " + d.toDateString();
 });
 </script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 {{ end }}
 
 {{ if site.Data.contact.map.enable }}
