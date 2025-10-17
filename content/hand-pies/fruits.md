@@ -7,7 +7,7 @@ draft: false
 description : ""
 
 # Product Short Description
-shortDescription: "Apple, Blueberry/Cherry, Sweet Cherry, Peach"
+shortDescription: "Apple, Cherry, Sweet Cherry, Peach"
 
 # product Price
 price: "4"
