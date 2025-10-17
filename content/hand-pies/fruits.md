@@ -7,7 +7,7 @@ draft: false
 description : ""
 
 # Product Short Description
-shortDescription: "Apple, Cherry, Sweet Cherry, Peach"
+shortDescription: "Apple, Sweet Cherry, Peach"
 
 # product Price
 price: "4"
@@ -25,4 +25,4 @@ images:
   - image: "images/hand-pies/fruits/fruit1.jpg"
 ---
 
-Apple, Blueberry, Sweet Cherry, Peach
+Apple, Sweet Cherry, Peach
