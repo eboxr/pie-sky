@@ -22,7 +22,6 @@ banner:
 seasonal:
   enable : true
   title : |
-    Welcome fall
   content : |
 
 # To change for thxgiving and xmas banner
@@ -34,7 +33,7 @@ seasonal:
 #             <div class="col-lg-4 col-md-5 position-relative">
 #               <img class="cta-image" src="{{ $clipart | absURL }}" alt="">
 #             </div>
-  event: fall
+  event: thxgiving
   possible: regular, newyear, valentine, patrick, spring, easter, national, summer, fall, thxgiving, xmas
 
 ######################## pies #######################
