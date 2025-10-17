@@ -86,10 +86,8 @@ pies:
 ########################### Special Event #########################
 special_event:
   enable : true
-  title : "Pie in the sky will be closed"
-  subtitle : "
-  **- July 31st to August 5th**
-"
+  title : "Thanksgiving orders accepted until **November 17th** or until Sold out."
+  subtitle : ""
 #  image : "images/special_event/xmas-special-2024.jpg"
   image: "images/produces.jpg"
     #  special_eventList:
