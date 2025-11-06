@@ -85,13 +85,13 @@ pies:
 ########################### Special Event #########################
 special_event:
   enable : true
-  title : "Thanksgiving orders accepted until **November 17th** or until Sold out."
-  subtitle : ""
+  title : ""
+  subtitle : "**Thanksgiving orders accepted until November 17th for all pies picked up the week of Thanksgiving.**"
 #  image : "images/special_event/xmas-special-2024.jpg"
   image: "images/produces.jpg"
-    #  special_eventList:
-    # special event list loop
-#    - listItem : "Delivery to Salt Lake City will be Wednesday November 27th at 3pm to Holy Cross Hospital at 1050 East South Temple"
+  special_eventList:
+#     special event list loop
+    - listItem : "Otherwise, please order any time for year round pie making."
 #    - listItem : "Pick up orders will be November 27th at 5pm and Thanksgiving at 12pm"
 
 ########################### Advantage #########################
