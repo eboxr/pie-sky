@@ -19,11 +19,6 @@ banner:
 ##
 ##  also adjust gradient in config.toml in Style L166
 ##
-seasonal:
-  enable : true
-  title : |
-  content : |
-
 # To change for thxgiving and xmas banner
 # - change the event here
 # - in seasonal.html:
@@ -33,6 +28,10 @@ seasonal:
 #             <div class="col-lg-4 col-md-5 position-relative">
 #               <img class="cta-image" src="{{ $clipart | absURL }}" alt="">
 #             </div>
+seasonal:
+  enable : true
+  title : |
+  content : |
   event: thxgiving
   possible: regular, newyear, valentine, patrick, spring, easter, national, summer, fall, thxgiving, xmas
 
