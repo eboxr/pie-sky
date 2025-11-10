@@ -7,11 +7,26 @@
     <div class="row">
       <div class="col-lg-5 mb-4 mb-lg-0">
         <!-- product image slider -->
-        <div class="product-slider">
-          {{ range .Params.Images }}
-          <div data-image="{{ .image | absURL }}">
-            <img class="img-fluid w-100" src="{{ .image | absURL }}" alt="product-img">
+        <div class="pie-image-wrapper">
+          <div class="product-slider">
+            {{ range .Params.Images }}
+            <div data-image="{{ .image | absURL }}">
+              <img class="img-fluid w-100" src="{{ .image | absURL }}" alt="product-img">
+            </div>
+            {{ end }}
           </div>
+          {{ if eq .Params.type "dinner" }}
+            {{ if ( and (.Params.small_sold_out) (.Params.big_sold_out)) }}
+            <div class="sold-out-sticker">
+              <img src="{{ "images/sold-out-sticker.png" | absURL }}" alt="SOLD OUT">
+            </div>
+            {{ end }}
+          {{ else }}
+            {{ if .Params.sold_out }}
+            <div class="sold-out-sticker">
+              <img src="{{ "images/sold-out-sticker.png" | absURL }}" alt="SOLD OUT">
+            </div>
+            {{ end }}
           {{ end }}
         </div>
       </div>
