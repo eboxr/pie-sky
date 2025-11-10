@@ -28,7 +28,7 @@ seasonal:
   enable : true
   title : |
   content : |
-  event: newyear
+  event: thxgiving
   possible: regular, newyear, valentine, patrick, spring, easter, national, summer, fall, thxgiving, xmas
 
 ######################## pies #######################
