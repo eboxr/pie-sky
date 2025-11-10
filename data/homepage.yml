@@ -17,22 +17,18 @@ banner:
 
 ########################## Seasonal ##############################
 ##
-##  also adjust gradient in config.toml in Style L166
+##  To change the seasonal banner:
+##  1. Change the event name below (possible values listed)
+##  2. Adjust the gradient in config.toml in Style section (around line 166)
 ##
-# To change for thxgiving and xmas banner
-# - change the event here
-# - in seasonal.html:
-#   - remove line 4: {{ $clipart := .event | printf "images/seasonal/%s/clipart.png" }}
-#   - in line 8, add overlay-thxgiving in the class
-#   - remove lines 23-25
-#             <div class="col-lg-4 col-md-5 position-relative">
-#               <img class="cta-image" src="{{ $clipart | absURL }}" alt="">
-#             </div>
+##  The system automatically handles all seasons including thxgiving and xmas.
+##  No manual code changes needed!
+##
 seasonal:
   enable : true
   title : |
   content : |
-  event: thxgiving
+  event: newyear
   possible: regular, newyear, valentine, patrick, spring, easter, national, summer, fall, thxgiving, xmas
 
 ######################## pies #######################

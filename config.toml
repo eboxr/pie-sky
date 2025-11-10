@@ -170,7 +170,7 @@ light = "rgb(223, 223, 223)"
 # XMas 
 #gradient = "27deg, rgb(194,31,31) 0%, rgb(110,4,7) 100%"
 # Newyear
-#gradient = "27deg, rgb(191,25,141) 0%, rgb(91,8,66) 100%"
+gradient = "27deg, rgb(191,25,141) 0%, rgb(91,8,66) 100%"
 # Valentine
 #gradient = "27deg, rgb(243,49,236) 0%, rgb(108,21,105) 100%"
 # Patrick
@@ -182,7 +182,7 @@ light = "rgb(223, 223, 223)"
 # Summer
 #gradient = "27deg, rgb(135,206,235) 0%, rgb(248,255,52) 100%"
 # Fall
-gradient = "27deg, rgb(99,49,4) 0%, rgb(255,209,3) 100%"
+#gradient = "27deg, rgb(99,49,4) 0%, rgb(255,209,3) 100%"
 # Winter
 #gradient = "20deg, rgb(72,178,199) 0%, rgb(37,92,102) 100%"
 
