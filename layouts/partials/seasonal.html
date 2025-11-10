@@ -2,9 +2,15 @@
 <!-- call to  action -->
 {{ with site.Data.homepage.seasonal }}
 {{ $overlay := .event | printf "images/seasonal/%s/overlay.png" }}
+{{ $clipart := .event | printf "images/seasonal/%s/clipart.png" }}
+{{ $isSpecialEvent := or (eq .event "thxgiving") (eq .event "xmas") }}
+{{ $overlayClass := "" }}
+{{ if $isSpecialEvent }}
+  {{ $overlayClass = printf "overlay-%s" .event }}
+{{ end }}
 
 <div style="padding-top: 80px">
-<section class="py-4 position-relative overlay-thxgiving">
+<section class="py-4 position-relative {{ $overlayClass }}">
   <img src="{{ $overlay | absURL }}" class="img-fluid overlay-image" alt="">
   <div class="container">
     <div class="row">
@@ -21,6 +27,11 @@
         <a href="{{ .link | absURL }}" class="btn btn-light">{{ .label }}</a>
         {{ end }}
       </div>
+      {{ if not $isSpecialEvent }}
+      <div class="col-lg-4 col-md-5 position-relative">
+        <img class="cta-image" src="{{ $clipart | absURL }}" alt="">
+      </div>
+      {{ end }}
     </div>
   </div>
 </section>

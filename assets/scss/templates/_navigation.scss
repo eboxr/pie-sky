@@ -1,58 +1,62 @@
 .navigation {
-  transition: .3s ease;
-  background: $white;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+
   @include desktop {
-    border-bottom: 1px solid $border-color;
     .navbar{
-      padding: 10px 0;
+      padding: 15px 0;
     }
   }
+
   &.sticky-top{
     z-index: 9;
   }
 }
 
 .nav-bg {
-  border-bottom: 1px solid $border-color;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
 
   .navbar {
-    padding: 10px 0;
+    padding: 15px 0;
   }
 }
 
 .navbar {
-  padding: 25px 0;
-  transition: .3s ease;
+  padding: 20px 0;
+  transition: all 0.3s ease;
 
   .dropdown {
     &:hover {
       .dropdown-menu {
         visibility: visible;
         opacity: 1;
-        transform: scaleX(1);
+        transform: translateY(0);
       }
     }
 
     &-menu {
-      box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.12);
-      padding: 15px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+      padding: 10px 0;
       border: 0;
-      top: 50px;
-      left: -10px;
-      border-radius: 0;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-10px);
+      border-radius: 12px;
       display: block;
       visibility: hidden;
-      transition: .3s ease;
+      transition: all 0.3s ease;
       opacity: 0;
-      transform: scale(.95);
       background: $white;
+      min-width: 200px;
+      margin-top: 10px;
 
       @include desktop {
         display: none;
         opacity: 1;
         visibility: visible;
-        transform: scale(1);
-        transform-origin: unset;
+        transform: translateX(-50%) translateY(0);
       }
 
       &.show {
@@ -67,23 +71,46 @@
 
     &-item {
       color: $text-color;
-      transition: .2s ease;
-      padding: 10px;
+      transition: all 0.2s ease;
+      padding: 12px 20px;
+      font-weight: 500;
+      border-radius: 8px;
+      margin: 4px 8px;
 
       &:hover {
         color: $primary-color;
-        background: transparent;
+        background: rgba($primary-color, 0.08);
+        transform: translateX(5px);
       }
     }
   }
 }
 
 .nav-item {
-  margin: 0;
+  margin: 0 5px;
 
   .nav-link {
     text-transform: capitalize;
-    font-size: 18px;
+    font-size: 20px;
+    font-weight: 500;
+    position: relative;
+    transition: all 0.3s ease;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 2px;
+      background: $primary-color;
+      transition: width 0.3s ease;
+    }
+
+    &:hover::after {
+      width: 60%;
+    }
   }
 }
 
@@ -96,74 +123,44 @@
 }
 
 .navbar-expand-lg .navbar-nav .nav-link {
-  padding: 20px;
+  padding: 18px 22px;
 }
 
+.navbar-brand {
+  transition: transform 0.3s ease;
 
-/* search */
-.search-btn {
-  border: 0;
-  background: transparent;
-  color: $white;
-}
+  &:hover {
+    transform: scale(1.05);
+  }
 
-.search-wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  z-index: 2;
-  visibility: hidden;
-  transition: .2s ease;
-  opacity: 0;
-
-  &.open {
-    visibility: visible;
-    opacity: 1;
+  img {
+    max-height: 50px;
   }
 }
 
-.search-box {
-  height: 100%;
-  width: 100%;
-  border: 0;
-  background: $white;
-  font-size: 20px;
-  padding: 0;
+.navbar-toggler {
+  border: none;
+  padding: 10px;
 
   &:focus {
-    box-shadow: none !important;
+    outline: none;
+    box-shadow: none;
+  }
+
+  i {
+    font-size: 28px;
+    color: $primary-color;
   }
 }
 
-.search-close {
-  position: absolute;
-  right: 5px;
-  top: 50%;
-  transform: translateY(-50%);
-  border: 0;
-  background: transparent;
-  page-break-after: 10px;
-  font-size: 20px;
-}
-
-/* cart */
-.cart {
-  background: transparent;
-  border: 0;
-  position: relative;
-
-  @include desktop {
-    position: absolute;
-    top: 23px;
-    right: 50px;
-  }
-
-  .badge {
-    position: absolute;
-    top: -5px;
-    border-radius: 50%;
-    right: -10px;
+@include desktop {
+  .navbar-collapse {
+    background: $white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    margin-top: 15px;
   }
 }
+
+// ... existing code ...

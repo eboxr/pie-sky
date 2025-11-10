@@ -14,3 +14,12 @@
   X-XSS-Protection = "1; mode=block"
   Referrer-Policy = "same-origin"
   Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+
+# Optional: Password protect the admin section
+# Uncomment the section below and set a password in Netlify dashboard
+# Go to Site settings → Access control → Password protection
+# [[redirects]]
+#   from = "/admin"
+#   to = "/admin/"
+#   status = 301
+#   force = true

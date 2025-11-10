@@ -11,6 +11,10 @@
   height: 380px;
 }
 
+.overlay-xmas {
+  height: 380px;
+}
+
 .cta-image {
   position: absolute;
   top: 50%;
@@ -333,7 +337,7 @@
       font-weight: 500;
     }
   }
-  
+
   pre {
     padding: 10px 20px;
     background: $light;
@@ -386,6 +390,101 @@
         height: auto;
         max-width: 100%;
       }
+    }
+  }
+}
+
+/* Modern pie card image styling */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  .card-img-top {
+    border-radius: 15px 15px 0 0;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover .card-img-top {
+    transform: scale(1.05);
+  }
+
+  .card-body {
+    padding: 1.5rem;
+  }
+}
+
+a {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+/* Special event image modern styling */
+.special-event-image-wrapper {
+  position: relative;
+  padding: 20px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  border-radius: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.special-event-image {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  object-fit: cover;
+  display: block;
+
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* SOLD OUT sticker overlay */
+.pie-image-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 15px 15px 0 0;
+
+  .sold-out-sticker {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 5;
+    width: 200px;
+    height: auto;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    pointer-events: none;
+    
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+      // Make white transparent - works best if image is PNG with white background
+      mix-blend-mode: darken;
+      // Alternative: use filter to make white transparent (uncomment if needed)
+      // filter: brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
     }
   }
 }
