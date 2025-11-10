@@ -13,7 +13,7 @@ pagerSize = 10
 [menu]
 
 [[menu.main]]
-name = "Hand Pies"
+name = "Handheld Pies"
 URL = "/#handpies"
 weight = 1
 
@@ -23,7 +23,7 @@ URL = "/#fruitpies"
 weight = 2
 
 [[menu.main]]
-name = "Dinner Pies"
+name = "Savory Pies"
 URL = "/#dinnerpies"
 weight = 3
 

@@ -42,7 +42,7 @@ pies:
   subtitle :
   pieCategory:
     # material item loop
-    - title : "Fruit Pies"
+    - title : "Seasonal Fruit"
       icon : fas fa-apple-alt CatColor1 #https://fontawesome.com/v5.15/icons/apple-alt?style=solid
       subtitle: "Available in season until sold out"
       content : "strawberry-rhubarb, cherry, cherry-blueberry, peach, peach-berry, apple..."
@@ -50,7 +50,7 @@ pies:
       anchor: "fruitpies"
       
     # material item loop
-    - title : "Cream Pies"
+    - title : "Cream Classics"
       icon : fab fa-cloudversify CatColor2 #https://fontawesome.com/v5.15/icons/cloudversify?style=brands
       subtitle: "Available all year round. Comes with Graham cracker crust"
       content : "chocolate, banana, coconut"
@@ -58,7 +58,7 @@ pies:
       anchor: "creampies"
       
     # material item loop
-    - title : "Specialty Pies"
+    - title : "Signature Specialties"
       icon : fas fa-crown CatColor3 #https://fontawesome.com/v5.15/icons/crown?style=solid
       subtitle: "Availability depends on the season"
       content : "Pumpkin chiffon pie, Pecan pie, Caramel apple pie,..."
@@ -66,7 +66,7 @@ pies:
       anchor: "specialtypies"
 
     # material item loop
-    - title : "Dinner Pies"
+    - title : "Savory Pies"
       icon : fas fa-utensils CatColor4 #https://fontawesome.com/v5.15/icons/utensils?style=solid
       subtitle: "Available in two different sizes"
       content : "Chicken, Turkey, Beef, or Vegetable"
@@ -74,7 +74,7 @@ pies:
       anchor: "dinnerpies"
 
     # material item loop
-    - title : "Hand Pies"
+    - title : "Handheld Pies"
       icon : fas fa-hard-hat CatColor5 #https://fontawesome.com/v5.15/icons/hard-hat?style=solid
       subtitle: "Sweet and Savory"
       content : "Create your bundle"
@@ -120,7 +120,7 @@ video:
 ######################## Fruit Pies #############################
 fruitPies:
   enable : true
-  title : "Fruit Pies"
+  title : "Seasonal Fruit"
   description: "Available in season and beyond until sold out"
   price: "$25"
   # product item comes from "content/fruit-pies"
@@ -129,7 +129,7 @@ fruitPies:
 ######################## Cream Pies #############################
 creamPies:
   enable : true
-  title : "Cream Pies"
+  title : "Cream Classics"
   description: "Available all year round made with Graham cracker crust"
   price: "$25"
   # product item comes from "content/cream-pies"
@@ -138,7 +138,7 @@ creamPies:
 ######################## Special Pies #############################
 specialPies:
   enable : true
-  title : "Specialty Pies"
+  title : "Signature Specialties"
   description: ""
   price: "$25 except for the Pumpkin Chiffon Pie at $30"
   # product item comes from "content/special-pies"
@@ -147,7 +147,7 @@ specialPies:
 ######################## Dinner Pies #############################
 dinnerPies:
   enable : true
-  title : "Dinner Pies"
+  title : "Savory Pies"
   description: "Available in 2 sizes: **6\" personal size** (serves 1-2) and **12\" family size** (serves 4-6)"
   price: ""
   # product item comes from "content/dinner-pies"
@@ -156,7 +156,7 @@ dinnerPies:
 ######################## Hand Pies #############################
 handPies:
   enable : true
-  title : "Hand Pies"
+  title : "Handheld Pies"
   description: "Mix and match the flavors. Savory pies sold frozen ready to bake"
   price: "$4 each, a minimum of 2 per flavor"
   # product item comes from "content/hand-pies"
