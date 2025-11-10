@@ -454,3 +454,32 @@ a {
     box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
   }
 }
+
+/* SOLD OUT sticker overlay */
+.pie-image-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 15px 15px 0 0;
+
+  .sold-out-sticker {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 5;
+    width: 200px;
+    height: auto;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+      // Make white transparent - works best if image is PNG with white background
+      mix-blend-mode: darken;
+      // Alternative: use filter to make white transparent (uncomment if needed)
+      // filter: brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+    }
+  }
+}
