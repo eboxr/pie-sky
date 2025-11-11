@@ -19,12 +19,25 @@
     
     console.log('Registering preview templates...');
     
-    // Helper functions
+    // Helper functions - convert Immutable.js values to plain JavaScript
     function getField(entry, path, defaultValue = '') {
       try {
         const value = entry.getIn(['data', ...path.split('.')]);
-        return value !== undefined && value !== null ? value : defaultValue;
+        if (value === undefined || value === null) {
+          return defaultValue;
+        }
+        // Convert Immutable.js values to plain JavaScript
+        if (value && typeof value.toJS === 'function') {
+          return value.toJS();
+        }
+        if (value && typeof value.toString === 'function' && value.constructor && value.constructor.name === 'Map') {
+          // It's an Immutable Map, convert it
+          return value.toJS ? value.toJS() : value;
+        }
+        // Return plain value (string, number, boolean)
+        return value;
       } catch (e) {
+        console.warn('getField error for path:', path, e);
         return defaultValue;
       }
     }
@@ -32,11 +45,32 @@
     function getImages(entry) {
       try {
         const images = entry.getIn(['data', 'images']);
-        if (images && images.toJS) {
-          return images.toJS();
+        if (!images) {
+          return [];
         }
-        return Array.isArray(images) ? images : [];
+        // Convert Immutable.js List/Array to plain JavaScript array
+        if (images && typeof images.toJS === 'function') {
+          const jsImages = images.toJS();
+          return Array.isArray(jsImages) ? jsImages : [];
+        }
+        if (Array.isArray(images)) {
+          // Already an array, but might contain Immutable objects
+          return images.map(function(img) {
+            if (img && typeof img.toJS === 'function') {
+              return img.toJS();
+            }
+            if (img && img.image && typeof img.image === 'object' && img.image.toString) {
+              // Image might be an Immutable object
+              return {
+                image: String(img.image)
+              };
+            }
+            return img;
+          });
+        }
+        return [];
       } catch (e) {
+        console.warn('getImages error:', e);
         return [];
       }
     }
@@ -70,19 +104,52 @@
           }, 'No entry data available');
         }
         
-        // Get data with safe defaults
+        // Get data with safe defaults - convert all to plain JS values
         let title, description, shortDescription, price, soldOut, images, ingredients, type, smallSoldOut, bigSoldOut;
         try {
-          title = getField(entry, 'title', 'Untitled Pie');
-          description = getField(entry, 'description');
-          shortDescription = getField(entry, 'shortDescription');
-          price = getField(entry, 'price');
-          soldOut = getField(entry, 'sold_out', false);
-          images = getImages(entry);
-          ingredients = getField(entry, 'ingredients');
-          type = getField(entry, 'type');
-          smallSoldOut = getField(entry, 'small_sold_out', false);
-          bigSoldOut = getField(entry, 'big_sold_out', false);
+          // Get raw values and convert to plain JS
+          const rawTitle = getField(entry, 'title', 'Untitled Pie');
+          const rawDescription = getField(entry, 'description');
+          const rawShortDescription = getField(entry, 'shortDescription');
+          const rawPrice = getField(entry, 'price');
+          const rawSoldOut = getField(entry, 'sold_out', false);
+          const rawImages = getImages(entry);
+          const rawIngredients = getField(entry, 'ingredients');
+          const rawType = getField(entry, 'type');
+          const rawSmallSoldOut = getField(entry, 'small_sold_out', false);
+          const rawBigSoldOut = getField(entry, 'big_sold_out', false);
+          
+          // Convert to plain JavaScript primitives (strings, numbers, booleans)
+          title = rawTitle != null ? String(rawTitle) : 'Untitled Pie';
+          description = rawDescription != null ? String(rawDescription) : '';
+          shortDescription = rawShortDescription != null ? String(rawShortDescription) : '';
+          price = rawPrice != null ? String(rawPrice) : '';
+          soldOut = Boolean(rawSoldOut);
+          images = Array.isArray(rawImages) ? rawImages : [];
+          ingredients = rawIngredients != null ? String(rawIngredients) : '';
+          type = rawType != null ? String(rawType) : '';
+          smallSoldOut = Boolean(rawSmallSoldOut);
+          bigSoldOut = Boolean(rawBigSoldOut);
+          
+          // Ensure image objects have plain string paths
+          images = images.map(function(img, idx) {
+            if (!img || typeof img !== 'object') {
+              return null;
+            }
+            // Extract image path and convert to string
+            let imgPath = img.image;
+            if (imgPath && typeof imgPath !== 'string') {
+              if (typeof imgPath.toString === 'function') {
+                imgPath = imgPath.toString();
+              } else {
+                imgPath = String(imgPath);
+              }
+            }
+            return {
+              image: imgPath || ''
+            };
+          }).filter(function(img) { return img && img.image; });
+          
         } catch (dataError) {
           console.error('Error getting entry data:', dataError);
           return h('div', {
@@ -104,57 +171,86 @@
           images = [];
         }
         
-        // Get image URL - manually construct absolute URL to avoid /admin/ issues
-        // Don't use getAsset as it may resolve paths relative to /admin/
+        // Get image URL - use getAsset if available, but convert to absolute URL
+        // getAsset resolves relative to public_folder, but we need absolute URL
         function getImageUrl(imgPath) {
           if (!imgPath) {
-            console.log('getImageUrl: empty path');
             return '';
           }
           
-          // Convert to string and trim
+          // Ensure it's a string
           let path = String(imgPath).trim();
-          console.log('getImageUrl: processing path:', path, 'type:', typeof path);
+          if (!path) {
+            return '';
+          }
           
-          // If it's already a full URL, remove ALL /admin/ references
+          console.log('getImageUrl: input path:', path);
+          
+          // If already absolute URL, clean any /admin/ and return
           if (path.startsWith('http://') || path.startsWith('https://')) {
-            let cleaned = path.replace(/\/admin\//g, '/');
-            // Fix any double slashes after protocol (https:/// should be https://)
-            cleaned = cleaned.replace(/(https?:\/)\/+/g, '$1/');
-            console.log('getImageUrl: cleaned full URL:', cleaned);
+            const cleaned = path.replace(/\/admin\//g, '/').replace(/(https?:\/)\/+/g, '$1/').replace(/^http:\/\//, 'https://');
+            console.log('getImageUrl: cleaned absolute URL:', cleaned);
             return cleaned;
           }
           
-          // Manual path construction - NEVER use /admin/
-          // Remove ANY /admin/ references from the start
-          path = path.replace(/^\/admin\//, '').replace(/^admin\//, '');
-          // Remove any /admin/ in the middle
-          path = path.replace(/\/admin\//g, '/');
+          // Try getAsset first - it knows about public_folder
+          // But getAsset might return a relative path, so we'll convert it to absolute
+          if (getAsset && typeof getAsset === 'function') {
+            try {
+              const asset = getAsset(path);
+              if (asset) {
+                // getAsset might return a File object, URL string, or path
+                let assetUrl = asset;
+                if (typeof asset.toString === 'function') {
+                  assetUrl = asset.toString();
+                } else if (typeof asset === 'string') {
+                  assetUrl = asset;
+                } else if (asset.url) {
+                  assetUrl = asset.url;
+                } else if (asset.toString) {
+                  assetUrl = String(asset);
+                }
+                
+                assetUrl = String(assetUrl).trim();
+                console.log('getImageUrl: getAsset returned:', assetUrl);
+                
+                // If getAsset returns absolute URL, clean and use it
+                if (assetUrl.startsWith('http://') || assetUrl.startsWith('https://')) {
+                  const cleaned = assetUrl.replace(/\/admin\//g, '/').replace(/(https?:\/)\/+/g, '$1/');
+                  console.log('getImageUrl: using getAsset absolute URL:', cleaned);
+                  return cleaned;
+                }
+                
+                // If getAsset returns relative path, remove /admin/ if present and make absolute
+                if (assetUrl.startsWith('/')) {
+                  // Remove /admin/ if present
+                  assetUrl = assetUrl.replace(/^\/admin\//, '/');
+                  // Construct absolute URL
+                  const absoluteUrl = 'https://pieinthesky-eden.com' + assetUrl;
+                  console.log('getImageUrl: converted getAsset path to absolute:', absoluteUrl);
+                  return absoluteUrl;
+                }
+              }
+            } catch (e) {
+              console.warn('getImageUrl: getAsset error, using manual construction:', e);
+            }
+          }
           
-          // Remove leading/trailing slashes for processing
-          path = path.replace(/^\/+|\/+$/g, '');
-          
+          // Manual construction - public_folder is "/images"
           // Content files store paths like "images/special-pies/file.jpg"
-          // public_folder is "/images", so paths in content are relative to site root
-          // If path doesn't start with "images/", it might be just the filename
-          // In that case, we can't determine the full path, so log a warning
+          // Remove any /admin/ references
+          path = path.replace(/^\/admin\//, '').replace(/\/admin\//g, '/').replace(/^\/+/, '');
+          
+          // Ensure path starts with "images/" (public_folder)
           if (!path.startsWith('images/')) {
-            // Try to prepend images/ - this handles cases where CMS stores just "special-pies/file.jpg"
-            console.warn('getImageUrl: path does not start with images/, prepending:', path);
             path = 'images/' + path;
           }
           
-          // Ensure it starts with a single slash (absolute path from site root)
-          let absolutePath = '/' + path;
+          // Construct absolute URL
+          const absolutePath = '/' + path.replace(/\/+/g, '/');
+          const finalUrl = 'https://pieinthesky-eden.com' + absolutePath;
           
-          // Clean up any duplicate slashes
-          absolutePath = absolutePath.replace(/\/{2,}/g, '/');
-          
-          // Construct full absolute URL - always use site root, never /admin/
-          const baseUrl = 'https://pieinthesky-eden.com';
-          const finalUrl = baseUrl + absolutePath;
-          
-          console.log('getImageUrl: final URL:', finalUrl, '(from original:', imgPath + ')');
+          console.log('getImageUrl: final manual URL:', finalUrl);
           return finalUrl;
         }
         
@@ -343,66 +439,79 @@
         
         // Combined preview - Card view on top, Page view on bottom
         console.log('Rendering preview with card and page views');
-        return h('div', {
-          key: 'preview-container',
-          className: 'pie-preview-container',
-          style: {
-            padding: '20px',
-            background: '#f9f9f9',
-            minHeight: '100vh',
-            fontFamily: "system-ui, -apple-system, sans-serif"
-          }
-        }, [
-          // Card View Section (TOP)
-          h('div', {
-            key: 'card-preview-section',
-            className: 'card-preview-section',
+        console.log('CardView type:', typeof CardView);
+        console.log('PageView type:', typeof PageView);
+        console.log('mainImageUrl:', mainImageUrl);
+        
+        // Build the preview container with two sections
+        try {
+          const previewContainer = h('div', {
+            key: 'preview-container',
             style: {
-              background: 'white',
-              padding: '25px',
-              marginBottom: '30px',
-              borderRadius: '10px',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+              padding: '20px',
+              background: '#f9f9f9',
+              minHeight: '100vh',
+              fontFamily: "system-ui, -apple-system, sans-serif"
             }
           }, [
-            h('h3', {
-              key: 'card-section-title',
+            // Card View Section (TOP)
+            h('div', {
+              key: 'card-preview-section',
               style: {
-                margin: '0 0 25px 0',
-                color: '#333',
-                borderBottom: '3px solid #C6600D',
-                paddingBottom: '12px',
-                fontSize: '1.3rem',
-                fontWeight: 600
+                background: 'white',
+                padding: '25px',
+                marginBottom: '30px',
+                borderRadius: '10px',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
               }
-            }, '📱 Card View (as shown on homepage)'),
-            CardView
-          ]),
-          // Page View Section (BOTTOM)
-          h('div', {
-            key: 'page-preview-section',
-            className: 'page-preview-section',
-            style: {
-              background: 'white',
-              padding: '25px',
-              borderRadius: '10px',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-            }
-          }, [
-            h('h3', {
-              key: 'page-section-title',
+            }, [
+              h('h3', {
+                key: 'card-section-title',
+                style: {
+                  margin: '0 0 25px 0',
+                  color: '#333',
+                  borderBottom: '3px solid #C6600D',
+                  paddingBottom: '12px',
+                  fontSize: '1.3rem',
+                  fontWeight: '600'
+                }
+              }, 'Card View (as shown on homepage)'),
+              CardView
+            ]),
+            // Page View Section (BOTTOM)
+            h('div', {
+              key: 'page-preview-section',
               style: {
-                margin: '0 0 25px 0',
-                color: '#333',
-                borderBottom: '3px solid #C6600D',
-                paddingBottom: '12px',
-                fontSize: '1.3rem',
-                fontWeight: 600
+                background: 'white',
+                padding: '25px',
+                borderRadius: '10px',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
               }
-            }, '🖥️ Full Pie Page View'),
-            PageView
-          ])
-        ]);
+            }, [
+              h('h3', {
+                key: 'page-section-title',
+                style: {
+                  margin: '0 0 25px 0',
+                  color: '#333',
+                  borderBottom: '3px solid #C6600D',
+                  paddingBottom: '12px',
+                  fontSize: '1.3rem',
+                  fontWeight: '600'
+                }
+              }, 'Full Pie Page View'),
+              PageView
+            ])
+          ]);
+          
+          console.log('Preview container created successfully');
+          return previewContainer;
+        } catch (renderError) {
+          console.error('Error creating preview container:', renderError);
+          return h('div', {
+            key: 'render-error',
+            style: { padding: '20px', color: 'red', background: '#fff' }
+          }, 'Error rendering preview: ' + String(renderError));
+        }
       } catch (error) {
         console.error('Error rendering PiePreviewTemplate:', error);
         console.error('Error stack:', error.stack);
