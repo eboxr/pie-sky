@@ -15,13 +15,6 @@
   Referrer-Policy = "same-origin"
   Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
 
-# Admin section redirects - required for Decap CMS OAuth to work
-[[redirects]]
-  from = "/admin"
-  to = "/admin/"
-  status = 301
-  force = true
-
 # Optional: Password protect the admin section
 # Uncomment the section below and set a password in Netlify dashboard
 # Go to Site settings → Access control → Password protection
