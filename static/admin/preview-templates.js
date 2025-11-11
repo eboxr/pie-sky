@@ -95,7 +95,7 @@
       return parts;
     }
     
-    // Pie card preview template matching website design
+    // Pie card preview template matching website design exactly
     function PiePreviewTemplate(props) {
       try {
         const { entry } = props || {};
@@ -140,22 +140,37 @@
         // Build card elements
         const cardElements = [];
         
-        // Image placeholder
-        const imagePlaceholderChildren = [h('div', { key: 'placeholder-text' }, 'Image will appear here')];
+        // Image placeholder with sold out sticker
+        const imagePlaceholderChildren = [
+          h('div', { 
+            key: 'placeholder-text',
+            style: {
+              fontSize: '14px',
+              color: '#999'
+            }
+          }, 'Image will appear here')
+        ];
+        
         if (showSoldOut) {
+          // Create sold out sticker overlay (matching website style)
           imagePlaceholderChildren.push(h('div', {
             key: 'sold-out-overlay',
             style: {
               position: 'absolute',
               top: '10px',
               left: '10px',
-              backgroundColor: 'rgba(255, 0, 0, 0.8)',
-              color: '#fff',
-              padding: '5px 15px',
-              borderRadius: '5px',
-              fontSize: '12px',
+              zIndex: 5,
+              width: '200px',
+              height: 'auto',
+              filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2))',
+              pointerEvents: 'none',
+              backgroundColor: 'rgba(255, 255, 255, 0.9)',
+              padding: '8px 15px',
+              borderRadius: '8px',
+              fontSize: '14px',
               fontWeight: 'bold',
-              zIndex: 5
+              color: '#C6600D',
+              border: '2px solid #C6600D'
             }
           }, 'SOLD OUT'));
         }
@@ -176,42 +191,51 @@
             textAlign: 'center',
             padding: '20px',
             boxSizing: 'border-box',
-            position: 'relative'
+            position: 'relative',
+            overflow: 'hidden'
           }
         }, imagePlaceholderChildren);
         
         cardElements.push(imagePlaceholder);
         
-        // Card body
+        // Card body - matching website structure exactly
         const bodyElements = [];
         
-        // Title
+        // Title (h3) - matches website: 22px, bold, #222222
         if (title && title.trim()) {
           bodyElements.push(h('h3', { 
             key: 'title',
             style: { 
               marginBottom: '10px', 
-              fontSize: '1.5rem', 
+              fontSize: '22px', 
               fontWeight: 'bold',
-              color: '#222'
+              color: '#222222',
+              fontFamily: "'Quicksand', sans-serif",
+              lineHeight: '1.2'
             }
           }, title));
         }
         
-        // Description (h4)
+        // Description (h4) - only show if it exists, matches website: 18px, #222222
         if (description && description.trim()) {
-          bodyElements.push(h('h4', { 
-            key: 'description',
-            style: { 
-              marginBottom: '10px', 
-              fontSize: '1.1rem', 
-              color: '#333',
-              fontWeight: 'normal'
-            }
-          }, description));
+          const descParts = parseMarkdownToElements(description, h);
+          const validDescParts = descParts.filter(part => part != null && part !== '');
+          if (validDescParts.length > 0) {
+            bodyElements.push(h('h4', { 
+              key: 'description',
+              style: { 
+                marginBottom: '10px', 
+                fontSize: '18px', 
+                color: '#222222',
+                fontFamily: "'Quicksand', sans-serif",
+                fontWeight: '400',
+                lineHeight: '1.2'
+              }
+            }, validDescParts));
+          }
         }
         
-        // Short Description (pricing info - supports markdown)
+        // Short Description (pricing info - supports markdown) - matches website: 15px, #333333, line-height 1.7
         if (shortDescription && shortDescription.trim()) {
           const markdownParts = parseMarkdownToElements(shortDescription, h);
           const validParts = markdownParts.filter(part => part != null && part !== '');
@@ -220,28 +244,36 @@
               key: 'shortDesc',
               style: { 
                 marginBottom: '10px', 
-                color: '#333',
-                fontSize: '1rem',
-                lineHeight: '1.5'
+                color: '#333333',
+                fontSize: '15px',
+                lineHeight: '1.7',
+                fontFamily: "'Quicksand', sans-serif",
+                fontWeight: '400'
               }
             }, validParts));
           }
         }
         
-        // Ingredients
+        // Ingredients - matches website: 15px, #333333, line-height 1.7
         if (ingredients && ingredients.trim()) {
-          bodyElements.push(h('p', { 
-            key: 'ingredients',
-            style: { 
-              marginBottom: '10px', 
-              color: '#666', 
-              fontSize: '0.95rem',
-              lineHeight: '1.5'
-            }
-          }, ingredients));
+          const ingredientsParts = parseMarkdownToElements(ingredients, h);
+          const validIngredientsParts = ingredientsParts.filter(part => part != null && part !== '');
+          if (validIngredientsParts.length > 0) {
+            bodyElements.push(h('p', { 
+              key: 'ingredients',
+              style: { 
+                marginBottom: '10px', 
+                color: '#333333', 
+                fontSize: '15px',
+                lineHeight: '1.7',
+                fontFamily: "'Quicksand', sans-serif",
+                fontWeight: '400'
+              }
+            }, validIngredientsParts));
+          }
         }
         
-        // Sold out messages for dinner pies (when not fully sold out)
+        // Sold out messages for dinner pies (when not fully sold out) - matches website: red color
         if (isDinnerPie && !showSoldOut) {
           if (smallSoldOut && smallSoldOutComment && smallSoldOutComment.trim()) {
             const markdownParts = parseMarkdownToElements(smallSoldOutComment, h);
@@ -251,8 +283,10 @@
                 key: 'small-sold-out',
                 style: {
                   marginTop: '10px',
-                  color: '#ff0000',
-                  fontSize: '0.9rem',
+                  color: 'red',
+                  fontSize: '15px',
+                  lineHeight: '1.7',
+                  fontFamily: "'Quicksand', sans-serif",
                   marginBottom: '5px'
                 }
               }, validParts));
@@ -266,8 +300,10 @@
                 key: 'big-sold-out',
                 style: {
                   marginTop: '10px',
-                  color: '#ff0000',
-                  fontSize: '0.9rem',
+                  color: 'red',
+                  fontSize: '15px',
+                  lineHeight: '1.7',
+                  fontFamily: "'Quicksand', sans-serif",
                   marginBottom: '5px'
                 }
               }, validParts));
@@ -277,11 +313,19 @@
         
         // Ensure we have at least some content
         if (bodyElements.length === 0) {
-          bodyElements.push(h('p', { key: 'no-content' }, 'No content available'));
+          bodyElements.push(h('p', { 
+            key: 'no-content',
+            style: {
+              color: '#333333',
+              fontSize: '15px',
+              fontFamily: "'Quicksand', sans-serif"
+            }
+          }, 'No content available'));
         }
         
         const cardBody = h('div', {
           key: 'card-body',
+          className: 'card-body',
           style: {
             padding: '1.5rem',
             textAlign: 'center'
@@ -290,27 +334,32 @@
         
         cardElements.push(cardBody);
         
-        // Card wrapper matching website styling
+        // Card wrapper matching website styling exactly
         const card = h('div', {
           key: 'card',
+          className: 'card border-0 text-center',
           style: {
             borderRadius: '15px',
             overflow: 'hidden',
             boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
             backgroundColor: '#fff',
             maxWidth: '400px',
-            margin: '0 auto'
+            margin: '0 auto',
+            border: '0',
+            transition: 'transform 0.3s ease, box-shadow 0.3s ease'
           }
         }, cardElements);
         
-        // Container wrapper
+        // Container wrapper with website background
         return h('div', {
           key: 'preview-container',
           style: {
             padding: '30px 20px',
-            background: '#f9f9f9',
+            background: '#fff',
             minHeight: '100vh',
-            fontFamily: 'system-ui, -apple-system, sans-serif'
+            fontFamily: "'Quicksand', sans-serif",
+            fontSize: '15px',
+            lineHeight: '1.4'
           }
         }, card);
         
@@ -320,7 +369,8 @@
           style: { 
             padding: '20px', 
             color: 'red',
-            backgroundColor: '#ffe6e6'
+            backgroundColor: '#ffe6e6',
+            fontFamily: "'Quicksand', sans-serif"
           }
         }, 'Preview Error: ' + String(error.message || error));
       }
