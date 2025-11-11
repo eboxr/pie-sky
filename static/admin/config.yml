@@ -2,8 +2,9 @@ backend:
   name: github
   repo: eboxr/pie-sky # GitHub repository (username/repo-name)
   branch: master # Branch to update (change this if your production branch is different)
-  base_url: https://pieinthesky-eden.com # Your site URL
-  auth_type: pkce # PKCE flow for GitHub OAuth (recommended)
+  base_url: https://api.netlify.com # Netlify OAuth API endpoint
+  auth_endpoint: auth # OAuth authentication endpoint
+  site_domain: pieinthesky-eden.com # Your custom domain
 
 # Uncomment below to enable local development (for testing)
 # local_backend: true
