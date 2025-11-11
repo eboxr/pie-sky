@@ -8,6 +8,26 @@
 <body>
   <!-- Include the script that builds the page and powers Decap CMS -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <!-- Include preview templates - must load after CMS -->
+  <script>
+    // Wait for CMS to be available, then load preview templates
+    (function() {
+      function loadPreviewTemplates() {
+        if (window.CMS || window.DecapCMS) {
+          const script = document.createElement('script');
+          script.src = '/admin/preview-templates.js';
+          script.onerror = function() {
+            console.error('Failed to load preview templates');
+          };
+          document.body.appendChild(script);
+        } else {
+          setTimeout(loadPreviewTemplates, 100);
+        }
+      }
+      // Start loading after a short delay to ensure CMS is initialized
+      setTimeout(loadPreviewTemplates, 500);
+    })();
+  </script>
 </body>
 </html>
 

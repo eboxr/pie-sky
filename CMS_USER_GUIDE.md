@@ -27,9 +27,15 @@ This guide will help you update pie information on the website without needing t
 1. Click on the pie category you want to edit (e.g., "Fruit Pies")
 2. Find the pie you want to update in the list
 3. Click on the pie name to open the editor
-4. Make your changes to the fields (see field descriptions below)
-5. Click **"Save"** in the top right corner
-6. Your changes will be saved and the website will automatically update (this may take a minute)
+4. You'll see the editor with:
+   - **Left side**: All the editable fields (title, description, price, images, etc.)
+   - **Right side**: A live preview showing how your pie will look on the website
+5. Make your changes to the fields - the preview will update automatically as you type
+6. The preview shows **two views**:
+   - **Card View**: How the pie appears on the homepage (in the pie listing section)
+   - **Full Pie Page View**: How the pie appears on its individual page
+7. When you're ready to save, click the **"Publish"** button in the top right corner
+8. Your changes will be saved to the website and automatically deployed to production (this may take 1-2 minutes)
 
 ## Field Descriptions
 
@@ -61,7 +67,18 @@ Dinner pies have additional fields because they come in two sizes:
 
 - **Sold Out Status**: When you check "Sold Out", a red "SOLD OUT" sticker will automatically appear on the pie image on the website.
 
-- **Saving Changes**: After clicking "Save", your changes are saved to the website's code repository. Netlify will automatically rebuild and deploy the updated website within 1-2 minutes.
+- **Saving Changes**: 
+  - Click the **"Publish"** button (not "Save") to save your changes
+  - The "Publish" button saves your changes to the website's code repository
+  - Netlify will automatically detect the changes, rebuild the website, and deploy it to production
+  - Your changes will be live on the website within 1-2 minutes
+  - **Important**: The "Publish" button deploys directly to production - make sure you're happy with your changes before publishing!
+
+- **Preview Feature**: 
+  - The preview panel on the right shows you exactly how your pie will look on the website
+  - You'll see both the card view (as it appears on the homepage) and the full pie page view
+  - The preview updates automatically as you make changes
+  - Use the preview to check that images, text, and formatting look correct before publishing
 
 - **Images**: You can upload new images by clicking on the image field. Images will be stored in the appropriate folder automatically.
 
@@ -73,5 +90,7 @@ If you encounter any issues or need to make changes that aren't available in the
 
 - **Don't delete pies** - The CMS is configured to only allow editing, not deleting
 - **Don't change hidden fields** - Fields like "Type" and "Date" are automatically managed
-- **Test your changes** - After saving, wait a minute and check the live website to see your changes
+- **Publish = Deploy to Production** - The "Publish" button saves your changes and deploys them to the live website. There's no separate "Save Draft" option - all changes go live immediately
+- **Test your changes** - After publishing, wait 1-2 minutes and check the live website to verify your changes appear correctly
+- **Use the preview** - Always check the preview panel before publishing to make sure everything looks good
 
