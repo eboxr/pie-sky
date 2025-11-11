@@ -102,95 +102,52 @@
     // Pie card preview template matching website design exactly
     function PiePreviewTemplate(props) {
       try {
-        const { entry, widget, field } = props || {};
+        const { entry } = props || {};
         
-        // Debug logging
-        console.log('PiePreviewTemplate called with props:', { 
-          hasEntry: !!entry, 
-          hasWidget: !!widget, 
-          hasField: !!field,
-          entryType: entry ? typeof entry : 'none',
-          entryKeys: entry && typeof entry === 'object' ? Object.keys(entry) : []
-        });
-        
-        // Try multiple ways to get the data (Decap CMS v3 might pass it differently)
+        // Properly extract data from Immutable.js entry structure
         let data = null;
-        if (entry) {
-          // Try Immutable.js structure
-          if (entry.getIn && typeof entry.getIn === 'function') {
-            data = entry.getIn(['data']) || entry.get('data');
-            if (data && data.toJS) {
-              data = data.toJS();
+        try {
+          if (entry && entry.getIn && typeof entry.getIn === 'function') {
+            // Standard Decap CMS structure: entry.getIn(['data']).toJS()
+            const dataMap = entry.getIn(['data']);
+            if (dataMap && dataMap.toJS) {
+              data = dataMap.toJS();
+            } else if (dataMap) {
+              // If it's already a plain object
+              data = dataMap;
             }
-          }
-          // Try plain object structure
-          else if (entry.data) {
+          } else if (entry && entry.data) {
+            // Fallback for plain object structure
             data = entry.data;
           }
-          // Try direct structure
-          else if (typeof entry === 'object' && !entry.getIn) {
-            data = entry;
-          }
-        }
-        
-        // Fallback: try widget or field
-        if (!data && widget && widget.value) {
-          data = widget.value;
-        }
-        
-        console.log('Extracted data:', data);
-        
-        if (!data && !entry) {
-          return h('div', { style: { padding: '20px', color: '#666' } }, 
-            'Loading preview... (No data available yet)'
-          );
-        }
-        
-        // Get data - convert everything to simple strings
-        let title = '';
-        let description = '';
-        let shortDescription = '';
-        let ingredients = '';
-        let price = '';
-        let soldOut = false;
-        let type = '';
-        let smallSoldOut = false;
-        let bigSoldOut = false;
-        let smallSoldOutComment = '';
-        let bigSoldOutComment = '';
-        
-        try {
-          // Try getting from data object first
-          if (data) {
-            title = String(data.title || data.Title || 'Untitled Pie');
-            description = String(data.description || data.Description || '');
-            shortDescription = String(data.shortDescription || data.ShortDescription || '');
-            ingredients = String(data.ingredients || data.Ingredients || '');
-            price = String(data.price || data.Price || '');
-            type = String(data.type || data.Type || '');
-            soldOut = Boolean(data.sold_out || data.soldOut || false);
-            smallSoldOut = Boolean(data.small_sold_out || data.smallSoldOut || false);
-            bigSoldOut = Boolean(data.big_sold_out || data.bigSoldOut || false);
-            smallSoldOutComment = String(data.small_sold_out_comment || data.smallSoldOutComment || '');
-            bigSoldOutComment = String(data.big_sold_out_comment || data.bigSoldOutComment || '');
-          }
-          // Fallback to getField method
-          else if (entry) {
-            title = String(getField(entry, 'title') || 'Untitled Pie');
-            description = String(getField(entry, 'description') || '');
-            shortDescription = String(getField(entry, 'shortDescription') || '');
-            ingredients = String(getField(entry, 'ingredients') || '');
-            price = String(getField(entry, 'price') || '');
-            type = String(getField(entry, 'type') || '');
-            soldOut = Boolean(getField(entry, 'sold_out', false));
-            smallSoldOut = Boolean(getField(entry, 'small_sold_out', false));
-            bigSoldOut = Boolean(getField(entry, 'big_sold_out', false));
-            smallSoldOutComment = String(getField(entry, 'small_sold_out_comment') || '');
-            bigSoldOutComment = String(getField(entry, 'big_sold_out_comment') || '');
-          }
         } catch (e) {
-          console.warn('Error getting field values:', e);
+          console.warn('Error extracting data from entry:', e);
         }
+        
+        // If no data, show loading state
+        if (!data) {
+          return h('div', { 
+            key: 'loading',
+            style: { 
+              padding: '20px', 
+              color: '#666',
+              fontFamily: "'Quicksand', sans-serif"
+            } 
+          }, 'Loading preview...');
+        }
+        
+        // Extract all fields with proper fallbacks
+        const title = String(data.title || data.Title || 'Untitled Pie').trim();
+        const description = String(data.description || data.Description || '').trim();
+        const shortDescription = String(data.shortDescription || data.ShortDescription || '').trim();
+        const ingredients = String(data.ingredients || data.Ingredients || '').trim();
+        const price = String(data.price || data.Price || '').trim();
+        const type = String(data.type || data.Type || '').trim();
+        const soldOut = Boolean(data.sold_out || data.soldOut || false);
+        const smallSoldOut = Boolean(data.small_sold_out || data.smallSoldOut || false);
+        const bigSoldOut = Boolean(data.big_sold_out || data.bigSoldOut || false);
+        const smallSoldOutComment = String(data.small_sold_out_comment || data.smallSoldOutComment || '').trim();
+        const bigSoldOutComment = String(data.big_sold_out_comment || data.bigSoldOutComment || '').trim();
         
         // Determine sold out status
         const isDinnerPie = type === 'dinner';
@@ -262,7 +219,7 @@
         const bodyElements = [];
         
         // Title (h3) - matches website: 22px, bold, #222222
-        if (title && title.trim()) {
+        if (title) {
           bodyElements.push(h('h3', { 
             key: 'title',
             style: { 
@@ -277,9 +234,9 @@
         }
         
         // Description (h4) - only show if it exists, matches website: 18px, #222222
-        if (description && description.trim()) {
+        if (description) {
           const descParts = parseMarkdownToElements(description, h);
-          const validDescParts = descParts.filter(part => part != null && part !== '');
+          const validDescParts = descParts.filter(part => part != null && part !== '' && part !== undefined);
           if (validDescParts.length > 0) {
             bodyElements.push(h('h4', { 
               key: 'description',
@@ -291,14 +248,15 @@
                 fontWeight: '400',
                 lineHeight: '1.2'
               }
-            }, validDescParts));
+            }, ...validDescParts));
           }
         }
         
         // Short Description (pricing info - supports markdown) - matches website: 15px, #333333, line-height 1.7
-        if (shortDescription && shortDescription.trim()) {
+        if (shortDescription) {
           const markdownParts = parseMarkdownToElements(shortDescription, h);
-          const validParts = markdownParts.filter(part => part != null && part !== '');
+          // Filter out null/undefined and ensure all parts are valid React children
+          const validParts = markdownParts.filter(part => part != null && part !== '' && part !== undefined);
           if (validParts.length > 0) {
             bodyElements.push(h('p', { 
               key: 'shortDesc',
@@ -310,14 +268,15 @@
                 fontFamily: "'Quicksand', sans-serif",
                 fontWeight: '400'
               }
-            }, validParts));
+            }, ...validParts));
           }
         }
         
         // Ingredients - matches website: 15px, #333333, line-height 1.7
-        if (ingredients && ingredients.trim()) {
+        if (ingredients) {
           const ingredientsParts = parseMarkdownToElements(ingredients, h);
-          const validIngredientsParts = ingredientsParts.filter(part => part != null && part !== '');
+          // Filter out null/undefined and ensure all parts are valid React children
+          const validIngredientsParts = ingredientsParts.filter(part => part != null && part !== '' && part !== undefined);
           if (validIngredientsParts.length > 0) {
             bodyElements.push(h('p', { 
               key: 'ingredients',
@@ -329,15 +288,15 @@
                 fontFamily: "'Quicksand', sans-serif",
                 fontWeight: '400'
               }
-            }, validIngredientsParts));
+            }, ...validIngredientsParts));
           }
         }
         
         // Sold out messages for dinner pies (when not fully sold out) - matches website: red color
         if (isDinnerPie && !showSoldOut) {
-          if (smallSoldOut && smallSoldOutComment && smallSoldOutComment.trim()) {
+          if (smallSoldOut && smallSoldOutComment) {
             const markdownParts = parseMarkdownToElements(smallSoldOutComment, h);
-            const validParts = markdownParts.filter(part => part != null && part !== '');
+            const validParts = markdownParts.filter(part => part != null && part !== '' && part !== undefined);
             if (validParts.length > 0) {
               bodyElements.push(h('p', {
                 key: 'small-sold-out',
@@ -349,12 +308,12 @@
                   fontFamily: "'Quicksand', sans-serif",
                   marginBottom: '5px'
                 }
-              }, validParts));
+              }, ...validParts));
             }
           }
-          if (bigSoldOut && bigSoldOutComment && bigSoldOutComment.trim()) {
+          if (bigSoldOut && bigSoldOutComment) {
             const markdownParts = parseMarkdownToElements(bigSoldOutComment, h);
-            const validParts = markdownParts.filter(part => part != null && part !== '');
+            const validParts = markdownParts.filter(part => part != null && part !== '' && part !== undefined);
             if (validParts.length > 0) {
               bodyElements.push(h('p', {
                 key: 'big-sold-out',
@@ -366,7 +325,7 @@
                   fontFamily: "'Quicksand', sans-serif",
                   marginBottom: '5px'
                 }
-              }, validParts));
+              }, ...validParts));
             }
           }
         }
@@ -390,7 +349,7 @@
             padding: '1.5rem',
             textAlign: 'center'
           }
-        }, bodyElements);
+        }, ...bodyElements);
         
         cardElements.push(cardBody);
         
@@ -408,7 +367,7 @@
             border: '0',
             transition: 'transform 0.3s ease, box-shadow 0.3s ease'
           }
-        }, cardElements);
+        }, ...cardElements);
         
         // Container wrapper with website background and CSS class
         return h('div', {
