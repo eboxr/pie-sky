@@ -58,7 +58,7 @@
     // React is available from closure
     function PiePreviewTemplate(props) {
       try {
-        console.log('PiePreviewTemplate called');
+        console.log('PiePreviewTemplate called with props:', Object.keys(props || {}));
         const { entry, widgetFor, getAsset } = props || {};
         
         // Always return a valid React element - never return null
@@ -66,99 +66,95 @@
           console.warn('PiePreviewTemplate: no entry');
           return h('div', { 
             key: 'no-entry',
-            style: { padding: '20px', color: '#666' } 
+            style: { padding: '20px', color: '#666', background: '#fff' } 
           }, 'No entry data available');
         }
         
-        // Get data
-        const title = getField(entry, 'title', 'Untitled Pie');
-        const description = getField(entry, 'description');
-        const shortDescription = getField(entry, 'shortDescription');
-        const price = getField(entry, 'price');
-        const soldOut = getField(entry, 'sold_out', false);
-        const images = getImages(entry);
-        const ingredients = getField(entry, 'ingredients');
-        const type = getField(entry, 'type');
-        const smallSoldOut = getField(entry, 'small_sold_out', false);
-        const bigSoldOut = getField(entry, 'big_sold_out', false);
-        
-        console.log('PiePreviewTemplate data:', { title, imagesCount: images.length, hasGetAsset: typeof getAsset === 'function' });
-        if (images.length > 0 && images[0]) {
-          console.log('First image data:', images[0]);
+        // Get data with safe defaults
+        let title, description, shortDescription, price, soldOut, images, ingredients, type, smallSoldOut, bigSoldOut;
+        try {
+          title = getField(entry, 'title', 'Untitled Pie');
+          description = getField(entry, 'description');
+          shortDescription = getField(entry, 'shortDescription');
+          price = getField(entry, 'price');
+          soldOut = getField(entry, 'sold_out', false);
+          images = getImages(entry);
+          ingredients = getField(entry, 'ingredients');
+          type = getField(entry, 'type');
+          smallSoldOut = getField(entry, 'small_sold_out', false);
+          bigSoldOut = getField(entry, 'big_sold_out', false);
+        } catch (dataError) {
+          console.error('Error getting entry data:', dataError);
+          return h('div', {
+            key: 'data-error',
+            style: { padding: '20px', color: 'red', background: '#fff' }
+          }, 'Error loading entry data: ' + String(dataError));
         }
         
-        // Get image URL using getAsset function from CMS (proper way)
+        console.log('PiePreviewTemplate data:', { 
+          title, 
+          description: description ? description.substring(0, 50) : null,
+          imagesCount: images ? images.length : 0,
+          hasGetAsset: typeof getAsset === 'function',
+          imagePaths: images && images.length > 0 ? images.map(function(img) { return img && img.image ? img.image : null; }).filter(Boolean) : []
+        });
+        
+        // Ensure images is an array
+        if (!Array.isArray(images)) {
+          images = [];
+        }
+        
+        // Get image URL - manually construct absolute URL to avoid /admin/ issues
+        // Don't use getAsset as it may resolve paths relative to /admin/
         function getImageUrl(imgPath) {
-          if (!imgPath) return '';
-          
-          // Use getAsset if available (preferred method for CMS previews)
-          // getAsset resolves the path relative to public_folder which is "/images"
-          if (getAsset && typeof getAsset === 'function') {
-            try {
-              const asset = getAsset(imgPath);
-              if (asset) {
-                // getAsset returns a File object or string URL
-                const url = asset.toString ? asset.toString() : String(asset);
-                // getAsset should return a proper URL - if it does, use it
-                if (url && typeof url === 'string' && url.length > 0) {
-                  // If it's a full URL, use it directly (but remove /admin/ if present)
-                  if (url.startsWith('http://') || url.startsWith('https://')) {
-                    const cleaned = url.replace(/\/admin\/images\//g, '/images/').replace(/\/admin\//g, '/');
-                    console.log('getAsset returned URL:', imgPath, '->', cleaned);
-                    return cleaned;
-                  }
-                  // If it's a relative path starting with /, make it absolute
-                  if (url.startsWith('/')) {
-                    const cleaned = url.replace(/^\/admin\//, '/');
-                    const finalUrl = 'https://pieinthesky-eden.com' + cleaned;
-                    console.log('getAsset returned path:', imgPath, '->', finalUrl);
-                    return finalUrl;
-                  }
-                }
-              }
-            } catch (e) {
-              console.warn('Error using getAsset for path:', imgPath, e);
-            }
+          if (!imgPath) {
+            console.log('getImageUrl: empty path');
+            return '';
           }
           
-          // Fallback: manual path resolution
-          imgPath = String(imgPath).trim();
+          // Convert to string and trim
+          let path = String(imgPath).trim();
+          console.log('getImageUrl: processing path:', path, 'type:', typeof path);
           
-          // If already a full URL, remove /admin/ if present and return
-          if (imgPath.startsWith('http://') || imgPath.startsWith('https://')) {
-            return imgPath.replace(/\/admin\/images\//g, '/images/').replace(/\/admin\//g, '/');
+          // If it's already a full URL, remove ALL /admin/ references
+          if (path.startsWith('http://') || path.startsWith('https://')) {
+            let cleaned = path.replace(/\/admin\//g, '/');
+            // Fix any double slashes after protocol (https:/// should be https://)
+            cleaned = cleaned.replace(/(https?:\/)\/+/g, '$1/');
+            console.log('getImageUrl: cleaned full URL:', cleaned);
+            return cleaned;
           }
           
-          // Remove any /admin/ prefix that might have been added (be thorough)
-          // Handle cases like: /admin/images/..., admin/images/..., /admin/images/...
-          imgPath = imgPath
-            .replace(/^\/+admin\/+/, '')  // Remove /admin/ at start
-            .replace(/^admin\/+/, '')     // Remove admin/ at start (no leading slash)
-            .replace(/\/+admin\/+/g, '/'); // Remove any /admin/ in middle
+          // Manual path construction - NEVER use /admin/
+          // Remove ANY /admin/ references from the start
+          path = path.replace(/^\/admin\//, '').replace(/^admin\//, '');
+          // Remove any /admin/ in the middle
+          path = path.replace(/\/admin\//g, '/');
           
-          // Normalize the path to always be /images/...
-          // Content files store paths like "images/special-pies/file.jpg" 
-          // or CMS might store "special-pies/file.jpg" (relative to public_folder)
-          // public_folder is "/images", so final path should be "/images/..."
+          // Remove leading/trailing slashes for processing
+          path = path.replace(/^\/+|\/+$/g, '');
           
-          // Remove any leading/trailing slashes for consistent processing
-          let normalizedPath = imgPath.trim().replace(/^\/+|\/+$/g, '');
-          
-          // If it already starts with "images/", use it; otherwise prepend "images/"
-          if (!normalizedPath.startsWith('images/')) {
-            normalizedPath = 'images/' + normalizedPath;
+          // Content files store paths like "images/special-pies/file.jpg"
+          // public_folder is "/images", so paths in content are relative to site root
+          // If path doesn't start with "images/", it might be just the filename
+          // In that case, we can't determine the full path, so log a warning
+          if (!path.startsWith('images/')) {
+            // Try to prepend images/ - this handles cases where CMS stores just "special-pies/file.jpg"
+            console.warn('getImageUrl: path does not start with images/, prepending:', path);
+            path = 'images/' + path;
           }
           
-          // Ensure it starts with a single slash (absolute path on site)
-          normalizedPath = '/' + normalizedPath;
+          // Ensure it starts with a single slash (absolute path from site root)
+          let absolutePath = '/' + path;
           
-          // Clean up any duplicate slashes (replace 2+ consecutive slashes with single slash)
-          normalizedPath = normalizedPath.replace(/\/{2,}/g, '/');
+          // Clean up any duplicate slashes
+          absolutePath = absolutePath.replace(/\/{2,}/g, '/');
           
-          // Construct absolute URL to prevent browser from resolving relative to /admin/
-          // Always use https:// to ensure absolute URL
-          const finalUrl = 'https://pieinthesky-eden.com' + normalizedPath;
-          console.log('Resolved image URL:', finalUrl, '(from original:', imgPath + ')');
+          // Construct full absolute URL - always use site root, never /admin/
+          const baseUrl = 'https://pieinthesky-eden.com';
+          const finalUrl = baseUrl + absolutePath;
+          
+          console.log('getImageUrl: final URL:', finalUrl, '(from original:', imgPath + ')');
           return finalUrl;
         }
         
@@ -345,9 +341,11 @@
           }, pageContentChildren)
         ]));
         
-        // Combined preview
+        // Combined preview - Card view on top, Page view on bottom
+        console.log('Rendering preview with card and page views');
         return h('div', {
           key: 'preview-container',
+          className: 'pie-preview-container',
           style: {
             padding: '20px',
             background: '#f9f9f9',
@@ -355,8 +353,10 @@
             fontFamily: "system-ui, -apple-system, sans-serif"
           }
         }, [
+          // Card View Section (TOP)
           h('div', {
             key: 'card-preview-section',
+            className: 'card-preview-section',
             style: {
               background: 'white',
               padding: '25px',
@@ -378,8 +378,10 @@
             }, '📱 Card View (as shown on homepage)'),
             CardView
           ]),
+          // Page View Section (BOTTOM)
           h('div', {
             key: 'page-preview-section',
+            className: 'page-preview-section',
             style: {
               background: 'white',
               padding: '25px',
