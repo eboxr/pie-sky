@@ -42,38 +42,7 @@
       }
     }
     
-    function getImages(entry) {
-      try {
-        const images = entry.getIn(['data', 'images']);
-        if (!images) {
-          return [];
-        }
-        // Convert Immutable.js List/Array to plain JavaScript array
-        if (images && typeof images.toJS === 'function') {
-          const jsImages = images.toJS();
-          return Array.isArray(jsImages) ? jsImages : [];
-        }
-        if (Array.isArray(images)) {
-          // Already an array, but might contain Immutable objects
-          return images.map(function(img) {
-            if (img && typeof img.toJS === 'function') {
-              return img.toJS();
-            }
-            if (img && img.image && typeof img.image === 'object' && img.image.toString) {
-              // Image might be an Immutable object
-              return {
-                image: String(img.image)
-              };
-            }
-            return img;
-          });
-        }
-        return [];
-      } catch (e) {
-        console.warn('getImages error:', e);
-        return [];
-      }
-    }
+    // Removed getImages function - not needed for text-only preview
     
     // Get React from window (we loaded it explicitly)
     // React must be available before we can create the preview template
@@ -88,136 +57,133 @@
     console.log('React is available, creating preview templates');
     const h = React.createElement;
     
-    // Simplified Preview template - Only shows the card component
-    // Uses Bootstrap classes to match the website exactly
+    // Ultra-simplified Preview template - Text only, no images
+    // This eliminates image path issues and React rendering complexity
     function PiePreviewTemplate(props) {
       try {
-        const { entry, getAsset } = props || {};
+        const { entry } = props || {};
         
         if (!entry) {
           return h('div', { style: { padding: '20px' } }, 'Loading...');
         }
         
-        // Get data and convert to strings
-        const title = String(getField(entry, 'title') || 'Untitled Pie');
-        const description = String(getField(entry, 'description') || '');
-        const shortDescription = String(getField(entry, 'shortDescription') || '');
-        const ingredients = String(getField(entry, 'ingredients') || '');
-        const price = String(getField(entry, 'price') || '');
-        const type = String(getField(entry, 'type') || '');
-        const soldOut = Boolean(getField(entry, 'sold_out', false));
-        const smallSoldOut = Boolean(getField(entry, 'small_sold_out', false));
-        const bigSoldOut = Boolean(getField(entry, 'big_sold_out', false));
+        // Get data - convert everything to simple strings
+        let title = '';
+        let description = '';
+        let shortDescription = '';
+        let ingredients = '';
+        let price = '';
+        let soldOut = false;
+        let type = '';
+        let smallSoldOut = false;
+        let bigSoldOut = false;
         
-        // Get first image
-        const images = getImages(entry);
-        const firstImage = images && images.length > 0 ? images[0] : null;
-        const imagePath = firstImage && firstImage.image ? String(firstImage.image) : '';
+        try {
+          title = String(getField(entry, 'title') || 'Untitled Pie');
+          description = String(getField(entry, 'description') || '');
+          shortDescription = String(getField(entry, 'shortDescription') || '');
+          ingredients = String(getField(entry, 'ingredients') || '');
+          price = String(getField(entry, 'price') || '');
+          type = String(getField(entry, 'type') || '');
+          soldOut = Boolean(getField(entry, 'sold_out', false));
+          smallSoldOut = Boolean(getField(entry, 'small_sold_out', false));
+          bigSoldOut = Boolean(getField(entry, 'big_sold_out', false));
+        } catch (e) {
+          console.warn('Error getting field values:', e);
+        }
         
-        // Determine if sold out (dinner pies need both sizes sold out)
+        // Determine sold out status
         const isDinnerPie = type === 'dinner';
         const showSoldOut = isDinnerPie ? (smallSoldOut && bigSoldOut) : soldOut;
         
-        // Get image URL - simple absolute URL construction
-        let imageUrl = '';
-        if (imagePath) {
-          // Clean path
-          let path = String(imagePath).trim();
-          
-          // Remove /admin/ if present
-          path = path.replace(/^\/admin\//, '').replace(/\/admin\//g, '/');
-          
-          // Remove leading slash for processing
-          path = path.replace(/^\/+/, '');
-          
-          // Ensure it starts with images/
-          if (!path.startsWith('images/')) {
-            path = 'images/' + path;
-          }
-          
-          // Construct absolute URL
-          imageUrl = 'https://pieinthesky-eden.com/' + path.replace(/\/+/g, '/');
-        }
+        // Build simple card body with text content only
+        const bodyElements = [];
         
-        // Build card using Bootstrap classes (matching website structure)
-        const cardChildren = [];
-        
-        // Image wrapper (matching website: <div class="pie-image-wrapper">)
-        const imageWrapperChildren = [];
-        if (imageUrl) {
-          imageWrapperChildren.push(h('img', {
-            key: 'pie-image',
-            src: imageUrl,
-            alt: title,
-            className: 'card-img-top',
-            style: { width: '100%', height: 'auto', display: 'block' }
-          }));
-        }
-        
-        // Sold out sticker (if needed)
-        if (showSoldOut) {
-          const soldOutUrl = 'https://pieinthesky-eden.com/images/sold-out-sticker.png';
-          imageWrapperChildren.push(h('div', {
-            key: 'sold-out',
-            className: 'sold-out-sticker',
-            style: { position: 'absolute', top: '10px', left: '10px', zIndex: 10 }
-          }, h('img', {
-            src: soldOutUrl,
-            alt: 'SOLD OUT',
-            style: { maxWidth: '100px' }
-          })));
-        }
-        
-        cardChildren.push(h('div', {
-          key: 'imageWrapper',
-          className: 'pie-image-wrapper',
-          style: { position: 'relative' }
-        }, imageWrapperChildren));
-        
-        // Card body (matching website: <div class="card-body">)
-        const cardBodyChildren = [];
+        // Title
         if (title) {
-          cardBodyChildren.push(h('h3', { key: 'title' }, title));
+          bodyElements.push(h('h3', { 
+            key: 'title',
+            style: { marginBottom: '15px', fontSize: '1.5rem', fontWeight: 'bold' }
+          }, title));
         }
+        
+        // Description
         if (description && description.trim()) {
-          cardBodyChildren.push(h('h4', { key: 'description' }, description));
+          bodyElements.push(h('h4', { 
+            key: 'description',
+            style: { marginBottom: '10px', fontSize: '1.2rem', color: '#666' }
+          }, description));
         }
+        
+        // Short Description
         if (shortDescription && shortDescription.trim()) {
-          cardBodyChildren.push(h('p', { key: 'shortDesc' }, shortDescription));
+          bodyElements.push(h('p', { 
+            key: 'shortDesc',
+            style: { marginBottom: '10px', color: '#555' }
+          }, shortDescription));
         }
+        
+        // Ingredients
         if (ingredients && ingredients.trim()) {
-          cardBodyChildren.push(h('p', { key: 'ingredients' }, ingredients));
+          bodyElements.push(h('p', { 
+            key: 'ingredients',
+            style: { marginBottom: '10px', color: '#666', fontSize: '0.9rem' }
+          }, ingredients));
         }
         
-        if (cardBodyChildren.length > 0) {
-          cardChildren.push(h('div', {
-            key: 'cardBody',
-            className: 'card-body'
-          }, cardBodyChildren));
+        // Price
+        if (price && price.trim()) {
+          bodyElements.push(h('p', { 
+            key: 'price',
+            style: { marginTop: '15px', fontSize: '1.3rem', fontWeight: 'bold', color: '#C6600D' }
+          }, '$' + price));
         }
         
-        // Return card with Bootstrap classes (matching website: <div class="card border-0 text-center">)
-        // Wrap in container for proper preview display
+        // Sold Out badge
+        if (showSoldOut) {
+          bodyElements.push(h('div', {
+            key: 'soldOut',
+            style: {
+              marginTop: '15px',
+              padding: '8px 16px',
+              backgroundColor: '#ff0000',
+              color: '#fff',
+              borderRadius: '5px',
+              display: 'inline-block',
+              fontWeight: 'bold'
+            }
+          }, 'SOLD OUT'));
+        }
+        
+        // Simple card wrapper - pure HTML/CSS, no Bootstrap dependency
         return h('div', {
-          style: { 
-            padding: '20px', 
+          style: {
+            padding: '30px 20px',
             background: '#f9f9f9',
-            minHeight: '100vh'
+            minHeight: '100vh',
+            fontFamily: 'system-ui, -apple-system, sans-serif'
           }
         }, h('div', {
-          className: 'card border-0 text-center',
-          style: { 
-            maxWidth: '400px', 
+          style: {
+            maxWidth: '500px',
             margin: '0 auto',
-            backgroundColor: '#fff'
+            backgroundColor: '#fff',
+            padding: '30px',
+            borderRadius: '10px',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+            textAlign: 'center'
           }
-        }, cardChildren));
+        }, bodyElements));
         
       } catch (error) {
         console.error('Preview error:', error);
         return h('div', {
-          style: { padding: '20px', color: 'red' }
-        }, 'Error: ' + String(error.message || error));
+          style: { 
+            padding: '20px', 
+            color: 'red',
+            backgroundColor: '#ffe6e6'
+          }
+        }, 'Preview Error: ' + String(error.message || error));
       }
     }
     
