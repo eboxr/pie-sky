@@ -6,11 +6,9 @@
   <title>Content Manager - Pie in the Sky</title>
 </head>
 <body>
-  <!-- Include React 18 (same version Decap CMS v3 uses internally) -->
-  <!-- This ensures compatibility and makes React available for preview templates -->
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <!-- Include the script that builds the page and powers Decap CMS -->
+  <!-- DO NOT load React separately - Decap CMS provides React internally -->
+  <!-- Loading React separately causes version conflicts and React error #525 -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   <!-- Include preview templates after CMS loads -->
   <script>
