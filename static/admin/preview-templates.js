@@ -64,11 +64,16 @@
       let lastIndex = 0;
       const boldRegex = /\*\*(.*?)\*\*/g;
       let match;
+      let hasMatches = false;
       
       while ((match = boldRegex.exec(text)) !== null) {
+        hasMatches = true;
         // Add text before the match
         if (match.index > lastIndex) {
-          parts.push(text.substring(lastIndex, match.index));
+          const beforeText = text.substring(lastIndex, match.index);
+          if (beforeText) {
+            parts.push(beforeText);
+          }
         }
         // Add bold text
         parts.push(h('strong', { key: 'bold-' + match.index }, match[1]));
@@ -77,10 +82,27 @@
       
       // Add remaining text
       if (lastIndex < text.length) {
-        parts.push(text.substring(lastIndex));
+        const remainingText = text.substring(lastIndex);
+        if (remainingText) {
+          parts.push(remainingText);
+        }
       }
       
-      return parts.length > 0 ? parts : text;
+      // If no matches found, return original text as string
+      if (!hasMatches || parts.length === 0) {
+        return text;
+      }
+      
+      // Filter out any empty strings or null values
+      const filteredParts = parts.filter(part => part != null && part !== '');
+      
+      // If after filtering we have nothing, return original text
+      if (filteredParts.length === 0) {
+        return text;
+      }
+      
+      // Return array of React elements and strings
+      return filteredParts;
     }
     
     // Pie card preview template matching website design
@@ -128,6 +150,28 @@
         // Build card elements
         const cardElements = [];
         
+        // Image placeholder children - filter out null values
+        const imagePlaceholderChildren = [
+          h('div', { key: 'placeholder-text' }, 'Image will appear here')
+        ];
+        if (showSoldOut) {
+          imagePlaceholderChildren.push(h('div', {
+            key: 'sold-out-overlay',
+            style: {
+              position: 'absolute',
+              top: '10px',
+              left: '10px',
+              backgroundColor: 'rgba(255, 0, 0, 0.8)',
+              color: '#fff',
+              padding: '5px 15px',
+              borderRadius: '5px',
+              fontSize: '12px',
+              fontWeight: 'bold',
+              zIndex: 5
+            }
+          }, 'SOLD OUT'));
+        }
+        
         // Image placeholder
         const imagePlaceholder = h('div', {
           key: 'image-placeholder',
@@ -147,24 +191,7 @@
             boxSizing: 'border-box',
             position: 'relative'
           }
-        }, [
-          h('div', { key: 'placeholder-text' }, 'Image will appear here'),
-          showSoldOut ? h('div', {
-            key: 'sold-out-overlay',
-            style: {
-              position: 'absolute',
-              top: '10px',
-              left: '10px',
-              backgroundColor: 'rgba(255, 0, 0, 0.8)',
-              color: '#fff',
-              padding: '5px 15px',
-              borderRadius: '5px',
-              fontSize: '12px',
-              fontWeight: 'bold',
-              zIndex: 5
-            }
-          }, 'SOLD OUT') : null
-        ]);
+        }, imagePlaceholderChildren);
         
         cardElements.push(imagePlaceholder);
         
@@ -199,15 +226,21 @@
         
         // Short Description (pricing info - supports markdown)
         if (shortDescription && shortDescription.trim()) {
-          bodyElements.push(h('p', { 
-            key: 'shortDesc',
-            style: { 
-              marginBottom: '10px', 
-              color: '#333',
-              fontSize: '1rem',
-              lineHeight: '1.5'
-            }
-          }, parseMarkdown(shortDescription)));
+          const shortDescContent = parseMarkdown(shortDescription);
+          const children = Array.isArray(shortDescContent) 
+            ? shortDescContent.filter(item => item != null)
+            : (shortDescContent != null ? [shortDescContent] : []);
+          if (children.length > 0) {
+            bodyElements.push(h('p', { 
+              key: 'shortDesc',
+              style: { 
+                marginBottom: '10px', 
+                color: '#333',
+                fontSize: '1rem',
+                lineHeight: '1.5'
+              }
+            }, children.length === 1 ? children[0] : children));
+          }
         }
         
         // Ingredients
@@ -226,27 +259,44 @@
         // Sold out messages for dinner pies (when not fully sold out)
         if (isDinnerPie && !showSoldOut) {
           if (smallSoldOut && smallSoldOutComment) {
-            bodyElements.push(h('p', {
-              key: 'small-sold-out',
-              style: {
-                marginTop: '10px',
-                color: '#ff0000',
-                fontSize: '0.9rem',
-                marginBottom: '5px'
-              }
-            }, parseMarkdown(smallSoldOutComment)));
+            const smallCommentContent = parseMarkdown(smallSoldOutComment);
+            const smallChildren = Array.isArray(smallCommentContent) 
+              ? smallCommentContent.filter(item => item != null)
+              : (smallCommentContent != null ? [smallCommentContent] : []);
+            if (smallChildren.length > 0) {
+              bodyElements.push(h('p', {
+                key: 'small-sold-out',
+                style: {
+                  marginTop: '10px',
+                  color: '#ff0000',
+                  fontSize: '0.9rem',
+                  marginBottom: '5px'
+                }
+              }, smallChildren.length === 1 ? smallChildren[0] : smallChildren));
+            }
           }
           if (bigSoldOut && bigSoldOutComment) {
-            bodyElements.push(h('p', {
-              key: 'big-sold-out',
-              style: {
-                marginTop: '10px',
-                color: '#ff0000',
-                fontSize: '0.9rem',
-                marginBottom: '5px'
-              }
-            }, parseMarkdown(bigSoldOutComment)));
+            const bigCommentContent = parseMarkdown(bigSoldOutComment);
+            const bigChildren = Array.isArray(bigCommentContent) 
+              ? bigCommentContent.filter(item => item != null)
+              : (bigCommentContent != null ? [bigCommentContent] : []);
+            if (bigChildren.length > 0) {
+              bodyElements.push(h('p', {
+                key: 'big-sold-out',
+                style: {
+                  marginTop: '10px',
+                  color: '#ff0000',
+                  fontSize: '0.9rem',
+                  marginBottom: '5px'
+                }
+              }, bigChildren.length === 1 ? bigChildren[0] : bigChildren));
+            }
           }
+        }
+        
+        // Ensure we have at least some content
+        if (bodyElements.length === 0) {
+          bodyElements.push(h('p', { key: 'no-content' }, 'No content available'));
         }
         
         const cardBody = h('div', {
@@ -274,6 +324,7 @@
         
         // Container wrapper
         return h('div', {
+          key: 'preview-container',
           style: {
             padding: '30px 20px',
             background: '#f9f9f9',
