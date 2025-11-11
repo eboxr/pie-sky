@@ -1,10 +1,11 @@
 // Preview templates for Decap CMS (Netlify CMS) v3
-// Simple function component that CMS will render
+// Custom preview component matching website pie card design
 
 (function() {
   'use strict';
   
   function registerPreviewTemplates() {
+    // Wait for CMS to be available
     if (typeof window === 'undefined' || !window.CMS) {
       setTimeout(registerPreviewTemplates, 200);
       return;
@@ -12,12 +13,15 @@
     
     const CMS = window.CMS;
     
-    if (typeof CMS.registerPreviewTemplate !== 'function') {
+    // Check for both possible API methods
+    if (typeof CMS.registerPreviewTemplate !== 'function' && typeof CMS.registerPreviewStyle !== 'function') {
       setTimeout(registerPreviewTemplates, 200);
       return;
     }
     
     console.log('Registering preview templates...');
+    console.log('CMS object:', CMS);
+    console.log('Available methods:', Object.keys(CMS).filter(k => k.includes('preview') || k.includes('Preview')));
     
     // Helper functions - convert Immutable.js values to plain JavaScript
     function getField(entry, path, defaultValue = '') {
@@ -98,10 +102,48 @@
     // Pie card preview template matching website design exactly
     function PiePreviewTemplate(props) {
       try {
-        const { entry } = props || {};
+        const { entry, widget, field } = props || {};
         
-        if (!entry) {
-          return h('div', { style: { padding: '20px' } }, 'Loading...');
+        // Debug logging
+        console.log('PiePreviewTemplate called with props:', { 
+          hasEntry: !!entry, 
+          hasWidget: !!widget, 
+          hasField: !!field,
+          entryType: entry ? typeof entry : 'none',
+          entryKeys: entry && typeof entry === 'object' ? Object.keys(entry) : []
+        });
+        
+        // Try multiple ways to get the data (Decap CMS v3 might pass it differently)
+        let data = null;
+        if (entry) {
+          // Try Immutable.js structure
+          if (entry.getIn && typeof entry.getIn === 'function') {
+            data = entry.getIn(['data']) || entry.get('data');
+            if (data && data.toJS) {
+              data = data.toJS();
+            }
+          }
+          // Try plain object structure
+          else if (entry.data) {
+            data = entry.data;
+          }
+          // Try direct structure
+          else if (typeof entry === 'object' && !entry.getIn) {
+            data = entry;
+          }
+        }
+        
+        // Fallback: try widget or field
+        if (!data && widget && widget.value) {
+          data = widget.value;
+        }
+        
+        console.log('Extracted data:', data);
+        
+        if (!data && !entry) {
+          return h('div', { style: { padding: '20px', color: '#666' } }, 
+            'Loading preview... (No data available yet)'
+          );
         }
         
         // Get data - convert everything to simple strings
@@ -118,17 +160,34 @@
         let bigSoldOutComment = '';
         
         try {
-          title = String(getField(entry, 'title') || 'Untitled Pie');
-          description = String(getField(entry, 'description') || '');
-          shortDescription = String(getField(entry, 'shortDescription') || '');
-          ingredients = String(getField(entry, 'ingredients') || '');
-          price = String(getField(entry, 'price') || '');
-          type = String(getField(entry, 'type') || '');
-          soldOut = Boolean(getField(entry, 'sold_out', false));
-          smallSoldOut = Boolean(getField(entry, 'small_sold_out', false));
-          bigSoldOut = Boolean(getField(entry, 'big_sold_out', false));
-          smallSoldOutComment = String(getField(entry, 'small_sold_out_comment') || '');
-          bigSoldOutComment = String(getField(entry, 'big_sold_out_comment') || '');
+          // Try getting from data object first
+          if (data) {
+            title = String(data.title || data.Title || 'Untitled Pie');
+            description = String(data.description || data.Description || '');
+            shortDescription = String(data.shortDescription || data.ShortDescription || '');
+            ingredients = String(data.ingredients || data.Ingredients || '');
+            price = String(data.price || data.Price || '');
+            type = String(data.type || data.Type || '');
+            soldOut = Boolean(data.sold_out || data.soldOut || false);
+            smallSoldOut = Boolean(data.small_sold_out || data.smallSoldOut || false);
+            bigSoldOut = Boolean(data.big_sold_out || data.bigSoldOut || false);
+            smallSoldOutComment = String(data.small_sold_out_comment || data.smallSoldOutComment || '');
+            bigSoldOutComment = String(data.big_sold_out_comment || data.bigSoldOutComment || '');
+          }
+          // Fallback to getField method
+          else if (entry) {
+            title = String(getField(entry, 'title') || 'Untitled Pie');
+            description = String(getField(entry, 'description') || '');
+            shortDescription = String(getField(entry, 'shortDescription') || '');
+            ingredients = String(getField(entry, 'ingredients') || '');
+            price = String(getField(entry, 'price') || '');
+            type = String(getField(entry, 'type') || '');
+            soldOut = Boolean(getField(entry, 'sold_out', false));
+            smallSoldOut = Boolean(getField(entry, 'small_sold_out', false));
+            bigSoldOut = Boolean(getField(entry, 'big_sold_out', false));
+            smallSoldOutComment = String(getField(entry, 'small_sold_out_comment') || '');
+            bigSoldOutComment = String(getField(entry, 'big_sold_out_comment') || '');
+          }
         } catch (e) {
           console.warn('Error getting field values:', e);
         }
@@ -177,6 +236,7 @@
         
         const imagePlaceholder = h('div', {
           key: 'image-placeholder',
+          className: 'card-img-placeholder',
           style: {
             width: '100%',
             aspectRatio: '1 / 1',
@@ -350,9 +410,10 @@
           }
         }, cardElements);
         
-        // Container wrapper with website background
+        // Container wrapper with website background and CSS class
         return h('div', {
           key: 'preview-container',
+          className: 'pie-card-preview',
           style: {
             padding: '30px 20px',
             background: '#fff',
@@ -376,25 +437,146 @@
       }
     }
     
-    // Register templates
+    // Register preview styles (CSS) for the preview pane
     try {
-      CMS.registerPreviewTemplate('fruit_pies', PiePreviewTemplate);
-      CMS.registerPreviewTemplate('cream_pies', PiePreviewTemplate);
-      CMS.registerPreviewTemplate('special_pies', PiePreviewTemplate);
-      CMS.registerPreviewTemplate('dinner_pies', PiePreviewTemplate);
-      CMS.registerPreviewTemplate('hand_pies', PiePreviewTemplate);
-      console.log('✅ Preview templates registered successfully!');
+      const previewStyles = `
+        .pie-card-preview {
+          font-family: 'Quicksand', sans-serif;
+        }
+        .pie-card-preview .card {
+          border-radius: 15px;
+          overflow: hidden;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          background-color: #fff;
+          max-width: 400px;
+          margin: 0 auto;
+          border: 0;
+        }
+        .pie-card-preview .card-img-placeholder {
+          width: 100%;
+          aspect-ratio: 1 / 1;
+          background-color: #f0f0f0;
+          border: 2px dashed #ccc;
+          border-radius: 15px 15px 0 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #999;
+          font-size: 14px;
+          text-align: center;
+          padding: 20px;
+          box-sizing: border-box;
+          position: relative;
+          overflow: hidden;
+        }
+        .pie-card-preview .card-body {
+          padding: 1.5rem;
+          text-align: center;
+        }
+        .pie-card-preview h3 {
+          margin-bottom: 10px;
+          font-size: 22px;
+          font-weight: bold;
+          color: #222222;
+          font-family: 'Quicksand', sans-serif;
+          line-height: 1.2;
+        }
+        .pie-card-preview h4 {
+          margin-bottom: 10px;
+          font-size: 18px;
+          color: #222222;
+          font-family: 'Quicksand', sans-serif;
+          font-weight: 400;
+          line-height: 1.2;
+        }
+        .pie-card-preview p {
+          margin-bottom: 10px;
+          color: #333333;
+          font-size: 15px;
+          line-height: 1.7;
+          font-family: 'Quicksand', sans-serif;
+          font-weight: 400;
+        }
+        .pie-card-preview .sold-out-sticker {
+          position: absolute;
+          top: 10px;
+          left: 10px;
+          z-index: 5;
+          background-color: rgba(255, 255, 255, 0.9);
+          padding: 8px 15px;
+          border-radius: 8px;
+          font-size: 14px;
+          font-weight: bold;
+          color: #C6600D;
+          border: 2px solid #C6600D;
+          filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        }
+      `;
+      
+      // Add styles to the page
+      const styleSheet = document.createElement('style');
+      styleSheet.type = 'text/css';
+      styleSheet.innerText = previewStyles;
+      document.head.appendChild(styleSheet);
+      console.log('✅ Preview styles added');
+    } catch (e) {
+      console.warn('Could not add preview styles:', e);
+    }
+    
+    // Register templates using the correct API
+    try {
+      // Try the standard method first
+      if (typeof CMS.registerPreviewTemplate === 'function') {
+        CMS.registerPreviewTemplate('fruit_pies', PiePreviewTemplate);
+        CMS.registerPreviewTemplate('cream_pies', PiePreviewTemplate);
+        CMS.registerPreviewTemplate('special_pies', PiePreviewTemplate);
+        CMS.registerPreviewTemplate('dinner_pies', PiePreviewTemplate);
+        CMS.registerPreviewTemplate('hand_pies', PiePreviewTemplate);
+        console.log('✅ Preview templates registered using registerPreviewTemplate');
+      } 
+      // Try alternative method for Decap CMS v3
+      else if (CMS.registerPreviewStyle) {
+        // For Decap CMS v3, we might need to use registerPreviewStyle
+        console.log('Using alternative registration method');
+        // Register as a widget preview
+        if (CMS.registerWidget) {
+          // This might be needed for Decap CMS v3
+        }
+      }
+      
+      // Also try registering with collection names (in case they're different)
+      const collections = ['fruit_pies', 'cream_pies', 'special_pies', 'dinner_pies', 'hand_pies'];
+      collections.forEach(collection => {
+        try {
+          if (typeof CMS.registerPreviewTemplate === 'function') {
+            CMS.registerPreviewTemplate(collection, PiePreviewTemplate);
+          }
+        } catch (e) {
+          console.warn(`Could not register template for ${collection}:`, e);
+        }
+      });
+      
+      console.log('✅ Preview templates registration attempted');
     } catch (e) {
       console.error('❌ Error registering preview templates:', e);
+      console.error('Stack:', e.stack);
     }
   }
   
-  // Start registration
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function() {
-      setTimeout(registerPreviewTemplates, 1000);
-    });
-  } else {
-    setTimeout(registerPreviewTemplates, 1000);
+  // Start registration - try multiple times with increasing delays
+  function startRegistration() {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(registerPreviewTemplates, 500);
+        setTimeout(registerPreviewTemplates, 1500);
+        setTimeout(registerPreviewTemplates, 3000);
+      });
+    } else {
+      setTimeout(registerPreviewTemplates, 500);
+      setTimeout(registerPreviewTemplates, 1500);
+      setTimeout(registerPreviewTemplates, 3000);
+    }
   }
+  
+  startRegistration();
 })();
