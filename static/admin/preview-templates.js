@@ -42,8 +42,6 @@
       }
     }
     
-    // Removed getImages function - not needed for text-only preview
-    
     // Get React from window (we loaded it explicitly)
     // React must be available before we can create the preview template
     const React = window.React;
@@ -57,8 +55,35 @@
     console.log('React is available, creating preview templates');
     const h = React.createElement;
     
-    // Ultra-simplified Preview template - Text only, no images
-    // This eliminates image path issues and React rendering complexity
+    // Simple markdown parser for basic formatting (bold, italic)
+    function parseMarkdown(text) {
+      if (!text || typeof text !== 'string') return text;
+      
+      // Parse **bold** text
+      const parts = [];
+      let lastIndex = 0;
+      const boldRegex = /\*\*(.*?)\*\*/g;
+      let match;
+      
+      while ((match = boldRegex.exec(text)) !== null) {
+        // Add text before the match
+        if (match.index > lastIndex) {
+          parts.push(text.substring(lastIndex, match.index));
+        }
+        // Add bold text
+        parts.push(h('strong', { key: 'bold-' + match.index }, match[1]));
+        lastIndex = match.index + match[0].length;
+      }
+      
+      // Add remaining text
+      if (lastIndex < text.length) {
+        parts.push(text.substring(lastIndex));
+      }
+      
+      return parts.length > 0 ? parts : text;
+    }
+    
+    // Pie card preview template matching website design
     function PiePreviewTemplate(props) {
       try {
         const { entry } = props || {};
@@ -77,6 +102,8 @@
         let type = '';
         let smallSoldOut = false;
         let bigSoldOut = false;
+        let smallSoldOutComment = '';
+        let bigSoldOutComment = '';
         
         try {
           title = String(getField(entry, 'title') || 'Untitled Pie');
@@ -88,6 +115,8 @@
           soldOut = Boolean(getField(entry, 'sold_out', false));
           smallSoldOut = Boolean(getField(entry, 'small_sold_out', false));
           bigSoldOut = Boolean(getField(entry, 'big_sold_out', false));
+          smallSoldOutComment = String(getField(entry, 'small_sold_out_comment') || '');
+          bigSoldOutComment = String(getField(entry, 'big_sold_out_comment') || '');
         } catch (e) {
           console.warn('Error getting field values:', e);
         }
@@ -96,66 +125,154 @@
         const isDinnerPie = type === 'dinner';
         const showSoldOut = isDinnerPie ? (smallSoldOut && bigSoldOut) : soldOut;
         
-        // Build simple card body with text content only
+        // Build card elements
+        const cardElements = [];
+        
+        // Image placeholder
+        const imagePlaceholder = h('div', {
+          key: 'image-placeholder',
+          style: {
+            width: '100%',
+            aspectRatio: '1 / 1',
+            backgroundColor: '#f0f0f0',
+            border: '2px dashed #ccc',
+            borderRadius: '15px 15px 0 0',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: '#999',
+            fontSize: '14px',
+            textAlign: 'center',
+            padding: '20px',
+            boxSizing: 'border-box',
+            position: 'relative'
+          }
+        }, [
+          h('div', { key: 'placeholder-text' }, 'Image will appear here'),
+          showSoldOut ? h('div', {
+            key: 'sold-out-overlay',
+            style: {
+              position: 'absolute',
+              top: '10px',
+              left: '10px',
+              backgroundColor: 'rgba(255, 0, 0, 0.8)',
+              color: '#fff',
+              padding: '5px 15px',
+              borderRadius: '5px',
+              fontSize: '12px',
+              fontWeight: 'bold',
+              zIndex: 5
+            }
+          }, 'SOLD OUT') : null
+        ]);
+        
+        cardElements.push(imagePlaceholder);
+        
+        // Card body
         const bodyElements = [];
         
         // Title
         if (title) {
           bodyElements.push(h('h3', { 
             key: 'title',
-            style: { marginBottom: '15px', fontSize: '1.5rem', fontWeight: 'bold' }
+            style: { 
+              marginBottom: '10px', 
+              fontSize: '1.5rem', 
+              fontWeight: 'bold',
+              color: '#222'
+            }
           }, title));
         }
         
-        // Description
+        // Description (h4)
         if (description && description.trim()) {
           bodyElements.push(h('h4', { 
             key: 'description',
-            style: { marginBottom: '10px', fontSize: '1.2rem', color: '#666' }
+            style: { 
+              marginBottom: '10px', 
+              fontSize: '1.1rem', 
+              color: '#333',
+              fontWeight: 'normal'
+            }
           }, description));
         }
         
-        // Short Description
+        // Short Description (pricing info - supports markdown)
         if (shortDescription && shortDescription.trim()) {
           bodyElements.push(h('p', { 
             key: 'shortDesc',
-            style: { marginBottom: '10px', color: '#555' }
-          }, shortDescription));
+            style: { 
+              marginBottom: '10px', 
+              color: '#333',
+              fontSize: '1rem',
+              lineHeight: '1.5'
+            }
+          }, parseMarkdown(shortDescription)));
         }
         
         // Ingredients
         if (ingredients && ingredients.trim()) {
           bodyElements.push(h('p', { 
             key: 'ingredients',
-            style: { marginBottom: '10px', color: '#666', fontSize: '0.9rem' }
+            style: { 
+              marginBottom: '10px', 
+              color: '#666', 
+              fontSize: '0.95rem',
+              lineHeight: '1.5'
+            }
           }, ingredients));
         }
         
-        // Price
-        if (price && price.trim()) {
-          bodyElements.push(h('p', { 
-            key: 'price',
-            style: { marginTop: '15px', fontSize: '1.3rem', fontWeight: 'bold', color: '#C6600D' }
-          }, '$' + price));
+        // Sold out messages for dinner pies (when not fully sold out)
+        if (isDinnerPie && !showSoldOut) {
+          if (smallSoldOut && smallSoldOutComment) {
+            bodyElements.push(h('p', {
+              key: 'small-sold-out',
+              style: {
+                marginTop: '10px',
+                color: '#ff0000',
+                fontSize: '0.9rem',
+                marginBottom: '5px'
+              }
+            }, parseMarkdown(smallSoldOutComment)));
+          }
+          if (bigSoldOut && bigSoldOutComment) {
+            bodyElements.push(h('p', {
+              key: 'big-sold-out',
+              style: {
+                marginTop: '10px',
+                color: '#ff0000',
+                fontSize: '0.9rem',
+                marginBottom: '5px'
+              }
+            }, parseMarkdown(bigSoldOutComment)));
+          }
         }
         
-        // Sold Out badge
-        if (showSoldOut) {
-          bodyElements.push(h('div', {
-            key: 'soldOut',
-            style: {
-              marginTop: '15px',
-              padding: '8px 16px',
-              backgroundColor: '#ff0000',
-              color: '#fff',
-              borderRadius: '5px',
-              display: 'inline-block',
-              fontWeight: 'bold'
-            }
-          }, 'SOLD OUT'));
-        }
+        const cardBody = h('div', {
+          key: 'card-body',
+          style: {
+            padding: '1.5rem',
+            textAlign: 'center'
+          }
+        }, bodyElements);
         
-        // Simple card wrapper - pure HTML/CSS, no Bootstrap dependency
+        cardElements.push(cardBody);
+        
+        // Card wrapper matching website styling
+        const card = h('div', {
+          key: 'card',
+          style: {
+            borderRadius: '15px',
+            overflow: 'hidden',
+            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+            backgroundColor: '#fff',
+            maxWidth: '400px',
+            margin: '0 auto'
+          }
+        }, cardElements);
+        
+        // Container wrapper
         return h('div', {
           style: {
             padding: '30px 20px',
@@ -163,17 +280,7 @@
             minHeight: '100vh',
             fontFamily: 'system-ui, -apple-system, sans-serif'
           }
-        }, h('div', {
-          style: {
-            maxWidth: '500px',
-            margin: '0 auto',
-            backgroundColor: '#fff',
-            padding: '30px',
-            borderRadius: '10px',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-            textAlign: 'center'
-          }
-        }, bodyElements));
+        }, card);
         
       } catch (error) {
         console.error('Preview error:', error);

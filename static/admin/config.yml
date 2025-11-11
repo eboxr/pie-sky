@@ -30,7 +30,6 @@ collections:
       - {label: "Ingredients", name: "ingredients", widget: "text", required: false, hint: "List of ingredients (supports markdown)"}
       - {label: "Price", name: "price", widget: "string", required: true, hint: "Price in dollars (e.g., '25')"}
       - {label: "Sold Out", name: "sold_out", widget: "boolean", default: false, hint: "Check this box to mark the pie as sold out"}
-      - {label: "Images", name: "images", widget: "list", required: true, fields: [{label: "Image", name: "image", widget: "image", required: true}]}
       - {label: "Draft", name: "draft", widget: "hidden", default: false}
       - {label: "Type", name: "type", widget: "hidden", default: "fruit"}
       - {label: "Date", name: "date", widget: "hidden"}
@@ -48,7 +47,6 @@ collections:
       - {label: "Ingredients", name: "ingredients", widget: "text", required: false, hint: "List of ingredients (supports markdown)"}
       - {label: "Price", name: "price", widget: "string", required: true, hint: "Price in dollars (e.g., '25')"}
       - {label: "Sold Out", name: "sold_out", widget: "boolean", default: false, hint: "Check this box to mark the pie as sold out"}
-      - {label: "Images", name: "images", widget: "list", required: true, fields: [{label: "Image", name: "image", widget: "image", required: true}]}
       - {label: "Draft", name: "draft", widget: "hidden", default: false}
       - {label: "Type", name: "type", widget: "hidden", default: "cream"}
       - {label: "Date", name: "date", widget: "hidden"}
@@ -66,7 +64,6 @@ collections:
       - {label: "Ingredients", name: "ingredients", widget: "text", required: false, hint: "List of ingredients (supports markdown)"}
       - {label: "Price", name: "price", widget: "string", required: true, hint: "Price in dollars (e.g., '25')"}
       - {label: "Sold Out", name: "sold_out", widget: "boolean", default: false, hint: "Check this box to mark the pie as sold out"}
-      - {label: "Images", name: "images", widget: "list", required: true, fields: [{label: "Image", name: "image", widget: "image", required: true}]}
       - {label: "Draft", name: "draft", widget: "hidden", default: false}
       - {label: "Type", name: "type", widget: "hidden", default: "special"}
       - {label: "Date", name: "date", widget: "hidden"}
@@ -87,7 +84,6 @@ collections:
       - {label: "Family Size Sold Out Message", name: "big_sold_out_comment", widget: "text", required: false, hint: "Message to display when family size is sold out (supports markdown)"}
       - {label: "Personal Size Sold Out", name: "small_sold_out", widget: "boolean", default: false, hint: "Check if personal size pies are sold out"}
       - {label: "Personal Size Sold Out Message", name: "small_sold_out_comment", widget: "text", required: false, hint: "Message to display when personal size is sold out (supports markdown)"}
-      - {label: "Images", name: "images", widget: "list", required: true, fields: [{label: "Image", name: "image", widget: "image", required: true}]}
       - {label: "Draft", name: "draft", widget: "hidden", default: false}
       - {label: "Type", name: "type", widget: "hidden", default: "dinner"}
       - {label: "Date", name: "date", widget: "hidden"}
@@ -105,7 +101,6 @@ collections:
       - {label: "Ingredients", name: "ingredients", widget: "text", required: false, hint: "List of ingredients (supports markdown)"}
       - {label: "Price", name: "price", widget: "string", required: true, hint: "Price in dollars (e.g., '25')"}
       - {label: "Sold Out", name: "sold_out", widget: "boolean", default: false, hint: "Check this box to mark the pie as sold out"}
-      - {label: "Images", name: "images", widget: "list", required: true, fields: [{label: "Image", name: "image", widget: "image", required: true}]}
       - {label: "Draft", name: "draft", widget: "hidden", default: false}
       - {label: "Type", name: "type", widget: "hidden", default: "hand"}
       - {label: "Date", name: "date", widget: "hidden"}
