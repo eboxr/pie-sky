@@ -8,37 +8,11 @@
 <body>
   <!-- Include the script that builds the page and powers Decap CMS -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  <!-- Include preview templates - must load after CMS is ready -->
-  <script>
-    // Wait for CMS to be fully loaded before loading preview templates
-    (function() {
-      function loadPreviewScript() {
-        // Check if CMS is loaded and has the registerPreviewTemplate method
-        if (window.CMS && typeof window.CMS.registerPreviewTemplate === 'function') {
-          console.log('CMS ready, loading preview templates...');
-          const script = document.createElement('script');
-          script.src = '/admin/preview-templates.js';
-          script.onload = function() {
-            console.log('Preview templates script loaded');
-          };
-          script.onerror = function() {
-            console.error('❌ Failed to load preview templates script');
-          };
-          document.body.appendChild(script);
-        } else if (window.CMS) {
-          // CMS loaded but registerPreviewTemplate not available yet, wait a bit
-          console.log('CMS loaded but not ready, waiting...');
-          setTimeout(loadPreviewScript, 200);
-        } else {
-          // CMS not loaded yet, wait
-          setTimeout(loadPreviewScript, 100);
-        }
-      }
-      
-      // Start checking after a short delay
-      setTimeout(loadPreviewScript, 300);
-    })();
-  </script>
+  <!-- Include React explicitly for preview templates -->
+  <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+  <!-- Include preview templates - load after React and CMS -->
+  <script src="/admin/preview-templates.js"></script>
 </body>
 </html>
 
