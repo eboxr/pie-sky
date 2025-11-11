@@ -22,7 +22,7 @@ collections:
     folder: "content/fruit-pies"
     create: false # Don't allow creating new pies, only editing existing ones
     slug: "{{slug}}"
-    preview_path: "{{slug}}"
+    # preview_path removed - using custom React template instead
     fields:
       - {label: "Title", name: "title", widget: "string", required: true}
       - {label: "Description", name: "description", widget: "text", required: false}
@@ -40,7 +40,7 @@ collections:
     folder: "content/cream-pies"
     create: false
     slug: "{{slug}}"
-    preview_path: "{{slug}}"
+    # preview_path removed - using custom React template instead
     fields:
       - {label: "Title", name: "title", widget: "string", required: true}
       - {label: "Description", name: "description", widget: "text", required: false}
@@ -58,7 +58,7 @@ collections:
     folder: "content/special-pies"
     create: false
     slug: "{{slug}}"
-    preview_path: "{{slug}}"
+    # preview_path removed - using custom React template instead
     fields:
       - {label: "Title", name: "title", widget: "string", required: true}
       - {label: "Description", name: "description", widget: "text", required: false}
@@ -76,7 +76,7 @@ collections:
     folder: "content/dinner-pies"
     create: false
     slug: "{{slug}}"
-    preview_path: "{{slug}}"
+    # preview_path removed - using custom React template instead
     fields:
       - {label: "Title", name: "title", widget: "string", required: true}
       - {label: "Description", name: "description", widget: "text", required: false}
@@ -97,7 +97,7 @@ collections:
     folder: "content/hand-pies"
     create: false
     slug: "{{slug}}"
-    preview_path: "{{slug}}"
+    # preview_path removed - using custom React template instead
     fields:
       - {label: "Title", name: "title", widget: "string", required: true}
       - {label: "Description", name: "description", widget: "text", required: false}

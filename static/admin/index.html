@@ -6,43 +6,13 @@
   <title>Content Manager - Pie in the Sky</title>
 </head>
 <body>
+  <!-- Load React 18 development version for better error messages -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   <!-- Include the script that builds the page and powers Decap CMS -->
-  <!-- DO NOT load React separately - Decap CMS provides React internally -->
-  <!-- Loading React separately causes version conflicts and React error #525 -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  <!-- Include preview templates after CMS loads -->
-  <script>
-    // Wait for CMS to be ready, then load preview templates
-    (function() {
-      let attempts = 0;
-      const maxAttempts = 100;
-      
-      function init() {
-        attempts++;
-        
-        if (window.CMS && typeof window.CMS.registerPreviewTemplate === 'function') {
-          // CMS is ready - load preview templates
-          const script = document.createElement('script');
-          script.src = '/admin/preview-templates.js';
-          script.async = true;
-          document.body.appendChild(script);
-        } else if (attempts < maxAttempts) {
-          setTimeout(init, 100);
-        } else {
-          console.error('CMS not ready after', maxAttempts, 'attempts');
-        }
-      }
-      
-      // Start after a delay to ensure CMS has time to initialize
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function() {
-          setTimeout(init, 500);
-        });
-      } else {
-        setTimeout(init, 500);
-      }
-    })();
-  </script>
+  <!-- Include preview templates after React and CMS are loaded -->
+  <script src="/admin/preview-templates.js"></script>
 </body>
 </html>
 
