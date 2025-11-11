@@ -55,19 +55,18 @@
     console.log('React is available, creating preview templates');
     const h = React.createElement;
     
-    // Simple markdown parser for basic formatting (bold, italic)
-    function parseMarkdown(text) {
-      if (!text || typeof text !== 'string') return text;
+    // Simple function to parse markdown and create React elements
+    // Returns an array of React elements and strings
+    function parseMarkdownToElements(text, createElement) {
+      if (!text || typeof text !== 'string') return [text || ''];
       
-      // Parse **bold** text
       const parts = [];
       let lastIndex = 0;
       const boldRegex = /\*\*(.*?)\*\*/g;
       let match;
-      let hasMatches = false;
+      let keyIndex = 0;
       
       while ((match = boldRegex.exec(text)) !== null) {
-        hasMatches = true;
         // Add text before the match
         if (match.index > lastIndex) {
           const beforeText = text.substring(lastIndex, match.index);
@@ -75,8 +74,8 @@
             parts.push(beforeText);
           }
         }
-        // Add bold text
-        parts.push(h('strong', { key: 'bold-' + match.index }, match[1]));
+        // Add bold text as React element
+        parts.push(createElement('strong', { key: 'bold-' + (keyIndex++) }, match[1]));
         lastIndex = match.index + match[0].length;
       }
       
@@ -88,21 +87,12 @@
         }
       }
       
-      // If no matches found, return original text as string
-      if (!hasMatches || parts.length === 0) {
-        return text;
+      // If no matches, return original text as single string
+      if (parts.length === 0) {
+        return [text];
       }
       
-      // Filter out any empty strings or null values
-      const filteredParts = parts.filter(part => part != null && part !== '');
-      
-      // If after filtering we have nothing, return original text
-      if (filteredParts.length === 0) {
-        return text;
-      }
-      
-      // Return array of React elements and strings
-      return filteredParts;
+      return parts;
     }
     
     // Pie card preview template matching website design
@@ -150,10 +140,8 @@
         // Build card elements
         const cardElements = [];
         
-        // Image placeholder children - filter out null values
-        const imagePlaceholderChildren = [
-          h('div', { key: 'placeholder-text' }, 'Image will appear here')
-        ];
+        // Image placeholder
+        const imagePlaceholderChildren = [h('div', { key: 'placeholder-text' }, 'Image will appear here')];
         if (showSoldOut) {
           imagePlaceholderChildren.push(h('div', {
             key: 'sold-out-overlay',
@@ -172,7 +160,6 @@
           }, 'SOLD OUT'));
         }
         
-        // Image placeholder
         const imagePlaceholder = h('div', {
           key: 'image-placeholder',
           style: {
@@ -199,7 +186,7 @@
         const bodyElements = [];
         
         // Title
-        if (title) {
+        if (title && title.trim()) {
           bodyElements.push(h('h3', { 
             key: 'title',
             style: { 
@@ -226,11 +213,9 @@
         
         // Short Description (pricing info - supports markdown)
         if (shortDescription && shortDescription.trim()) {
-          const shortDescContent = parseMarkdown(shortDescription);
-          const children = Array.isArray(shortDescContent) 
-            ? shortDescContent.filter(item => item != null)
-            : (shortDescContent != null ? [shortDescContent] : []);
-          if (children.length > 0) {
+          const markdownParts = parseMarkdownToElements(shortDescription, h);
+          const validParts = markdownParts.filter(part => part != null && part !== '');
+          if (validParts.length > 0) {
             bodyElements.push(h('p', { 
               key: 'shortDesc',
               style: { 
@@ -239,7 +224,7 @@
                 fontSize: '1rem',
                 lineHeight: '1.5'
               }
-            }, children.length === 1 ? children[0] : children));
+            }, validParts));
           }
         }
         
@@ -258,12 +243,10 @@
         
         // Sold out messages for dinner pies (when not fully sold out)
         if (isDinnerPie && !showSoldOut) {
-          if (smallSoldOut && smallSoldOutComment) {
-            const smallCommentContent = parseMarkdown(smallSoldOutComment);
-            const smallChildren = Array.isArray(smallCommentContent) 
-              ? smallCommentContent.filter(item => item != null)
-              : (smallCommentContent != null ? [smallCommentContent] : []);
-            if (smallChildren.length > 0) {
+          if (smallSoldOut && smallSoldOutComment && smallSoldOutComment.trim()) {
+            const markdownParts = parseMarkdownToElements(smallSoldOutComment, h);
+            const validParts = markdownParts.filter(part => part != null && part !== '');
+            if (validParts.length > 0) {
               bodyElements.push(h('p', {
                 key: 'small-sold-out',
                 style: {
@@ -272,15 +255,13 @@
                   fontSize: '0.9rem',
                   marginBottom: '5px'
                 }
-              }, smallChildren.length === 1 ? smallChildren[0] : smallChildren));
+              }, validParts));
             }
           }
-          if (bigSoldOut && bigSoldOutComment) {
-            const bigCommentContent = parseMarkdown(bigSoldOutComment);
-            const bigChildren = Array.isArray(bigCommentContent) 
-              ? bigCommentContent.filter(item => item != null)
-              : (bigCommentContent != null ? [bigCommentContent] : []);
-            if (bigChildren.length > 0) {
+          if (bigSoldOut && bigSoldOutComment && bigSoldOutComment.trim()) {
+            const markdownParts = parseMarkdownToElements(bigSoldOutComment, h);
+            const validParts = markdownParts.filter(part => part != null && part !== '');
+            if (validParts.length > 0) {
               bodyElements.push(h('p', {
                 key: 'big-sold-out',
                 style: {
@@ -289,7 +270,7 @@
                   fontSize: '0.9rem',
                   marginBottom: '5px'
                 }
-              }, bigChildren.length === 1 ? bigChildren[0] : bigChildren));
+              }, validParts));
             }
           }
         }
