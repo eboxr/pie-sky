@@ -10,3 +10,4 @@ package-lock.json
 *.lock
 resources/_gen/*
 public
+.vscode
