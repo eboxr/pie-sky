@@ -81,9 +81,9 @@ pies:
 special_event:
   enable : true
   content : |
-    ### Thanksgiving Orders
+    ### Holidays Orders
 
-    **Thanksgiving orders accepted until November 17th** for all pies picked up the week of Thanksgiving.
+    **Holidays orders accepted until December 19th** for all pies picked up the week of Christmas.
 
     - Otherwise, please order any time for year round pie making.
   image : "images/produces.jpg"
