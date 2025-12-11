@@ -1,5 +1,6 @@
 // Preview templates for Decap CMS (Netlify CMS) v3
 // Custom preview component matching website pie card design
+// Version: 2.0 - Fixed props.entry undefined error
 
 (function() {
   'use strict';
@@ -111,7 +112,27 @@
     // Functional component compatible with React 18 and Decap CMS v3
     function PiePreviewTemplate(props) {
       try {
-        const entry = props.entry;
+        // Handle case where props might be undefined or null
+        if (!props || typeof props !== 'object') {
+          console.warn('No props provided to preview template, props:', props);
+          return h('div', { 
+            key: 'no-props',
+            style: { 
+              padding: '20px', 
+              color: '#666',
+              fontFamily: "'Quicksand', sans-serif"
+            } 
+          }, 'No preview data available');
+        }
+        
+        // Entry should come from props.entry, but handle various cases
+        let entry = props.entry;
+        
+        // If entry is not in props.entry, check if props itself might be the entry
+        if (!entry && props && (props.getIn || props.toJS)) {
+          // Props might be the entry itself in some cases
+          entry = props;
+        }
         
         // Properly extract data from Immutable.js entry structure
         let data = null;
@@ -131,7 +152,18 @@
           if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
             console.log('Entry object:', entry);
             console.log('Entry type:', typeof entry);
-            console.log('Entry keys:', entry && typeof entry === 'object' ? Object.keys(entry) : 'N/A');
+            try {
+              if (entry && typeof entry === 'object') {
+                // Safe check for Object.keys - Immutable objects might not work with Object.keys
+                if (entry.constructor && entry.constructor.name === 'Map') {
+                  console.log('Entry is Immutable Map');
+                } else {
+                  console.log('Entry keys:', Object.keys(entry));
+                }
+              }
+            } catch (e) {
+              console.log('Could not get entry keys:', e);
+            }
             console.log('Has getIn?', entry && typeof entry.getIn === 'function');
             console.log('Has data?', entry && entry.data !== undefined);
           }
@@ -645,9 +677,40 @@
       // Wrap the template in a try-catch to prevent errors from crashing the CMS
       const SafePiePreviewTemplate = function(props) {
         try {
-          return PiePreviewTemplate(props);
+          // Ensure props is always an object (handle undefined, null, or non-object)
+          const safeProps = (props && typeof props === 'object') ? props : {};
+          
+          // Debug logging - only log if entry is missing (not just during initial render)
+          if (!safeProps.entry && Object.keys(safeProps).length > 0) {
+            console.warn('Preview template called without entry prop');
+            console.warn('Props received:', safeProps);
+            try {
+              console.warn('Props keys:', Object.keys(safeProps));
+            } catch (e) {
+              // Ignore errors getting keys
+            }
+          }
+          
+          // Call the actual preview template
+          const result = PiePreviewTemplate(safeProps);
+          
+          // Ensure we always return a valid React element
+          if (!result) {
+            return React.createElement('div', {
+              style: { 
+                padding: '20px', 
+                color: '#666',
+                fontFamily: "'Quicksand', sans-serif"
+              }
+            }, 'Loading preview...');
+          }
+          
+          return result;
         } catch (error) {
           console.error('Error in preview template render:', error);
+          console.error('Error stack:', error.stack);
+          console.error('Props that caused error:', props);
+          // Use React.createElement to ensure we return a valid element
           return React.createElement('div', {
             style: { 
               padding: '20px', 
