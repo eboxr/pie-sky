@@ -18,6 +18,9 @@ priceBefore: ""
 # Personal size price (if available)
 # personalPrice: ""
 
+# Display price instead of shortDescription
+displayPrice: true
+
 # type must be "products"
 type: "dinner"
 

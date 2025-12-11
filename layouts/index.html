@@ -283,9 +283,11 @@
           <div class="card-body">
             <h3>{{ .Title }}</h3>
             <h4>{{ .Params.Description | markdownify }}</h4>
-            {{ if .Params.personalPrice }}
+            {{ if or .Params.personalPrice .Params.displayPrice }}
             <p>
-              Personal size <strong>${{ .Params.personalPrice }}</strong>{{ if .Params.price }}, {{ end }}
+              {{ if .Params.personalPrice }}
+                Personal size <strong>${{ .Params.personalPrice }}</strong>{{ if .Params.price }}, {{ end }}
+              {{ end }}
               {{ if .Params.price }}
                 Family size <strong>${{ .Params.price }}</strong>
               {{ end }}
