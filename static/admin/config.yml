@@ -79,7 +79,9 @@ collections:
       - {label: "Description", name: "description", widget: "hidden"}
       - {label: "Short Description", name: "shortDescription", widget: "hidden"}
       - {label: "Ingredients", name: "ingredients", widget: "text", required: false, hint: "List of ingredients (supports markdown)"}
-      - {label: "Price", name: "price", widget: "string", required: true, hint: "Price in dollars (e.g., '30')"}
+      - {label: "Family Size Price", name: "price", widget: "string", required: true, hint: "Family size price in dollars (e.g., '30')"}
+      - {label: "Personal Size Price", name: "personalPrice", widget: "string", required: false, hint: "Personal size price in dollars (e.g., '7.50'). Leave empty if not available."}
+      - {label: "Display Price Instead of Short Description", name: "displayPrice", widget: "boolean", default: false, hint: "Check to show pricing instead of short description (useful when no personal size)"}
       - {label: "Family Size Sold Out", name: "big_sold_out", widget: "boolean", default: false, hint: "Check if family size pies are sold out"}
       - {label: "Family Size Sold Out Message", name: "big_sold_out_comment", widget: "text", required: false, hint: "Message to display when family size is sold out (supports markdown)"}
       - {label: "Personal Size Sold Out", name: "small_sold_out", widget: "boolean", default: false, hint: "Check if personal size pies are sold out"}
