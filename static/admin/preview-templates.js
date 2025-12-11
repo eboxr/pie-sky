@@ -68,9 +68,19 @@
     console.log('React is available, creating preview templates');
     const h = React.createElement;
     
+    // Ensure React.createElement is always available
+    if (!h || typeof h !== 'function') {
+      console.error('React.createElement is not available!');
+      return;
+    }
+    
     // Simple function to parse markdown and create React elements
     // Returns an array of React elements and strings
-    function parseMarkdownToElements(text, createElement) {
+    function parseMarkdownToElements(text, createElementFn) {
+      // Ensure we have a valid createElement function
+      if (!createElementFn || typeof createElementFn !== 'function') {
+        createElementFn = React.createElement;
+      }
       if (!text || typeof text !== 'string') return [text || ''];
       
       const parts = [];
@@ -88,7 +98,7 @@
           }
         }
         // Add bold text as React element
-        parts.push(createElement('strong', { key: 'bold-' + (keyIndex++) }, match[1]));
+        parts.push(createElementFn('strong', { key: 'bold-' + (keyIndex++) }, match[1]));
         lastIndex = match.index + match[0].length;
       }
       
@@ -111,18 +121,18 @@
     // Pie card preview template matching website design exactly
     // Functional component compatible with React 18 and Decap CMS v3
     function PiePreviewTemplate(props) {
+      // Ensure React.createElement is available
+      const createElement = React.createElement;
+      if (!createElement || typeof createElement !== 'function') {
+        console.error('React.createElement not available in PiePreviewTemplate');
+        return null;
+      }
+      
       try {
         // Handle case where props might be undefined or null
         if (!props || typeof props !== 'object') {
-          console.warn('No props provided to preview template, props:', props);
-          return h('div', { 
-            key: 'no-props',
-            style: { 
-              padding: '20px', 
-              color: '#666',
-              fontFamily: "'Quicksand', sans-serif"
-            } 
-          }, 'No preview data available');
+          // Return null instead of a div - Decap CMS might call this during init
+          return null;
         }
         
         // Entry should come from props.entry, but handle various cases
@@ -138,14 +148,9 @@
         let data = null;
         try {
           if (!entry) {
-            console.warn('No entry provided to preview template');
-            return h('div', { 
-              style: { 
-                padding: '20px', 
-                color: '#666',
-                fontFamily: "'Quicksand', sans-serif"
-              } 
-            }, 'No entry data available');
+            // Return null when no entry - this is normal during initialization
+            // Don't log warnings for this as it's expected behavior
+            return null;
           }
 
           // Debug: Log entry structure (only in development)
@@ -272,7 +277,7 @@
         
         // Image placeholder with sold out sticker
         const imagePlaceholderChildren = [
-          h('div', { 
+          createElement('div', { 
             key: 'placeholder-text',
             style: {
               fontSize: '14px',
@@ -283,7 +288,7 @@
         
         if (showSoldOut) {
           // Create sold out sticker overlay (matching website style)
-          imagePlaceholderChildren.push(h('div', {
+          imagePlaceholderChildren.push(createElement('div', {
             key: 'sold-out-overlay',
             style: {
               position: 'absolute',
@@ -305,7 +310,7 @@
           }, 'SOLD OUT'));
         }
         
-        const imagePlaceholder = h('div', {
+        const imagePlaceholder = createElement('div', {
           key: 'image-placeholder',
           className: 'card-img-placeholder',
           style: {
@@ -334,7 +339,7 @@
         
         // Title (h3) - matches website: 22px, bold, #222222
         if (titleStr) {
-          bodyElements.push(h('h3', { 
+          bodyElements.push(createElement('h3', { 
             key: 'title',
             style: { 
               marginBottom: '10px', 
@@ -350,10 +355,10 @@
         // Description (h4) - only show if it exists, matches website: 18px, #222222
         if (descriptionStr) {
           try {
-            const descParts = parseMarkdownToElements(descriptionStr, h);
+            const descParts = parseMarkdownToElements(descriptionStr, createElement);
             const validDescParts = descParts.filter(part => part != null && part !== '' && part !== undefined);
             if (validDescParts.length > 0) {
-              bodyElements.push(h('h4', { 
+              bodyElements.push(createElement('h4', { 
                 key: 'description',
                 style: { 
                   marginBottom: '10px', 
@@ -384,11 +389,11 @@
         // Short Description (pricing info - supports markdown) - matches website: 15px, #333333, line-height 1.7
         if (shortDescriptionStr) {
           try {
-            const markdownParts = parseMarkdownToElements(shortDescriptionStr, h);
+            const markdownParts = parseMarkdownToElements(shortDescriptionStr, createElement);
             // Filter out null/undefined and ensure all parts are valid React children
             const validParts = markdownParts.filter(part => part != null && part !== '' && part !== undefined);
             if (validParts.length > 0) {
-              bodyElements.push(h('p', { 
+              bodyElements.push(createElement('p', { 
                 key: 'shortDesc',
                 style: { 
                   marginBottom: '10px', 
@@ -419,11 +424,11 @@
         // Ingredients - matches website: 15px, #333333, line-height 1.7
         if (ingredientsStr) {
           try {
-            const ingredientsParts = parseMarkdownToElements(ingredientsStr, h);
+            const ingredientsParts = parseMarkdownToElements(ingredientsStr, createElement);
             // Filter out null/undefined and ensure all parts are valid React children
             const validIngredientsParts = ingredientsParts.filter(part => part != null && part !== '' && part !== undefined);
             if (validIngredientsParts.length > 0) {
-              bodyElements.push(h('p', { 
+              bodyElements.push(createElement('p', { 
                 key: 'ingredients',
                 style: { 
                   marginBottom: '10px', 
@@ -455,10 +460,10 @@
         if (isDinnerPie && !showSoldOut) {
           if (smallSoldOut && smallSoldOutCommentStr) {
             try {
-              const markdownParts = parseMarkdownToElements(smallSoldOutCommentStr, h);
+              const markdownParts = parseMarkdownToElements(smallSoldOutCommentStr, createElement);
               const validParts = markdownParts.filter(part => part != null && part !== '' && part !== undefined);
               if (validParts.length > 0) {
-                bodyElements.push(h('p', {
+                bodyElements.push(createElement('p', {
                   key: 'small-sold-out',
                   style: {
                     marginTop: '10px',
@@ -487,10 +492,10 @@
           }
           if (bigSoldOut && bigSoldOutCommentStr) {
             try {
-              const markdownParts = parseMarkdownToElements(bigSoldOutCommentStr, h);
+              const markdownParts = parseMarkdownToElements(bigSoldOutCommentStr, createElement);
               const validParts = markdownParts.filter(part => part != null && part !== '' && part !== undefined);
               if (validParts.length > 0) {
-                bodyElements.push(h('p', {
+                bodyElements.push(createElement('p', {
                   key: 'big-sold-out',
                   style: {
                     marginTop: '10px',
@@ -521,7 +526,7 @@
         
         // Ensure we have at least some content
         if (bodyElements.length === 0) {
-          bodyElements.push(h('p', { 
+          bodyElements.push(createElement('p', { 
             key: 'no-content',
             style: {
               color: '#333333',
@@ -531,7 +536,7 @@
           }, 'No content available'));
         }
         
-        const cardBody = h('div', {
+        const cardBody = createElement('div', {
           key: 'card-body',
           className: 'card-body',
           style: {
@@ -543,7 +548,7 @@
         cardElements.push(cardBody);
         
         // Card wrapper matching website styling exactly
-        const card = h('div', {
+        const card = createElement('div', {
           key: 'card',
           className: 'card border-0 text-center',
           style: {
@@ -559,7 +564,7 @@
         }, ...cardElements);
         
         // Container wrapper with website background and CSS class
-        return h('div', {
+        return createElement('div', {
           key: 'preview-container',
           className: 'pie-card-preview',
           style: {
@@ -575,14 +580,21 @@
       } catch (error) {
         console.error('Preview error:', error);
         console.error('Error stack:', error.stack);
-        return h('div', {
-          style: { 
-            padding: '20px', 
-            color: 'red',
-            backgroundColor: '#ffe6e6',
-            fontFamily: "'Quicksand', sans-serif"
-          }
-        }, 'Preview Error: ' + String(error.message || error));
+        // Use React.createElement directly to ensure it's available
+        try {
+          return React.createElement('div', {
+            style: { 
+              padding: '20px', 
+              color: 'red',
+              backgroundColor: '#ffe6e6',
+              fontFamily: "'Quicksand', sans-serif"
+            }
+          }, 'Preview Error: ' + String(error.message || error));
+        } catch (e) {
+          // If even React.createElement fails, return null
+          console.error('Could not create error element:', e);
+          return null;
+        }
       }
     }
     
@@ -680,45 +692,31 @@
           // Ensure props is always an object (handle undefined, null, or non-object)
           const safeProps = (props && typeof props === 'object') ? props : {};
           
-          // Debug logging - only log if entry is missing (not just during initial render)
-          if (!safeProps.entry && Object.keys(safeProps).length > 0) {
-            console.warn('Preview template called without entry prop');
-            console.warn('Props received:', safeProps);
-            try {
-              console.warn('Props keys:', Object.keys(safeProps));
-            } catch (e) {
-              // Ignore errors getting keys
-            }
-          }
-          
           // Call the actual preview template
           const result = PiePreviewTemplate(safeProps);
           
-          // Ensure we always return a valid React element
-          if (!result) {
-            return React.createElement('div', {
-              style: { 
-                padding: '20px', 
-                color: '#666',
-                fontFamily: "'Quicksand', sans-serif"
-              }
-            }, 'Loading preview...');
-          }
-          
+          // Return null if no result - this is valid and expected during initialization
+          // Decap CMS will handle null returns gracefully
           return result;
         } catch (error) {
           console.error('Error in preview template render:', error);
           console.error('Error stack:', error.stack);
           console.error('Props that caused error:', props);
           // Use React.createElement to ensure we return a valid element
-          return React.createElement('div', {
-            style: { 
-              padding: '20px', 
-              color: 'red',
-              backgroundColor: '#ffe6e6',
-              fontFamily: "'Quicksand', sans-serif"
-            }
-          }, 'Preview Error: ' + String(error.message || error));
+          try {
+            return React.createElement('div', {
+              style: { 
+                padding: '20px', 
+                color: 'red',
+                backgroundColor: '#ffe6e6',
+                fontFamily: "'Quicksand', sans-serif"
+              }
+            }, 'Preview Error: ' + String(error.message || error));
+          } catch (e) {
+            // If React.createElement fails, return null
+            console.error('Could not create error element:', e);
+            return null;
+          }
         }
       };
       
