@@ -88,9 +88,18 @@
     function parseMarkdownToElements(text, createElementFn) {
       // Ensure we have a valid createElement function
       if (!createElementFn || typeof createElementFn !== 'function') {
-        createElementFn = React.createElement;
+        if (React && typeof React.createElement === 'function') {
+          createElementFn = React.createElement;
+        } else {
+          // If React.createElement is not available, just return the text as-is
+          console.warn('React.createElement not available for markdown parsing');
+          return [String(text || '')];
+        }
       }
-      if (!text || typeof text !== 'string') return [text || ''];
+      
+      if (!text || typeof text !== 'string') {
+        return [String(text || '')];
+      }
       
       const parts = [];
       let lastIndex = 0;
@@ -98,17 +107,34 @@
       let match;
       let keyIndex = 0;
       
-      while ((match = boldRegex.exec(text)) !== null) {
-        // Add text before the match
-        if (match.index > lastIndex) {
-          const beforeText = text.substring(lastIndex, match.index);
-          if (beforeText) {
-            parts.push(beforeText);
+      try {
+        while ((match = boldRegex.exec(text)) !== null) {
+          // Add text before the match
+          if (match.index > lastIndex) {
+            const beforeText = text.substring(lastIndex, match.index);
+            if (beforeText) {
+              parts.push(beforeText);
+            }
           }
+          // Add bold text as React element - ensure createElementFn is still valid
+          if (typeof createElementFn === 'function') {
+            const boldElement = createElementFn('strong', { key: 'bold-' + (keyIndex++) }, match[1]);
+            if (boldElement !== null && boldElement !== undefined) {
+              parts.push(boldElement);
+            } else {
+              // Fallback to plain text if element creation failed
+              parts.push('**' + match[1] + '**');
+            }
+          } else {
+            // Fallback to plain text
+            parts.push('**' + match[1] + '**');
+          }
+          lastIndex = match.index + match[0].length;
         }
-        // Add bold text as React element
-        parts.push(createElementFn('strong', { key: 'bold-' + (keyIndex++) }, match[1]));
-        lastIndex = match.index + match[0].length;
+      } catch (e) {
+        console.warn('Error parsing markdown:', e);
+        // Return original text if parsing fails
+        return [text];
       }
       
       // Add remaining text
@@ -124,17 +150,25 @@
         return [text];
       }
       
-      return parts;
+      // Filter out any null/undefined values
+      return parts.filter(part => part !== null && part !== undefined);
     }
     
     // Pie card preview template matching website design exactly
     // Functional component compatible with React 18 and Decap CMS v3
     function PiePreviewTemplate(props) {
-      // Ensure React.createElement is available
+      // Get React - ensure it's always available
+      // Use the React from the closure scope, not window (more reliable)
       const React = window.React;
-      if (!React || !React.createElement) {
-        console.error('React not available in PiePreviewTemplate');
-        return React ? React.createElement('div', null, 'React not available') : null;
+      if (!React || typeof React.createElement !== 'function') {
+        console.error('React not available in PiePreviewTemplate', {
+          hasReact: !!React,
+          hasCreateElement: React && typeof React.createElement === 'function'
+        });
+        // Must return a valid React element or null - never a DOM element
+        // If React isn't available, we can't create elements, so return null
+        // The wrapper will handle this
+        return null;
       }
       
       const createElement = React.createElement;
@@ -703,53 +737,84 @@
     // Register templates using the correct API
     try {
       // Wrap the template - ensure it always returns a valid React element
-      const SafePiePreviewTemplate = function(props) {
-        try {
-          // Ensure props is always an object (handle undefined, null, or non-object)
-          const safeProps = (props && typeof props === 'object') ? props : {};
-          
-          // Call the actual preview template
-          const result = PiePreviewTemplate(safeProps);
-          
-          // Ensure we always return a valid React element (not null)
-          if (result === null || result === undefined) {
-            return React.createElement('div', {
-              style: { 
-                padding: '20px', 
-                color: '#666',
-                fontFamily: "'Quicksand', sans-serif"
-              }
-            }, 'Loading preview...');
-          }
-          
-          return result;
-        } catch (error) {
-          console.error('Error in preview template render:', error);
-          console.error('Error stack:', error.stack);
-          console.error('Props that caused error:', props);
-          // Always return a valid React element
+      // Capture React in closure to ensure it's always available
+      const SafePiePreviewTemplate = (function() {
+        // Get React reference once and keep it in closure
+        const ReactRef = window.React;
+        
+        return function(props) {
           try {
-            return React.createElement('div', {
-              style: { 
-                padding: '20px', 
-                color: 'red',
-                backgroundColor: '#ffe6e6',
-                fontFamily: "'Quicksand', sans-serif"
-              }
-            }, 'Preview Error: ' + String(error.message || error));
-          } catch (e) {
-            // Last resort - try to create a simple div
-            console.error('Could not create error element:', e);
+            // Get React - use closure reference or fallback to window
+            const React = ReactRef || window.React;
+            if (!React || typeof React.createElement !== 'function') {
+              console.error('React not available in SafePiePreviewTemplate wrapper');
+              // Can't create React elements without React, return null
+              // This will be caught by Decap CMS's error boundary
+              return null;
+            }
+            
+            // Ensure props is always an object (handle undefined, null, or non-object)
+            const safeProps = (props && typeof props === 'object') ? props : {};
+            
+            // Call the actual preview template
+            const result = PiePreviewTemplate(safeProps);
+            
+            // Ensure we always return a valid React element (not null or undefined)
+            if (result === null || result === undefined) {
+              return React.createElement('div', {
+                key: 'loading-preview',
+                style: { 
+                  padding: '20px', 
+                  color: '#666',
+                  fontFamily: "'Quicksand', sans-serif"
+                }
+              }, 'Loading preview...');
+            }
+            
+            // Verify result is a valid React element
+            if (typeof result !== 'object' || result === null) {
+              console.warn('Preview template returned invalid result:', result);
+              return React.createElement('div', {
+                key: 'invalid-result',
+                style: { 
+                  padding: '20px', 
+                  color: '#666',
+                  fontFamily: "'Quicksand', sans-serif"
+                }
+              }, 'Invalid preview result');
+            }
+            
+            return result;
+          } catch (error) {
+            console.error('Error in preview template render:', error);
+            console.error('Error stack:', error.stack);
+            console.error('Props that caused error:', props);
+            
+            // Always return a valid React element
+            const React = ReactRef || window.React;
+            if (!React || typeof React.createElement !== 'function') {
+              console.error('React not available for error element');
+              return null;
+            }
+            
             try {
-              return React.createElement('div', null, 'Error loading preview');
-            } catch (e2) {
-              // If even that fails, something is very wrong
-              console.error('Complete failure to create React element:', e2);
-              return null; // This might cause React error #525, but we have no other option
+              return React.createElement('div', {
+                key: 'preview-error',
+                style: { 
+                  padding: '20px', 
+                  color: 'red',
+                  backgroundColor: '#ffe6e6',
+                  fontFamily: "'Quicksand', sans-serif"
+                }
+              }, 'Preview Error: ' + String(error.message || error));
+            } catch (e) {
+              console.error('Could not create error element:', e);
+              // Last resort - return null (will be caught by error boundary)
+              return null;
             }
           }
-        }
-      };
+        };
+      })();
       
       // Try the standard method first
       if (typeof CMS.registerPreviewTemplate === 'function') {
