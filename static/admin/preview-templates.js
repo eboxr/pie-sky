@@ -13,8 +13,16 @@
     
     const CMS = window.CMS;
     
+    // Check if React is available
+    if (!window.React || !window.React.createElement) {
+      console.warn('React not yet available, retrying...');
+      setTimeout(registerPreviewTemplates, 200);
+      return;
+    }
+    
     // Check for both possible API methods
-    if (typeof CMS.registerPreviewTemplate !== 'function' && typeof CMS.registerPreviewStyle !== 'function') {
+    if (typeof CMS.registerPreviewTemplate !== 'function') {
+      // Wait a bit more for CMS to fully initialize
       setTimeout(registerPreviewTemplates, 200);
       return;
     }
@@ -100,32 +108,96 @@
     }
     
     // Pie card preview template matching website design exactly
+    // Functional component compatible with React 18 and Decap CMS v3
     function PiePreviewTemplate(props) {
       try {
-        const { entry } = props || {};
+        const entry = props.entry;
         
         // Properly extract data from Immutable.js entry structure
         let data = null;
         try {
-          if (entry && entry.getIn && typeof entry.getIn === 'function') {
+          if (!entry) {
+            console.warn('No entry provided to preview template');
+            return h('div', { 
+              style: { 
+                padding: '20px', 
+                color: '#666',
+                fontFamily: "'Quicksand', sans-serif"
+              } 
+            }, 'No entry data available');
+          }
+
+          // Debug: Log entry structure (only in development)
+          if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            console.log('Entry object:', entry);
+            console.log('Entry type:', typeof entry);
+            console.log('Entry keys:', entry && typeof entry === 'object' ? Object.keys(entry) : 'N/A');
+            console.log('Has getIn?', entry && typeof entry.getIn === 'function');
+            console.log('Has data?', entry && entry.data !== undefined);
+          }
+
+          // Try multiple ways to access the data
+          if (entry.getIn && typeof entry.getIn === 'function') {
             // Standard Decap CMS structure: entry.getIn(['data']).toJS()
-            const dataMap = entry.getIn(['data']);
-            if (dataMap && dataMap.toJS) {
-              data = dataMap.toJS();
-            } else if (dataMap) {
-              // If it's already a plain object
-              data = dataMap;
+            try {
+              const dataMap = entry.getIn(['data']);
+              if (dataMap) {
+                if (dataMap.toJS && typeof dataMap.toJS === 'function') {
+                  data = dataMap.toJS();
+                } else if (typeof dataMap === 'object' && dataMap !== null) {
+                  // If it's already a plain object
+                  data = dataMap;
+                }
+              }
+            } catch (getInError) {
+              console.warn('Error using getIn:', getInError);
+              // Try alternative access
+              if (entry.data !== undefined) {
+                const entryData = entry.data;
+                if (entryData && entryData.toJS && typeof entryData.toJS === 'function') {
+                  data = entryData.toJS();
+                } else if (entryData && typeof entryData === 'object') {
+                  data = entryData;
+                }
+              }
             }
-          } else if (entry && entry.data) {
+          } else if (entry.data !== undefined) {
             // Fallback for plain object structure
-            data = entry.data;
+            const entryData = entry.data;
+            if (entryData && entryData.toJS && typeof entryData.toJS === 'function') {
+              data = entryData.toJS();
+            } else if (entryData && typeof entryData === 'object') {
+              data = entryData;
+            }
+          } else if (entry.toJS && typeof entry.toJS === 'function') {
+            // Entry itself might be the data
+            try {
+              data = entry.toJS();
+            } catch (toJSError) {
+              console.warn('Error using toJS:', toJSError);
+            }
+          }
+          
+          // Final fallback: if entry is already a plain object, use it directly
+          if (!data && entry && typeof entry === 'object' && entry.constructor === Object) {
+            data = entry;
           }
         } catch (e) {
-          console.warn('Error extracting data from entry:', e);
+          console.error('Error extracting data from entry:', e);
+          console.error('Entry object:', entry);
+          // Return error message instead of crashing
+          return h('div', {
+            style: { 
+              padding: '20px', 
+              color: 'red',
+              backgroundColor: '#ffe6e6',
+              fontFamily: "'Quicksand', sans-serif"
+            }
+          }, 'Error loading preview data. Please check the browser console for details.');
         }
         
         // If no data, show loading state
-        if (!data) {
+        if (!data || typeof data !== 'object') {
           return h('div', { 
             key: 'loading',
             style: { 
@@ -136,21 +208,31 @@
           }, 'Loading preview...');
         }
         
-        // Extract all fields with proper fallbacks
-        const title = String(data.title || data.Title || 'Untitled Pie').trim();
-        const description = String(data.description || data.Description || '').trim();
-        const shortDescription = String(data.shortDescription || data.ShortDescription || '').trim();
-        const ingredients = String(data.ingredients || data.Ingredients || '').trim();
-        const price = String(data.price || data.Price || '').trim();
-        const type = String(data.type || data.Type || '').trim();
+        // Extract all fields with proper fallbacks - safely handle undefined/null
+        const title = data.title || data.Title || 'Untitled Pie';
+        const description = data.description || data.Description || '';
+        const shortDescription = data.shortDescription || data.ShortDescription || '';
+        const ingredients = data.ingredients || data.Ingredients || '';
+        const price = data.price || data.Price || '';
+        const type = data.type || data.Type || '';
         const soldOut = Boolean(data.sold_out || data.soldOut || false);
         const smallSoldOut = Boolean(data.small_sold_out || data.smallSoldOut || false);
         const bigSoldOut = Boolean(data.big_sold_out || data.bigSoldOut || false);
-        const smallSoldOutComment = String(data.small_sold_out_comment || data.smallSoldOutComment || '').trim();
-        const bigSoldOutComment = String(data.big_sold_out_comment || data.bigSoldOutComment || '').trim();
+        const smallSoldOutComment = data.small_sold_out_comment || data.smallSoldOutComment || '';
+        const bigSoldOutComment = data.big_sold_out_comment || data.bigSoldOutComment || '';
+        
+        // Convert to strings safely
+        const titleStr = String(title || '').trim();
+        const descriptionStr = String(description || '').trim();
+        const shortDescriptionStr = String(shortDescription || '').trim();
+        const ingredientsStr = String(ingredients || '').trim();
+        const priceStr = String(price || '').trim();
+        const typeStr = String(type || '').trim();
+        const smallSoldOutCommentStr = String(smallSoldOutComment || '').trim();
+        const bigSoldOutCommentStr = String(bigSoldOutComment || '').trim();
         
         // Determine sold out status
-        const isDinnerPie = type === 'dinner';
+        const isDinnerPie = typeStr === 'dinner';
         const showSoldOut = isDinnerPie ? (smallSoldOut && bigSoldOut) : soldOut;
         
         // Build card elements
@@ -219,7 +301,7 @@
         const bodyElements = [];
         
         // Title (h3) - matches website: 22px, bold, #222222
-        if (title) {
+        if (titleStr) {
           bodyElements.push(h('h3', { 
             key: 'title',
             style: { 
@@ -230,14 +312,29 @@
               fontFamily: "'Quicksand', sans-serif",
               lineHeight: '1.2'
             }
-          }, title));
+          }, titleStr));
         }
         
         // Description (h4) - only show if it exists, matches website: 18px, #222222
-        if (description) {
-          const descParts = parseMarkdownToElements(description, h);
-          const validDescParts = descParts.filter(part => part != null && part !== '' && part !== undefined);
-          if (validDescParts.length > 0) {
+        if (descriptionStr) {
+          try {
+            const descParts = parseMarkdownToElements(descriptionStr, h);
+            const validDescParts = descParts.filter(part => part != null && part !== '' && part !== undefined);
+            if (validDescParts.length > 0) {
+              bodyElements.push(h('h4', { 
+                key: 'description',
+                style: { 
+                  marginBottom: '10px', 
+                  fontSize: '18px', 
+                  color: '#222222',
+                  fontFamily: "'Quicksand', sans-serif",
+                  fontWeight: '400',
+                  lineHeight: '1.2'
+                }
+              }, ...validDescParts));
+            }
+          } catch (e) {
+            console.warn('Error parsing description markdown:', e);
             bodyElements.push(h('h4', { 
               key: 'description',
               style: { 
@@ -248,16 +345,31 @@
                 fontWeight: '400',
                 lineHeight: '1.2'
               }
-            }, ...validDescParts));
+            }, descriptionStr));
           }
         }
         
         // Short Description (pricing info - supports markdown) - matches website: 15px, #333333, line-height 1.7
-        if (shortDescription) {
-          const markdownParts = parseMarkdownToElements(shortDescription, h);
-          // Filter out null/undefined and ensure all parts are valid React children
-          const validParts = markdownParts.filter(part => part != null && part !== '' && part !== undefined);
-          if (validParts.length > 0) {
+        if (shortDescriptionStr) {
+          try {
+            const markdownParts = parseMarkdownToElements(shortDescriptionStr, h);
+            // Filter out null/undefined and ensure all parts are valid React children
+            const validParts = markdownParts.filter(part => part != null && part !== '' && part !== undefined);
+            if (validParts.length > 0) {
+              bodyElements.push(h('p', { 
+                key: 'shortDesc',
+                style: { 
+                  marginBottom: '10px', 
+                  color: '#333333',
+                  fontSize: '15px',
+                  lineHeight: '1.7',
+                  fontFamily: "'Quicksand', sans-serif",
+                  fontWeight: '400'
+                }
+              }, ...validParts));
+            }
+          } catch (e) {
+            console.warn('Error parsing short description markdown:', e);
             bodyElements.push(h('p', { 
               key: 'shortDesc',
               style: { 
@@ -268,16 +380,31 @@
                 fontFamily: "'Quicksand', sans-serif",
                 fontWeight: '400'
               }
-            }, ...validParts));
+            }, shortDescriptionStr));
           }
         }
         
         // Ingredients - matches website: 15px, #333333, line-height 1.7
-        if (ingredients) {
-          const ingredientsParts = parseMarkdownToElements(ingredients, h);
-          // Filter out null/undefined and ensure all parts are valid React children
-          const validIngredientsParts = ingredientsParts.filter(part => part != null && part !== '' && part !== undefined);
-          if (validIngredientsParts.length > 0) {
+        if (ingredientsStr) {
+          try {
+            const ingredientsParts = parseMarkdownToElements(ingredientsStr, h);
+            // Filter out null/undefined and ensure all parts are valid React children
+            const validIngredientsParts = ingredientsParts.filter(part => part != null && part !== '' && part !== undefined);
+            if (validIngredientsParts.length > 0) {
+              bodyElements.push(h('p', { 
+                key: 'ingredients',
+                style: { 
+                  marginBottom: '10px', 
+                  color: '#333333', 
+                  fontSize: '15px',
+                  lineHeight: '1.7',
+                  fontFamily: "'Quicksand', sans-serif",
+                  fontWeight: '400'
+                }
+              }, ...validIngredientsParts));
+            }
+          } catch (e) {
+            console.warn('Error parsing ingredients markdown:', e);
             bodyElements.push(h('p', { 
               key: 'ingredients',
               style: { 
@@ -288,16 +415,31 @@
                 fontFamily: "'Quicksand', sans-serif",
                 fontWeight: '400'
               }
-            }, ...validIngredientsParts));
+            }, ingredientsStr));
           }
         }
         
         // Sold out messages for dinner pies (when not fully sold out) - matches website: red color
         if (isDinnerPie && !showSoldOut) {
-          if (smallSoldOut && smallSoldOutComment) {
-            const markdownParts = parseMarkdownToElements(smallSoldOutComment, h);
-            const validParts = markdownParts.filter(part => part != null && part !== '' && part !== undefined);
-            if (validParts.length > 0) {
+          if (smallSoldOut && smallSoldOutCommentStr) {
+            try {
+              const markdownParts = parseMarkdownToElements(smallSoldOutCommentStr, h);
+              const validParts = markdownParts.filter(part => part != null && part !== '' && part !== undefined);
+              if (validParts.length > 0) {
+                bodyElements.push(h('p', {
+                  key: 'small-sold-out',
+                  style: {
+                    marginTop: '10px',
+                    color: 'red',
+                    fontSize: '15px',
+                    lineHeight: '1.7',
+                    fontFamily: "'Quicksand', sans-serif",
+                    marginBottom: '5px'
+                  }
+                }, ...validParts));
+              }
+            } catch (e) {
+              console.warn('Error parsing small sold out comment markdown:', e);
               bodyElements.push(h('p', {
                 key: 'small-sold-out',
                 style: {
@@ -308,13 +450,28 @@
                   fontFamily: "'Quicksand', sans-serif",
                   marginBottom: '5px'
                 }
-              }, ...validParts));
+              }, smallSoldOutCommentStr));
             }
           }
-          if (bigSoldOut && bigSoldOutComment) {
-            const markdownParts = parseMarkdownToElements(bigSoldOutComment, h);
-            const validParts = markdownParts.filter(part => part != null && part !== '' && part !== undefined);
-            if (validParts.length > 0) {
+          if (bigSoldOut && bigSoldOutCommentStr) {
+            try {
+              const markdownParts = parseMarkdownToElements(bigSoldOutCommentStr, h);
+              const validParts = markdownParts.filter(part => part != null && part !== '' && part !== undefined);
+              if (validParts.length > 0) {
+                bodyElements.push(h('p', {
+                  key: 'big-sold-out',
+                  style: {
+                    marginTop: '10px',
+                    color: 'red',
+                    fontSize: '15px',
+                    lineHeight: '1.7',
+                    fontFamily: "'Quicksand', sans-serif",
+                    marginBottom: '5px'
+                  }
+                }, ...validParts));
+              }
+            } catch (e) {
+              console.warn('Error parsing big sold out comment markdown:', e);
               bodyElements.push(h('p', {
                 key: 'big-sold-out',
                 style: {
@@ -325,7 +482,7 @@
                   fontFamily: "'Quicksand', sans-serif",
                   marginBottom: '5px'
                 }
-              }, ...validParts));
+              }, bigSoldOutCommentStr));
             }
           }
         }
@@ -385,6 +542,7 @@
         
       } catch (error) {
         console.error('Preview error:', error);
+        console.error('Error stack:', error.stack);
         return h('div', {
           style: { 
             padding: '20px', 
@@ -484,38 +642,39 @@
     
     // Register templates using the correct API
     try {
+      // Wrap the template in a try-catch to prevent errors from crashing the CMS
+      const SafePiePreviewTemplate = function(props) {
+        try {
+          return PiePreviewTemplate(props);
+        } catch (error) {
+          console.error('Error in preview template render:', error);
+          return React.createElement('div', {
+            style: { 
+              padding: '20px', 
+              color: 'red',
+              backgroundColor: '#ffe6e6',
+              fontFamily: "'Quicksand', sans-serif"
+            }
+          }, 'Preview Error: ' + String(error.message || error));
+        }
+      };
+      
       // Try the standard method first
       if (typeof CMS.registerPreviewTemplate === 'function') {
-        CMS.registerPreviewTemplate('fruit_pies', PiePreviewTemplate);
-        CMS.registerPreviewTemplate('cream_pies', PiePreviewTemplate);
-        CMS.registerPreviewTemplate('special_pies', PiePreviewTemplate);
-        CMS.registerPreviewTemplate('dinner_pies', PiePreviewTemplate);
-        CMS.registerPreviewTemplate('hand_pies', PiePreviewTemplate);
-        console.log('✅ Preview templates registered using registerPreviewTemplate');
-      } 
-      // Try alternative method for Decap CMS v3
-      else if (CMS.registerPreviewStyle) {
-        // For Decap CMS v3, we might need to use registerPreviewStyle
-        console.log('Using alternative registration method');
-        // Register as a widget preview
-        if (CMS.registerWidget) {
-          // This might be needed for Decap CMS v3
-        }
-      }
-      
-      // Also try registering with collection names (in case they're different)
-      const collections = ['fruit_pies', 'cream_pies', 'special_pies', 'dinner_pies', 'hand_pies'];
-      collections.forEach(collection => {
-        try {
-          if (typeof CMS.registerPreviewTemplate === 'function') {
-            CMS.registerPreviewTemplate(collection, PiePreviewTemplate);
+        const collections = ['fruit_pies', 'cream_pies', 'special_pies', 'dinner_pies', 'hand_pies'];
+        collections.forEach(collection => {
+          try {
+            CMS.registerPreviewTemplate(collection, SafePiePreviewTemplate);
+            console.log(`✅ Registered preview template for ${collection}`);
+          } catch (e) {
+            console.error(`❌ Could not register template for ${collection}:`, e);
           }
-        } catch (e) {
-          console.warn(`Could not register template for ${collection}:`, e);
-        }
-      });
-      
-      console.log('✅ Preview templates registration attempted');
+        });
+        console.log('✅ Preview templates registered using registerPreviewTemplate');
+      } else {
+        console.warn('⚠️ CMS.registerPreviewTemplate is not available');
+        console.warn('Available CMS methods:', Object.keys(CMS).filter(k => k.toLowerCase().includes('preview')));
+      }
     } catch (e) {
       console.error('❌ Error registering preview templates:', e);
       console.error('Stack:', e.stack);
