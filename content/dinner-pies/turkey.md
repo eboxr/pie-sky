@@ -9,11 +9,17 @@ description : ""
 ingredients: "Turkey, carrots, peas, onion in a rich gravy"
 
 # Product Short Description
-shortDescription: "family size **$25**"
+shortDescription: "Family size pie"
 
 # product Price
 price: "25"
 priceBefore: ""
+
+# Personal size price (if available)
+# personalPrice: ""
+
+# Display price instead of shortDescription
+displayPrice: true
 
 # type must be "products"
 type: "dinner"

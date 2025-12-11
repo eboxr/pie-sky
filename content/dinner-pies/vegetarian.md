@@ -9,12 +9,14 @@ description : ""
 ingredients: "Butternut squash, mushrooms, carrots, peas in a vegetable gravy"
 
 # Product Short Description
-shortDescription: "personal size **$7.50**, family size **$25**"
-
+shortDescription: "Available in personal and family sizes"
 
 # product Price
 price: "25"
 priceBefore: ""
+
+# Personal size price (if available)
+personalPrice: "7.50"
 
 # type must be "products"
 type: "dinner"

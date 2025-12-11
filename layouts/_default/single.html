@@ -41,7 +41,20 @@
           {{ if .Params.PriceBefore }}
           <s>{{ site.Params.currencySymbol }}{{ .Params.PriceBefore }}</s>
           {{ end }}
-          <span class="lead text-primary font-weight-medium">{{ site.Params.currencySymbol }}{{ .Params.Price }}</span>
+          {{ if eq .Params.type "dinner" }}
+            {{ if .Params.personalPrice }}
+              <p class="lead text-primary font-weight-medium">
+                Personal size (serves 1-2): {{ site.Params.currencySymbol }}{{ .Params.personalPrice }}
+              </p>
+            {{ end }}
+            {{ if .Params.price }}
+              <p class="lead text-primary font-weight-medium">
+                Family size (serves 4-6): {{ site.Params.currencySymbol }}{{ .Params.price }}
+              </p>
+            {{ end }}
+          {{ else }}
+            <span class="lead text-primary font-weight-medium">{{ site.Params.currencySymbol }}{{ .Params.Price }}</span>
+          {{ end }}
         </div>
         <div class="my-3">
           {{ if .Params.ingredients }}
