@@ -10,13 +10,12 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-  <!-- Load React 18 development version for better error messages -->
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   <!-- Include the script that builds the page and powers Decap CMS -->
+  <!-- Decap CMS bundles React internally, but we need to access it -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  <!-- Include preview templates after React and CMS are loaded -->
-  <script src="/admin/preview-templates.js?v=2.1"></script>
+  <!-- Include preview templates after CMS is loaded -->
+  <!-- The preview templates script will wait for React to be available -->
+  <script src="/admin/preview-templates.js?v=2.3"></script>
 </body>
 </html>
 

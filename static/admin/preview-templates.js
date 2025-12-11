@@ -55,13 +55,22 @@
       }
     }
     
-    // Get React from window (we loaded it explicitly)
-    // React must be available before we can create the preview template
-    const React = window.React;
+    // Get React from window - try multiple sources
+    let React = window.React;
+    
+    // Try to get React from Decap CMS if available
+    if (!React && window.CMS && window.CMS.React) {
+      React = window.CMS.React;
+      window.React = React; // Make it globally available
+      console.log('Using React from Decap CMS');
+    }
     
     if (!React || !React.createElement) {
       console.error('React not available! Cannot create preview templates.');
       console.error('window.React:', window.React);
+      console.error('window.CMS:', window.CMS);
+      // Wait a bit and try again
+      setTimeout(registerPreviewTemplates, 500);
       return;
     }
     
@@ -122,35 +131,42 @@
     // Functional component compatible with React 18 and Decap CMS v3
     function PiePreviewTemplate(props) {
       // Ensure React.createElement is available
-      const createElement = React.createElement;
-      if (!createElement || typeof createElement !== 'function') {
-        console.error('React.createElement not available in PiePreviewTemplate');
-        return null;
+      const React = window.React;
+      if (!React || !React.createElement) {
+        console.error('React not available in PiePreviewTemplate');
+        return React ? React.createElement('div', null, 'React not available') : null;
       }
+      
+      const createElement = React.createElement;
       
       try {
         // Handle case where props might be undefined or null
         if (!props || typeof props !== 'object') {
-          // Return null instead of a div - Decap CMS might call this during init
-          return null;
+          // Return a simple loading div instead of null
+          return createElement('div', {
+            style: { 
+              padding: '20px', 
+              color: '#666',
+              fontFamily: "'Quicksand', sans-serif"
+            }
+          }, 'Loading preview...');
         }
         
-        // Entry should come from props.entry, but handle various cases
-        let entry = props.entry;
-        
-        // If entry is not in props.entry, check if props itself might be the entry
-        if (!entry && props && (props.getIn || props.toJS)) {
-          // Props might be the entry itself in some cases
-          entry = props;
-        }
+        // Entry should come from props.entry
+        const entry = props.entry;
         
         // Properly extract data from Immutable.js entry structure
         let data = null;
         try {
           if (!entry) {
-            // Return null when no entry - this is normal during initialization
-            // Don't log warnings for this as it's expected behavior
-            return null;
+            // Return a loading state instead of null
+            return createElement('div', {
+              style: { 
+                padding: '20px', 
+                color: '#666',
+                fontFamily: "'Quicksand', sans-serif"
+              }
+            }, 'Loading preview...');
           }
 
           // Debug: Log entry structure (only in development)
@@ -223,7 +239,7 @@
           console.error('Error extracting data from entry:', e);
           console.error('Entry object:', entry);
           // Return error message instead of crashing
-          return h('div', {
+          return createElement('div', {
             style: { 
               padding: '20px', 
               color: 'red',
@@ -235,7 +251,7 @@
         
         // If no data, show loading state
         if (!data || typeof data !== 'object') {
-          return h('div', { 
+          return createElement('div', { 
             key: 'loading',
             style: { 
               padding: '20px', 
@@ -372,7 +388,7 @@
             }
           } catch (e) {
             console.warn('Error parsing description markdown:', e);
-            bodyElements.push(h('h4', { 
+            bodyElements.push(createElement('h4', { 
               key: 'description',
               style: { 
                 marginBottom: '10px', 
@@ -407,7 +423,7 @@
             }
           } catch (e) {
             console.warn('Error parsing short description markdown:', e);
-            bodyElements.push(h('p', { 
+            bodyElements.push(createElement('p', { 
               key: 'shortDesc',
               style: { 
                 marginBottom: '10px', 
@@ -442,7 +458,7 @@
             }
           } catch (e) {
             console.warn('Error parsing ingredients markdown:', e);
-            bodyElements.push(h('p', { 
+            bodyElements.push(createElement('p', { 
               key: 'ingredients',
               style: { 
                 marginBottom: '10px', 
@@ -477,7 +493,7 @@
               }
             } catch (e) {
               console.warn('Error parsing small sold out comment markdown:', e);
-              bodyElements.push(h('p', {
+              bodyElements.push(createElement('p', {
                 key: 'small-sold-out',
                 style: {
                   marginTop: '10px',
@@ -509,7 +525,7 @@
               }
             } catch (e) {
               console.warn('Error parsing big sold out comment markdown:', e);
-              bodyElements.push(h('p', {
+              bodyElements.push(createElement('p', {
                 key: 'big-sold-out',
                 style: {
                   marginTop: '10px',
@@ -686,7 +702,7 @@
     
     // Register templates using the correct API
     try {
-      // Wrap the template in a try-catch to prevent errors from crashing the CMS
+      // Wrap the template - ensure it always returns a valid React element
       const SafePiePreviewTemplate = function(props) {
         try {
           // Ensure props is always an object (handle undefined, null, or non-object)
@@ -695,14 +711,23 @@
           // Call the actual preview template
           const result = PiePreviewTemplate(safeProps);
           
-          // Return null if no result - this is valid and expected during initialization
-          // Decap CMS will handle null returns gracefully
+          // Ensure we always return a valid React element (not null)
+          if (result === null || result === undefined) {
+            return React.createElement('div', {
+              style: { 
+                padding: '20px', 
+                color: '#666',
+                fontFamily: "'Quicksand', sans-serif"
+              }
+            }, 'Loading preview...');
+          }
+          
           return result;
         } catch (error) {
           console.error('Error in preview template render:', error);
           console.error('Error stack:', error.stack);
           console.error('Props that caused error:', props);
-          // Use React.createElement to ensure we return a valid element
+          // Always return a valid React element
           try {
             return React.createElement('div', {
               style: { 
@@ -713,9 +738,15 @@
               }
             }, 'Preview Error: ' + String(error.message || error));
           } catch (e) {
-            // If React.createElement fails, return null
+            // Last resort - try to create a simple div
             console.error('Could not create error element:', e);
-            return null;
+            try {
+              return React.createElement('div', null, 'Error loading preview');
+            } catch (e2) {
+              // If even that fails, something is very wrong
+              console.error('Complete failure to create React element:', e2);
+              return null; // This might cause React error #525, but we have no other option
+            }
           }
         }
       };
@@ -743,17 +774,50 @@
   }
   
   // Start registration - try multiple times with increasing delays
+  // Wait for both CMS and React to be available
   function startRegistration() {
+    function tryRegister() {
+      // Check if React is available (from Decap CMS or window)
+      let React = window.React;
+      if (!React && window.CMS) {
+        // Try to access React from Decap CMS internals
+        // Decap CMS uses React internally but may not expose it directly
+        // We'll need to load it ourselves
+        if (!window._reactLoaded) {
+          console.log('Loading React for preview templates...');
+          var script = document.createElement('script');
+          script.src = 'https://unpkg.com/react@18/umd/react.production.min.js';
+          script.crossOrigin = 'anonymous';
+          script.onload = function() {
+            window._reactLoaded = true;
+            var script2 = document.createElement('script');
+            script2.src = 'https://unpkg.com/react-dom@18/umd/react-dom.production.min.js';
+            script2.crossOrigin = 'anonymous';
+            script2.onload = function() {
+              setTimeout(registerPreviewTemplates, 100);
+            };
+            document.head.appendChild(script2);
+          };
+          document.head.appendChild(script);
+          return;
+        }
+        React = window.React;
+      }
+      
+      if (window.CMS && React && React.createElement) {
+        registerPreviewTemplates();
+      } else {
+        // Retry
+        setTimeout(tryRegister, 200);
+      }
+    }
+    
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', function() {
-        setTimeout(registerPreviewTemplates, 500);
-        setTimeout(registerPreviewTemplates, 1500);
-        setTimeout(registerPreviewTemplates, 3000);
+        setTimeout(tryRegister, 100);
       });
     } else {
-      setTimeout(registerPreviewTemplates, 500);
-      setTimeout(registerPreviewTemplates, 1500);
-      setTimeout(registerPreviewTemplates, 3000);
+      setTimeout(tryRegister, 100);
     }
   }
   
