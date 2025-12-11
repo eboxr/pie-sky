@@ -9,11 +9,14 @@ description : ""
 ingredients: "Chicken, carrots, peas in a chicken cream sauce"
 
 # Product Short Description
-shortDescription: "personal size **$7.50**, family size **$25**"
+shortDescription: "Available in personal and family sizes"
 
 # product Price
 price: "25"
 priceBefore: ""
+
+# Personal size price (if available)
+personalPrice: "7.50"
 
 # type must be "products"
 type: "dinner"
