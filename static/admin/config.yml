@@ -21,6 +21,7 @@ collections:
     label: "Fruit Pies"
     folder: "content/fruit-pies"
     create: false # Don't allow creating new pies, only editing existing ones
+    delete: false # Don't allow deleting pies
     slug: "{{slug}}"
     # preview_path removed - using custom React template instead
     fields:
@@ -39,6 +40,7 @@ collections:
     label: "Cream Pies"
     folder: "content/cream-pies"
     create: false
+    delete: false # Don't allow deleting pies
     slug: "{{slug}}"
     # preview_path removed - using custom React template instead
     fields:
@@ -57,6 +59,7 @@ collections:
     label: "Special Pies"
     folder: "content/special-pies"
     create: false
+    delete: false # Don't allow deleting pies
     slug: "{{slug}}"
     # preview_path removed - using custom React template instead
     fields:
@@ -75,6 +78,7 @@ collections:
     label: "Dinner Pies"
     folder: "content/dinner-pies"
     create: false
+    delete: false # Don't allow deleting pies
     slug: "{{slug}}"
     # preview_path removed - using custom React template instead
     fields:
@@ -97,6 +101,7 @@ collections:
     label: "Hand Pies"
     folder: "content/hand-pies"
     create: false
+    delete: false # Don't allow deleting pies
     slug: "{{slug}}"
     # preview_path removed - using custom React template instead
     fields:
