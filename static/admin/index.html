@@ -92,6 +92,10 @@
   <!-- Include the script that builds the page and powers Decap CMS -->
   <!-- Decap CMS bundles React internally, but we need to access it -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <!-- Include custom banner widget before preview templates -->
+  <script src="/admin/banner-widget.js"></script>
+  <!-- Include backend hook for updating config.toml -->
+  <script src="/admin/banner-backend-hook.js"></script>
   <!-- Include preview templates after CMS is loaded -->
   <!-- The preview templates script will wait for React to be available -->
   <script src="/admin/preview-templates.js?v=3.0"></script>
