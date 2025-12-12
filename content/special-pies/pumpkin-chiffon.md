@@ -4,7 +4,7 @@ date: 2019-10-06T11:22:16+06:00
 draft: false
 
 # meta description
-description : "$30"
+description : ""
 
 # Product Short Description
 shortDescription: ""
@@ -14,6 +14,9 @@ ingredients: "with Graham cracker crust"
 # product Price
 price: "30"
 priceBefore: ""
+
+# Display price instead of shortDescription
+displayPrice: true
 
 # type must be "products"
 type: "special"

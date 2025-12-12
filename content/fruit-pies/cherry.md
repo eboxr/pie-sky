@@ -7,7 +7,9 @@ draft: false
 description : ""
 
 # Product Short Description
-shortDescription: "Made with bing cherries"
+shortDescription: 
+
+ingredients: "Made with bing cherries"
 
 # product Price
 price: "25"

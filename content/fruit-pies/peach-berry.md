@@ -7,7 +7,9 @@ draft: false
 description : ""
 
 # Product Short Description
-shortDescription: "raspberry, blackberry & blueberry"
+shortDescription: 
+
+ingredients: "raspberry, blackberry & blueberry"
 
 # product Price
 price: "25"
