@@ -8,6 +8,85 @@
   <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,600,700&display=swap" rel="stylesheet">
   <!-- Bootstrap 4.1.1 CSS for preview styling (matching website) -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS and JavaScript to hide Media button -->
+  <style>
+    /* Hide the Media button in the top navigation */
+    [data-testid="media-button"],
+    button[aria-label*="Media"],
+    a[href*="/media"],
+    .nc-mediaLibrary-button,
+    .nc-appHeader-nav a[href*="media"],
+    .nc-appHeader-nav a[href="/admin/#/media"] {
+      display: none !important;
+    }
+  </style>
+  <script>
+    // Function to hide Media button after CMS loads
+    function hideMediaButton() {
+      // Try multiple selectors to find and hide Media button
+      const selectors = [
+        'a[href*="/media"]',
+        'a[href="/admin/#/media"]',
+        '[aria-label*="Media"]',
+        '[aria-label*="media"]',
+      ];
+      
+      selectors.forEach(selector => {
+        try {
+          const elements = document.querySelectorAll(selector);
+          elements.forEach(el => {
+            el.style.display = 'none';
+          });
+        } catch (e) {
+          // Selector might not be valid, continue
+        }
+      });
+      
+      // Check all links and buttons in navigation for Media text
+      const navElements = document.querySelectorAll('nav a, nav button, [role="navigation"] a, [role="navigation"] button, .nc-appHeader-nav a, .nc-appHeader-nav button');
+      navElements.forEach(el => {
+        const text = el.textContent ? el.textContent.trim().toLowerCase() : '';
+        const href = el.getAttribute('href') || '';
+        const ariaLabel = el.getAttribute('aria-label') || '';
+        if (text === 'media' || href.includes('/media') || ariaLabel.toLowerCase().includes('media')) {
+          el.style.display = 'none';
+        }
+      });
+      
+      // Also check for second nav item (Media is typically second after Contents)
+      const navItems = document.querySelectorAll('.nc-appHeader-nav > a, .nc-appHeader-nav > button');
+      if (navItems.length >= 2) {
+        const secondItem = navItems[1];
+        const secondItemText = secondItem.textContent ? secondItem.textContent.trim().toLowerCase() : '';
+        if (secondItemText === 'media') {
+          secondItem.style.display = 'none';
+        }
+      }
+    }
+    
+    // Run immediately and also after DOM and CMS load
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', hideMediaButton);
+    } else {
+      hideMediaButton();
+    }
+    
+    // Also run after delays to catch dynamically loaded elements
+    setTimeout(hideMediaButton, 500);
+    setTimeout(hideMediaButton, 1000);
+    setTimeout(hideMediaButton, 2000);
+    
+    // Use MutationObserver to catch dynamically added elements
+    if (window.MutationObserver) {
+      const observer = new MutationObserver(() => {
+        hideMediaButton();
+      });
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
+    }
+  </script>
 </head>
 <body>
   <!-- Include the script that builds the page and powers Decap CMS -->
