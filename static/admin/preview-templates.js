@@ -144,20 +144,29 @@
           }, descParts));
         }
         
-        // Price or Short Description (for dinner pies, show prices only if displayPrice flag is true)
-        if (isDinnerPie && displayPrice) {
-          // Show prices instead of short description
+        // Price or Short Description
+        if (displayPrice) {
+          // Show prices instead of short description when displayPrice flag is true
           const priceParts = [];
-          if (personalPrice) {
-            priceParts.push('Personal size ');
-            priceParts.push(h('strong', { key: 'personal-price' }, `$${personalPrice}`));
-            if (price) {
-              priceParts.push(', ');
+          if (isDinnerPie) {
+            // Dinner pies can have both personal and family sizes
+            if (personalPrice) {
+              priceParts.push('Personal size ');
+              priceParts.push(h('strong', { key: 'personal-price' }, `$${personalPrice}`));
+              if (price) {
+                priceParts.push(', ');
+              }
             }
-          }
-          if (price) {
-            priceParts.push('Family size ');
-            priceParts.push(h('strong', { key: 'family-price' }, `$${price}`));
+            if (price) {
+              priceParts.push('Family size ');
+              priceParts.push(h('strong', { key: 'family-price' }, `$${price}`));
+            }
+          } else {
+            // Special pies and other types show "Family size $[price]"
+            if (price) {
+              priceParts.push('Family size ');
+              priceParts.push(h('strong', { key: 'family-price' }, `$${price}`));
+            }
           }
           if (priceParts.length > 0) {
             bodyElements.push(h('p', {
@@ -173,7 +182,7 @@
             }, priceParts));
           }
         } else if (shortDescription) {
-          // Show short description for non-dinner pies or when displayPrice is false
+          // Show short description when displayPrice is false
           const shortParts = parseBold(shortDescription);
           bodyElements.push(h('p', {
             key: 'shortDesc',
