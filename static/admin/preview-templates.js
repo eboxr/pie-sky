@@ -98,6 +98,8 @@
         const shortDescription = getFieldValue(entry, 'shortDescription', '');
         const ingredients = getFieldValue(entry, 'ingredients', '');
         const price = getFieldValue(entry, 'price', '');
+        const personalPrice = getFieldValue(entry, 'personalPrice', '');
+        const displayPrice = getFieldValue(entry, 'displayPrice', false);
         const type = getFieldValue(entry, 'type', '');
         const soldOut = getFieldValue(entry, 'sold_out', false);
         const smallSoldOut = getFieldValue(entry, 'small_sold_out', false);
@@ -142,8 +144,36 @@
           }, descParts));
         }
         
-        // Short Description
-        if (shortDescription) {
+        // Price or Short Description (for dinner pies, show prices only if displayPrice flag is true)
+        if (isDinnerPie && displayPrice) {
+          // Show prices instead of short description
+          const priceParts = [];
+          if (personalPrice) {
+            priceParts.push('Personal size ');
+            priceParts.push(h('strong', { key: 'personal-price' }, `$${personalPrice}`));
+            if (price) {
+              priceParts.push(', ');
+            }
+          }
+          if (price) {
+            priceParts.push('Family size ');
+            priceParts.push(h('strong', { key: 'family-price' }, `$${price}`));
+          }
+          if (priceParts.length > 0) {
+            bodyElements.push(h('p', {
+              key: 'price',
+              style: {
+                marginBottom: '10px',
+                color: '#333333',
+                fontSize: '15px',
+                lineHeight: '1.7',
+                fontFamily: "'Quicksand', sans-serif",
+                fontWeight: '400'
+              }
+            }, priceParts));
+          }
+        } else if (shortDescription) {
+          // Show short description for non-dinner pies or when displayPrice is false
           const shortParts = parseBold(shortDescription);
           bodyElements.push(h('p', {
             key: 'shortDesc',
