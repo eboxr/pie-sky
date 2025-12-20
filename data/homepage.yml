@@ -81,11 +81,13 @@ pies:
 special_event:
   enable : true
   content : |
-    ### Holidays Orders
+    ### Christmas week ordering for pies is closed.
 
-    **Holidays orders accepted until December 19th** for all pies picked up the week of Christmas.
+    **Thank you for all of your support.**
 
-    Deliveries to **Holy Cross Hospital** (1050 East South Temple) will be at **3pm on December 24th**, by the emergency room.
+    Merry Christmas and happy Holidays.
+
+    I will resume orders on **12/26 for the New Year’s Celebrations** and the rest of the year.
 
     - Otherwise, please order any time for year round pie making.
   image : "images/produces.jpg"
