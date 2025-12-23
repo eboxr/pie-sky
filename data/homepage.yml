@@ -73,7 +73,7 @@ seasonal:
   enable: true
   title: ""
   content: ""
-  event: winter
+  event: xmas
   possible: newyear, valentine, patrick, spring, easter, summer, fall, thxgiving,
     xmas, winter
 special_event:
