@@ -75,10 +75,33 @@
       // Read config.toml
       let content = '';
       try {
-        // Try to get the file through the backend
-        const file = await backend.getEntry(null, 'config.toml');
-        if (file) {
-          content = file.get('content') || file.get('raw') || '';
+        // Try different methods to read config.toml
+        // Method 1: Try getEntry
+        try {
+          const file = await backend.getEntry(null, 'config.toml');
+          if (file) {
+            content = file.get('content') || file.get('raw') || '';
+            if (content) {
+              console.log('Successfully read config.toml via getEntry');
+            }
+          }
+        } catch (e1) {
+          // Method 2: Try readFile (for local backend)
+          if (backend.readFile) {
+            try {
+              content = await backend.readFile('config.toml', null, null);
+              if (content) {
+                console.log('Successfully read config.toml via readFile');
+              }
+            } catch (e2) {
+              console.warn('Could not read config.toml via readFile:', e2);
+            }
+          }
+          if (!content) {
+            console.warn('Could not read config.toml via getEntry:', e1);
+            pendingEventUpdate = { eventValue, gradient, commentText };
+            return;
+          }
         }
       } catch (e) {
         console.warn('Could not read config.toml via backend:', e);
@@ -130,17 +153,35 @@
       
       // Save the updated config.toml
       try {
-        await backend.persistEntry({
-          path: 'config.toml',
-          slug: 'config',
-          collection: 'config',
-          dataFiles: [{
+        // Try persistEntry first (for GitHub backend)
+        try {
+          await backend.persistEntry({
             path: 'config.toml',
-            content: content
-          }]
-        });
-        console.log('Successfully updated config.toml with gradient for', eventValue);
-        pendingEventUpdate = null;
+            slug: 'config',
+            collection: 'config',
+            dataFiles: [{
+              path: 'config.toml',
+              content: content
+            }]
+          });
+          console.log('Successfully updated config.toml with gradient for', eventValue);
+          pendingEventUpdate = null;
+        } catch (persistError) {
+          // If persistEntry fails, try writeFile (for local backend)
+          console.log('persistEntry failed, trying writeFile:', persistError.message);
+          if (backend.writeFile) {
+            try {
+              await backend.writeFile('config.toml', content, null, null);
+              console.log('Successfully updated config.toml via writeFile');
+              pendingEventUpdate = null;
+            } catch (writeError) {
+              console.warn('Could not save config.toml via writeFile:', writeError);
+              pendingEventUpdate = { eventValue, gradient, commentText, content };
+            }
+          } else {
+            throw persistError;
+          }
+        }
       } catch (saveError) {
         console.warn('Could not save config.toml directly:', saveError);
         pendingEventUpdate = { eventValue, gradient, commentText, content };
@@ -173,14 +214,46 @@
         handler: ({ entry }) => {
           // Check if this is the banner config entry
           const collection = entry.get('collection');
-          if (collection === 'banner_config') {
+          const collectionName = collection && typeof collection.get === 'function' 
+            ? collection.get('name') 
+            : (typeof collection === 'string' ? collection : null);
+          
+          if (collectionName === 'banner_config') {
             const data = entry.get('data');
+            // Access nested seasonal.event from the object widget structure
             const eventValue = data.getIn(['seasonal', 'event']);
             if (eventValue) {
-              // Update config.toml after a short delay to ensure save is complete
+              console.log('Banner event changed to:', eventValue);
+              // Try to update config.toml with retries
+              const tryUpdate = async (attempt = 1, maxAttempts = 5) => {
+                const backend = CMS.getBackend();
+                if (backend) {
+                  console.log('Backend found in widget postSave, updating config.toml...');
+                  try {
+                    await updateConfigToml(eventValue);
+                    return; // Success
+                  } catch (error) {
+                    console.warn('Error updating config.toml:', error);
+                    if (attempt < maxAttempts) {
+                      setTimeout(() => tryUpdate(attempt + 1, maxAttempts), 1000 * attempt);
+                    }
+                  }
+                } else {
+                  console.warn(`Backend not available in widget postSave (attempt ${attempt}/${maxAttempts})`);
+                  if (attempt < maxAttempts) {
+                    setTimeout(() => tryUpdate(attempt + 1, maxAttempts), 1000 * attempt);
+                  } else {
+                    console.error('Failed to get backend after all attempts in widget');
+                    console.warn('Note: If you are using local_backend, updating config.toml may not be supported.');
+                    console.warn('This feature should work in production with the GitHub backend.');
+                  }
+                }
+              };
+              
+              // Start trying after a delay
               setTimeout(() => {
-                updateConfigToml(eventValue);
-              }, 1500);
+                tryUpdate();
+              }, 1000);
             }
           }
         }
@@ -202,18 +275,20 @@
         // Call the original onChange to update homepage.yml
         this.props.onChange(value);
         
-        // Dispatch custom event for backend hook
+        // Dispatch custom event for backend hook (it will handle when backend is ready)
         if (window.dispatchEvent) {
           window.dispatchEvent(new CustomEvent('bannerEventChanged', {
             detail: { eventValue: value }
           }));
         }
         
-        // Store for potential immediate update (may not work if backend not ready)
+        // Store for potential immediate update (will be processed by postSave hook on save)
         pendingEventUpdate = { eventValue: value };
         
-        // Try to update config.toml immediately (will retry on save if it fails)
-        updateConfigToml(value);
+        // Note: We don't try to update config.toml immediately here because
+        // the backend may not be ready. The postSave hook will handle it when
+        // the user actually saves/publishes the changes.
+        console.log('Banner event changed to:', value, '- will update config.toml on save');
       },
 
       render() {
