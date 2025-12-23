@@ -6,7 +6,6 @@
 
   // Gradient mappings for each event type
   const gradientMap = {
-    'regular': null, // No gradient change needed for regular
     'newyear': '27deg, rgb(191,25,141) 0%, rgb(91,8,66) 100%',
     'valentine': '27deg, rgb(243,49,236) 0%, rgb(108,21,105) 100%',
     'patrick': '27deg, rgb(156,203,59) 0%, rgb(77,184,72) 100%',
@@ -16,7 +15,8 @@
     'summer': '27deg, rgb(135,206,235) 0%, rgb(248,255,52) 100%',
     'fall': '27deg, rgb(99,49,4) 0%, rgb(255,209,3) 100%',
     'thxgiving': '27deg, rgb(166,98,5) 0%, rgb(214,148,58) 100%',
-    'xmas': '27deg, rgb(194,31,31) 0%, rgb(110,4,7) 100%'
+    'xmas': '27deg, rgb(194,31,31) 0%, rgb(110,4,7) 100%',
+    'winter': '20deg, rgb(72,178,199) 0%, rgb(37,92,102) 100%'
   };
 
   // Event to comment mapping
@@ -30,8 +30,7 @@
     'spring': 'Spring',
     'summer': 'Summer',
     'fall': 'Fall',
-    'national': 'Winter',
-    'regular': null
+    'winter': 'Winter'
   };
 
   // Store pending updates

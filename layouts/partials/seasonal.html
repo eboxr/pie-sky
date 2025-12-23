@@ -4,7 +4,7 @@
 {{ $overlay := .event | printf "images/seasonal/%s/overlay.png" }}
 {{ $clipart := .event | printf "images/seasonal/%s/clipart.png" }}
 {{ $isSpecialEvent := or (eq .event "thxgiving") (eq .event "xmas") }}
-{{ $overlayClass := "" }}
+{{ $overlayClass := "bg-gradient" }}
 {{ if $isSpecialEvent }}
   {{ $overlayClass = printf "overlay-%s" .event }}
 {{ end }}

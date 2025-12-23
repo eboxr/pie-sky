@@ -121,12 +121,15 @@ collections:
     files:
       - file: "data/homepage.yml"
         label: "Seasonal Banner"
-        name: "seasonal_banner"
+        name: "seasonal"
         fields:
-          - {label: "Enable Seasonal Banner", name: "seasonal.enable", widget: "boolean", default: true, hint: "Show or hide the seasonal banner on the homepage"}
-          - {label: "Banner Title", name: "seasonal.title", widget: "text", required: false, hint: "Title text for the seasonal banner (supports markdown)"}
-          - {label: "Banner Content", name: "seasonal.content", widget: "markdown", required: false, hint: "Content text for the seasonal banner (supports markdown)"}
-          - {label: "Seasonal Event", name: "seasonal.event", widget: "banner-event-select", options: ["regular", "newyear", "valentine", "patrick", "spring", "easter", "national", "summer", "fall", "thxgiving", "xmas"], default: "regular", hint: "Select the seasonal event. This will automatically update the gradient in config.toml when you publish"}
+          - label: "Seasonal Banner"
+            name: "seasonal"
+            widget: "object"
+            fields:
+              - {label: "Seasonal Event", name: "event", widget: "banner-event-select", options: ["newyear", "winter", "valentine", "patrick", "spring", "easter", "summer", "fall", "thxgiving", "xmas"], default: "winter", hint: "Select the seasonal event. This will automatically update the gradient in config.toml when you publish"}
+              - {label: "Banner Title", name: "title", widget: "text", required: false, hint: "Title text for the seasonal banner (supports markdown)"}
+              - {label: "Banner Content", name: "content", widget: "markdown", required: false, hint: "Content text for the seasonal banner (supports markdown)"}
 
   - name: "special_event_config"
     label: "Special Event"
