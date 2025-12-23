@@ -10,7 +10,7 @@ backend:
 # When enabled, you can access the CMS without GitHub OAuth authentication
 # You'll need to run: npx netlify-cms-proxy-server
 # Remember to comment this out before deploying to production!
-#local_backend: true
+# local_backend: true
 
 media_folder: "static/images" # Media files will be stored in the repo under static/images
 public_folder: "/images" # The src attribute for uploaded media will begin with /images
@@ -30,7 +30,7 @@ collections:
       - {label: "Short Description", name: "shortDescription", widget: "hidden"}
       - {label: "Ingredients", name: "ingredients", widget: "text", required: false, hint: "List of ingredients (supports markdown)"}
       - {label: "Price", name: "price", widget: "string", required: false, hint: "Price in dollars (e.g., '25'). Required only when 'Display Price On the Pie Card' is enabled."}
-      - {label: "Display Price On the Pie Card", name: "displayPrice", widget: "boolean", default: false, hint: "Check to show pricing instead of short description"}
+      - {label: "Display Price On the Pie Card", name: "displayPrice", widget: "boolean", required: false, default: false, hint: "Check to show pricing instead of short description"}
       - {label: "Sold Out", name: "sold_out", widget: "boolean", default: false, hint: "Check this box to mark the pie as sold out"}
       - {label: "Draft", name: "draft", widget: "hidden", default: false}
       - {label: "Type", name: "type", widget: "hidden", default: "fruit"}
@@ -49,7 +49,7 @@ collections:
       - {label: "Short Description", name: "shortDescription", widget: "hidden"}
       - {label: "Ingredients", name: "ingredients", widget: "text", required: false, hint: "List of ingredients (supports markdown)"}
       - {label: "Price", name: "price", widget: "string", required: false, hint: "Price in dollars (e.g., '25'). Required only when 'Display Price On the Pie Card' is enabled."}
-      - {label: "Display Price On the Pie Card", name: "displayPrice", widget: "boolean", default: false, hint: "Check to show pricing instead of short description"}
+      - {label: "Display Price On the Pie Card", name: "displayPrice", widget: "boolean", required: false, default: false, hint: "Check to show pricing instead of short description"}
       - {label: "Sold Out", name: "sold_out", widget: "boolean", default: false, hint: "Check this box to mark the pie as sold out"}
       - {label: "Draft", name: "draft", widget: "hidden", default: false}
       - {label: "Type", name: "type", widget: "hidden", default: "cream"}
@@ -68,7 +68,7 @@ collections:
       - {label: "Short Description", name: "shortDescription", widget: "hidden"}
       - {label: "Ingredients", name: "ingredients", widget: "text", required: false, hint: "List of ingredients (supports markdown)"}
       - {label: "Price", name: "price", widget: "string", required: false, hint: "Price in dollars (e.g., '25'). Required only when 'Display Price On the Pie Card' is enabled."}
-      - {label: "Display Price On the Pie Card", name: "displayPrice", widget: "boolean", default: false, hint: "Check to show pricing instead of short description"}
+      - {label: "Display Price On the Pie Card", name: "displayPrice", widget: "boolean", required: false, default: false, hint: "Check to show pricing instead of short description"}
       - {label: "Sold Out", name: "sold_out", widget: "boolean", default: false, hint: "Check this box to mark the pie as sold out"}
       - {label: "Draft", name: "draft", widget: "hidden", default: false}
       - {label: "Type", name: "type", widget: "hidden", default: "special"}
@@ -88,7 +88,7 @@ collections:
       - {label: "Ingredients", name: "ingredients", widget: "text", required: false, hint: "List of ingredients (supports markdown)"}
       - {label: "Family Size Price", name: "price", widget: "string", required: false, hint: "Family size price in dollars (e.g., '30'). Required only when 'Display Price On the Pie Card' is enabled."}
       - {label: "Personal Size Price", name: "personalPrice", widget: "string", required: false, hint: "Personal size price in dollars (e.g., '7.50'). Leave empty if not available."}
-      - {label: "Display Price On the Pie Card", name: "displayPrice", widget: "boolean", default: false, hint: "Check to show pricing instead of short description (useful when no personal size)"}
+      - {label: "Display Price On the Pie Card", name: "displayPrice", widget: "boolean", required: false, default: false, hint: "Check to show pricing instead of short description (useful when no personal size)"}
       - {label: "Family Size Sold Out", name: "big_sold_out", widget: "boolean", default: false, hint: "Check if family size pies are sold out"}
       - {label: "Family Size Sold Out Message", name: "big_sold_out_comment", widget: "text", required: false, hint: "Message to display when family size is sold out (supports markdown)"}
       - {label: "Personal Size Sold Out", name: "small_sold_out", widget: "boolean", default: false, hint: "Check if personal size pies are sold out"}
@@ -110,7 +110,7 @@ collections:
       - {label: "Short Description", name: "shortDescription", widget: "hidden"}
       - {label: "Ingredients", name: "ingredients", widget: "text", required: false, hint: "List of ingredients (supports markdown)"}
       - {label: "Price", name: "price", widget: "string", required: false, hint: "Price in dollars (e.g., '25'). Required only when 'Display Price On the Pie Card' is enabled."}
-      - {label: "Display Price On the Pie Card", name: "displayPrice", widget: "boolean", default: false, hint: "Check to show pricing instead of short description"}
+      - {label: "Display Price On the Pie Card", name: "displayPrice", widget: "boolean", required: false, default: false, hint: "Check to show pricing instead of short description"}
       - {label: "Sold Out", name: "sold_out", widget: "boolean", default: false, hint: "Check this box to mark the pie as sold out"}
       - {label: "Draft", name: "draft", widget: "hidden", default: false}
       - {label: "Type", name: "type", widget: "hidden", default: "hand"}
@@ -121,12 +121,15 @@ collections:
     files:
       - file: "data/homepage.yml"
         label: "Seasonal Banner"
-        name: "seasonal_banner"
+        name: "seasonal"
         fields:
-          - {label: "Enable Seasonal Banner", name: "seasonal.enable", widget: "boolean", default: true, hint: "Show or hide the seasonal banner on the homepage"}
-          - {label: "Banner Title", name: "seasonal.title", widget: "text", required: false, hint: "Title text for the seasonal banner (supports markdown)"}
-          - {label: "Banner Content", name: "seasonal.content", widget: "markdown", required: false, hint: "Content text for the seasonal banner (supports markdown)"}
-          - {label: "Seasonal Event", name: "seasonal.event", widget: "banner-event-select", options: ["regular", "newyear", "valentine", "patrick", "spring", "easter", "national", "summer", "fall", "thxgiving", "xmas"], default: "regular", hint: "Select the seasonal event. This will automatically update the gradient in config.toml when you publish"}
+          - label: "Seasonal Banner"
+            name: "seasonal"
+            widget: "object"
+            fields:
+              - {label: "Seasonal Event", name: "event", widget: "banner-event-select", options: ["newyear", "winter", "valentine", "patrick", "spring", "easter", "summer", "fall", "thxgiving", "xmas"], default: "winter", hint: "Select the seasonal event. This will automatically update the gradient in config.toml when you publish"}
+              - {label: "Banner Title", name: "title", widget: "text", required: false, hint: "Title text for the seasonal banner (supports markdown)"}
+              - {label: "Banner Content", name: "content", widget: "markdown", required: false, hint: "Content text for the seasonal banner (supports markdown)"}
 
   - name: "special_event_config"
     label: "Special Event"
@@ -135,8 +138,10 @@ collections:
         label: "Special Event Content"
         name: "special_event"
         fields:
-          - {label: "Enable Special Event", name: "special_event.enable", widget: "boolean", default: true, hint: "Show or hide the special event section on the homepage"}
-          - {label: "Content", name: "special_event.content", widget: "split-markdown", required: false, hint: "Special event content (supports markdown). Edit on the left, preview on the right."}
-          - {label: "Image", name: "special_event.image", widget: "image", required: false, hint: "Image to display alongside the content"}
-          - {label: "Image Alt Text", name: "special_event.imageAlt", widget: "string", required: false, hint: "Alt text for the image"}
+          - label: "Special Event"
+            name: "special_event"
+            widget: "object"
+            fields:
+              - {label: "Enable Special Event", name: "enable", widget: "boolean", default: true, hint: "Show or hide the special event section on the homepage"}
+              - {label: "Content", name: "content", widget: "markdown", required: false, hint: "Special event content (supports markdown)"}
 

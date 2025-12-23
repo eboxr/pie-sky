@@ -2,6 +2,23 @@
 # Development script for running Hugo with CMS local backend
 # This allows you to access the admin section without GitHub OAuth
 
+# Check if npx is available
+if ! command -v npx &> /dev/null; then
+    echo "❌ Error: npx is not found"
+    echo ""
+    echo "To use the local CMS backend, you need Node.js and npm installed."
+    echo ""
+    echo "Installation options:"
+    echo "1. Install Node.js from https://nodejs.org/ (includes npm and npx)"
+    echo "2. Or use Homebrew: brew install node"
+    echo ""
+    echo "After installing Node.js, run this script again."
+    echo ""
+    echo "Starting Hugo server only (admin section will require GitHub authentication)..."
+    hugo server
+    exit 1
+fi
+
 echo "Starting Hugo development server..."
 hugo server &
 HUGO_PID=$!

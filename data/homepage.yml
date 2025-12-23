@@ -1,196 +1,144 @@
-############################ banner ##########################
-banner:
-  enable : false
-  title : "Best Beauty Cream For Your Skin"
-  content : "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-          dolore magna aliquyam erat, sed dia"
-  image : "images/banner.png"
-  # button
-  button:
-    enable : true
-    label : "All Products"
-    link : "products"
-  # demo video
-  video:
-    enable : true
-    videoURL : "https://www.youtube.com/embed/wf4F2-9UXUo"
-
-########################## Seasonal ##############################
-##
-##  To change the seasonal banner:
-##  1. Change the event name below (possible values listed)
-##  2. Adjust the gradient in config.toml in Style section (around line 166)
-##
-##  The system automatically handles all seasons including thxgiving and xmas.
-##  No manual code changes needed!
-##
-seasonal:
-  enable : true
-  title : |
-  content : |
-  event: xmas
-  possible: regular, newyear, valentine, patrick, spring, easter, national, summer, fall, thxgiving, xmas
-
-######################## pies #######################
+specialPies:
+  enable: true
+  title: Signature Specialties
+  description: ""
+  price: $25 except for the Pumpkin Chiffon Pie at $30
 pies:
-  enable : false
-  title : "The Pies"
-  subtitle :
+  enable: false
+  title: The Pies
+  subtitle: null
   pieCategory:
-    # material item loop
-    - title : "Seasonal Fruit"
-      icon : fas fa-apple-alt CatColor1 #https://fontawesome.com/v5.15/icons/apple-alt?style=solid
-      subtitle: "Available in season until sold out"
-      content : "strawberry-rhubarb, cherry, cherry-blueberry, peach, peach-berry, apple..."
-      price: "$20"
-      anchor: "fruitpies"
-      
-    # material item loop
-    - title : "Cream Classics"
-      icon : fab fa-cloudversify CatColor2 #https://fontawesome.com/v5.15/icons/cloudversify?style=brands
-      subtitle: "Available all year round. Comes with Graham cracker crust"
-      content : "chocolate, banana, coconut"
-      price: "$25"
-      anchor: "creampies"
-      
-    # material item loop
-    - title : "Signature Specialties"
-      icon : fas fa-crown CatColor3 #https://fontawesome.com/v5.15/icons/crown?style=solid
-      subtitle: "Availability depends on the season"
-      content : "Pumpkin chiffon pie, Pecan pie, Caramel apple pie,..."
-      price: "$25"
-      anchor: "specialtypies"
-
-    # material item loop
-    - title : "Savory Pies"
-      icon : fas fa-utensils CatColor4 #https://fontawesome.com/v5.15/icons/utensils?style=solid
-      subtitle: "Available in two different sizes"
-      content : "Chicken, Turkey, Beef, or Vegetable"
-      price: "Starting at $25"
-      anchor: "dinnerpies"
-
-    # material item loop
-    - title : "Handheld Pies"
-      icon : fas fa-hard-hat CatColor5 #https://fontawesome.com/v5.15/icons/hard-hat?style=solid
-      subtitle: "Sweet and Savory"
-      content : "Create your bundle"
-      price: "$4 each, sold by 2 minimum per flavor"
-      anchor: "handpies"
-
-########################### Special Event #########################
+    - title: Seasonal Fruit
+      icon: fas fa-apple-alt CatColor1
+      subtitle: Available in season until sold out
+      content: strawberry-rhubarb, cherry, cherry-blueberry, peach, peach-berry,
+        apple...
+      price: $20
+      anchor: fruitpies
+    - title: Cream Classics
+      icon: fab fa-cloudversify CatColor2
+      subtitle: Available all year round. Comes with Graham cracker crust
+      content: chocolate, banana, coconut
+      price: $25
+      anchor: creampies
+    - title: Signature Specialties
+      icon: fas fa-crown CatColor3
+      subtitle: Availability depends on the season
+      content: Pumpkin chiffon pie, Pecan pie, Caramel apple pie,...
+      price: $25
+      anchor: specialtypies
+    - title: Savory Pies
+      icon: fas fa-utensils CatColor4
+      subtitle: Available in two different sizes
+      content: Chicken, Turkey, Beef, or Vegetable
+      price: Starting at $25
+      anchor: dinnerpies
+    - title: Handheld Pies
+      icon: fas fa-hard-hat CatColor5
+      subtitle: Sweet and Savory
+      content: Create your bundle
+      price: $4 each, sold by 2 minimum per flavor
+      anchor: handpies
+creamPies:
+  enable: true
+  title: Cream Classics
+  description: Available all year round made with Graham cracker crust
+  price: $25
+advantage:
+  enable: false
+  title: Fresh ingredients
+  subtitle: All pies are made with **local** and **home grown** produce when at
+    all possible.
+  image: images/produces.jpg
+  advantageList:
+    - listItem: all handmade crusts
+    - listItem: cream whipped by hand
+    - listItem: made with real butter and eggs
+    - listItem: recipes meticulously tested
+banner:
+  enable: false
+  title: Best Beauty Cream For Your Skin
+  content: Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+    nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
+    dia
+  image: images/banner.png
+  button:
+    enable: true
+    label: All Products
+    link: products
+  video:
+    enable: true
+    videoURL: https://www.youtube.com/embed/wf4F2-9UXUo
+seasonal:
+  enable: true
+  title: ""
+  content: ""
+  event: xmas
+  possible: newyear, valentine, patrick, spring, easter, summer, fall, thxgiving,
+    xmas, winter
 special_event:
-  enable : true
-  content : |
+  enable: true
+  content: >
     ### Christmas week ordering for pies is closed.
+
 
     **Thank you for all of your support.**
 
+
     Merry Christmas and happy Holidays.
+
 
     I will resume orders on **12/26 for the New Year’s Celebrations** and the rest of the year.
 
+
     - Otherwise, please order any time for year round pie making.
-  image : "images/produces.jpg"
-  imageAlt : "Fresh pie ingredients"
-
-########################### Advantage #########################
-advantage:
-  enable : false
-  title : "Fresh ingredients"
-  subtitle : "All pies are made with **local** and **home grown** produce when at all possible."
-  image : "images/produces.jpg"
-  advantageList:
-    # advantage list loop
-    - listItem : "all handmade crusts"
-    - listItem : "cream whipped by hand"
-    - listItem : "made with real butter and eggs"
-    - listItem : "recipes meticulously tested"
-
-
-######################## Promo Video ##########################
-video:
-  enable : false
-  title : "How To Use This Product?"
-  content : "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et."
-  videoThumb : "images/video-thumb.jpg"
-  videoURL : "https://www.youtube.com/embed/wf4F2-9UXUo"
-
-
-######################## Fruit Pies #############################
-fruitPies:
-  enable : true
-  title : "Seasonal Fruit"
-  description: "Available in season and beyond until sold out"
-  price: "$25"
-  # product item comes from "content/fruit-pies"
-
-
-######################## Cream Pies #############################
-creamPies:
-  enable : true
-  title : "Cream Classics"
-  description: "Available all year round made with Graham cracker crust"
-  price: "$25"
-  # product item comes from "content/cream-pies"
-
-
-######################## Special Pies #############################
-specialPies:
-  enable : true
-  title : "Signature Specialties"
-  description: ""
-  price: "$25 except for the Pumpkin Chiffon Pie at $30"
-  # product item comes from "content/special-pies"
-
-
-######################## Dinner Pies #############################
-dinnerPies:
-  enable : true
-  title : "Savory Pies"
-  description: "Available in 2 sizes: **6\" personal size** (serves 1-2) and **12\" family size** (serves 4-6)"
-  price: ""
-  # product item comes from "content/dinner-pies"
-
-
-######################## Hand Pies #############################
+  image: images/produces.jpg
+  imageAlt: Fresh pie ingredients
 handPies:
-  enable : true
-  title : "Handheld Pies"
-  description: "Mix and match the flavors. Savory pies sold frozen ready to bake"
-  price: "$4 each, a minimum of 2 per flavor"
-  # product item comes from "content/hand-pies"
-
-
-########################## Testimonial ########################
+  enable: true
+  title: Handheld Pies
+  description: Mix and match the flavors. Savory pies sold frozen ready to bake
+  price: $4 each, a minimum of 2 per flavor
+dinnerPies:
+  enable: true
+  title: Savory Pies
+  description: 'Available in 2 sizes: **6" personal size** (serves 1-2) and **12"
+    family size** (serves 4-6)'
+  price: ""
+video:
+  enable: false
+  title: How To Use This Product?
+  content: Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+    nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
+    diam voluptua. At vero eos et accusam et.
+  videoThumb: images/video-thumb.jpg
+  videoURL: https://www.youtube.com/embed/wf4F2-9UXUo
+fruitPies:
+  enable: true
+  title: Seasonal Fruit
+  description: Available in season and beyond until sold out
+  price: $25
 testimonial:
-  enable : false
-  title : "They have tried our Pies"
+  enable: false
+  title: They have tried our Pies
   testimonialItem:
-    # testimonial item loop
-    - name : "Erik Y."
-      image : "images/clients/client-1.jpg" # size 100px*100px
-      designation : ""
-      content : "OMG... once you taste Kelli's pie you cannot stop eating it!"
-      rating : "five" # rating star, one to five
-      
-    # testimonial item loop
-    - name : "Yira Y."
-      image : "images/clients/client-2.jpg" # size 100px*100px
-      designation : ""
-      content : "Try it! Adopt it! Subscribe!"
-      rating : "three" # rating star, one to five
-      
-    # testimonial item loop
-    - name : "Nicolas R."
-      image : "images/clients/client-3.jpg" # size 100px*100px
-      designation : ""
-      content : "For sure we will order more!"
-      rating : "five" # rating star, one to five
-      
-    # testimonial item loop
-    - name : "Stephanie R."
-      image : "images/clients/client-2.jpg" # size 100px*100px
-      designation : ""
-      content : "American Pie at their top!"
-      rating : "four" # rating star, one to five
+    - name: Erik Y.
+      image: images/clients/client-1.jpg
+      designation: ""
+      content: OMG... once you taste Kelli's pie you cannot stop eating it!
+      rating: five
+    - name: Yira Y.
+      image: images/clients/client-2.jpg
+      designation: ""
+      content: Try it! Adopt it! Subscribe!
+      rating: three
+    - name: Nicolas R.
+      image: images/clients/client-3.jpg
+      designation: ""
+      content: For sure we will order more!
+      rating: five
+    - name: Stephanie R.
+      image: images/clients/client-2.jpg
+      designation: ""
+      content: American Pie at their top!
+      rating: four
