@@ -29,7 +29,7 @@ collections:
       - {label: "Description", name: "description", widget: "hidden"}
       - {label: "Short Description", name: "shortDescription", widget: "hidden"}
       - {label: "Ingredients", name: "ingredients", widget: "text", required: false, hint: "List of ingredients (supports markdown)"}
-      - {label: "Price", name: "price", widget: "string", required: true, hint: "Price in dollars (e.g., '25')"}
+      - {label: "Price", name: "price", widget: "string", required: false, hint: "Price in dollars (e.g., '25'). Required only when 'Display Price On the Pie Card' is enabled."}
       - {label: "Display Price On the Pie Card", name: "displayPrice", widget: "boolean", default: false, hint: "Check to show pricing instead of short description"}
       - {label: "Sold Out", name: "sold_out", widget: "boolean", default: false, hint: "Check this box to mark the pie as sold out"}
       - {label: "Draft", name: "draft", widget: "hidden", default: false}
@@ -48,7 +48,7 @@ collections:
       - {label: "Description", name: "description", widget: "hidden"}
       - {label: "Short Description", name: "shortDescription", widget: "hidden"}
       - {label: "Ingredients", name: "ingredients", widget: "text", required: false, hint: "List of ingredients (supports markdown)"}
-      - {label: "Price", name: "price", widget: "string", required: true, hint: "Price in dollars (e.g., '25')"}
+      - {label: "Price", name: "price", widget: "string", required: false, hint: "Price in dollars (e.g., '25'). Required only when 'Display Price On the Pie Card' is enabled."}
       - {label: "Display Price On the Pie Card", name: "displayPrice", widget: "boolean", default: false, hint: "Check to show pricing instead of short description"}
       - {label: "Sold Out", name: "sold_out", widget: "boolean", default: false, hint: "Check this box to mark the pie as sold out"}
       - {label: "Draft", name: "draft", widget: "hidden", default: false}
@@ -67,7 +67,7 @@ collections:
       - {label: "Description", name: "description", widget: "hidden"}
       - {label: "Short Description", name: "shortDescription", widget: "hidden"}
       - {label: "Ingredients", name: "ingredients", widget: "text", required: false, hint: "List of ingredients (supports markdown)"}
-      - {label: "Price", name: "price", widget: "string", required: true, hint: "Price in dollars (e.g., '25')"}
+      - {label: "Price", name: "price", widget: "string", required: false, hint: "Price in dollars (e.g., '25'). Required only when 'Display Price On the Pie Card' is enabled."}
       - {label: "Display Price On the Pie Card", name: "displayPrice", widget: "boolean", default: false, hint: "Check to show pricing instead of short description"}
       - {label: "Sold Out", name: "sold_out", widget: "boolean", default: false, hint: "Check this box to mark the pie as sold out"}
       - {label: "Draft", name: "draft", widget: "hidden", default: false}
@@ -86,7 +86,7 @@ collections:
       - {label: "Description", name: "description", widget: "hidden"}
       - {label: "Short Description", name: "shortDescription", widget: "hidden"}
       - {label: "Ingredients", name: "ingredients", widget: "text", required: false, hint: "List of ingredients (supports markdown)"}
-      - {label: "Family Size Price", name: "price", widget: "string", required: true, hint: "Family size price in dollars (e.g., '30')"}
+      - {label: "Family Size Price", name: "price", widget: "string", required: false, hint: "Family size price in dollars (e.g., '30'). Required only when 'Display Price On the Pie Card' is enabled."}
       - {label: "Personal Size Price", name: "personalPrice", widget: "string", required: false, hint: "Personal size price in dollars (e.g., '7.50'). Leave empty if not available."}
       - {label: "Display Price On the Pie Card", name: "displayPrice", widget: "boolean", default: false, hint: "Check to show pricing instead of short description (useful when no personal size)"}
       - {label: "Family Size Sold Out", name: "big_sold_out", widget: "boolean", default: false, hint: "Check if family size pies are sold out"}
@@ -109,7 +109,7 @@ collections:
       - {label: "Description", name: "description", widget: "hidden"}
       - {label: "Short Description", name: "shortDescription", widget: "hidden"}
       - {label: "Ingredients", name: "ingredients", widget: "text", required: false, hint: "List of ingredients (supports markdown)"}
-      - {label: "Price", name: "price", widget: "string", required: true, hint: "Price in dollars (e.g., '25')"}
+      - {label: "Price", name: "price", widget: "string", required: false, hint: "Price in dollars (e.g., '25'). Required only when 'Display Price On the Pie Card' is enabled."}
       - {label: "Display Price On the Pie Card", name: "displayPrice", widget: "boolean", default: false, hint: "Check to show pricing instead of short description"}
       - {label: "Sold Out", name: "sold_out", widget: "boolean", default: false, hint: "Check this box to mark the pie as sold out"}
       - {label: "Draft", name: "draft", widget: "hidden", default: false}
