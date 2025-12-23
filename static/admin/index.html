@@ -77,7 +77,7 @@
     setTimeout(hideMediaButton, 2000);
     
     // Use MutationObserver to catch dynamically added elements
-    if (window.MutationObserver) {
+    if (window.MutationObserver && document.body) {
       const observer = new MutationObserver(() => {
         hideMediaButton();
       });
@@ -85,6 +85,34 @@
         childList: true,
         subtree: true
       });
+    } else if (window.MutationObserver) {
+      // If body isn't ready yet, wait for it
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+          if (document.body) {
+            const observer = new MutationObserver(() => {
+              hideMediaButton();
+            });
+            observer.observe(document.body, {
+              childList: true,
+              subtree: true
+            });
+          }
+        });
+      } else {
+        // DOMContentLoaded already fired, try again after a short delay
+        setTimeout(function() {
+          if (document.body) {
+            const observer = new MutationObserver(() => {
+              hideMediaButton();
+            });
+            observer.observe(document.body, {
+              childList: true,
+              subtree: true
+            });
+          }
+        }, 100);
+      }
     }
   </script>
 </head>

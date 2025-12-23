@@ -10,7 +10,7 @@ backend:
 # When enabled, you can access the CMS without GitHub OAuth authentication
 # You'll need to run: npx netlify-cms-proxy-server
 # Remember to comment this out before deploying to production!
-#local_backend: true
+local_backend: true
 
 media_folder: "static/images" # Media files will be stored in the repo under static/images
 public_folder: "/images" # The src attribute for uploaded media will begin with /images
@@ -30,7 +30,7 @@ collections:
       - {label: "Short Description", name: "shortDescription", widget: "hidden"}
       - {label: "Ingredients", name: "ingredients", widget: "text", required: false, hint: "List of ingredients (supports markdown)"}
       - {label: "Price", name: "price", widget: "string", required: false, hint: "Price in dollars (e.g., '25'). Required only when 'Display Price On the Pie Card' is enabled."}
-      - {label: "Display Price On the Pie Card", name: "displayPrice", widget: "boolean", default: false, hint: "Check to show pricing instead of short description"}
+      - {label: "Display Price On the Pie Card", name: "displayPrice", widget: "boolean", required: false, default: false, hint: "Check to show pricing instead of short description"}
       - {label: "Sold Out", name: "sold_out", widget: "boolean", default: false, hint: "Check this box to mark the pie as sold out"}
       - {label: "Draft", name: "draft", widget: "hidden", default: false}
       - {label: "Type", name: "type", widget: "hidden", default: "fruit"}
@@ -49,7 +49,7 @@ collections:
       - {label: "Short Description", name: "shortDescription", widget: "hidden"}
       - {label: "Ingredients", name: "ingredients", widget: "text", required: false, hint: "List of ingredients (supports markdown)"}
       - {label: "Price", name: "price", widget: "string", required: false, hint: "Price in dollars (e.g., '25'). Required only when 'Display Price On the Pie Card' is enabled."}
-      - {label: "Display Price On the Pie Card", name: "displayPrice", widget: "boolean", default: false, hint: "Check to show pricing instead of short description"}
+      - {label: "Display Price On the Pie Card", name: "displayPrice", widget: "boolean", required: false, default: false, hint: "Check to show pricing instead of short description"}
       - {label: "Sold Out", name: "sold_out", widget: "boolean", default: false, hint: "Check this box to mark the pie as sold out"}
       - {label: "Draft", name: "draft", widget: "hidden", default: false}
       - {label: "Type", name: "type", widget: "hidden", default: "cream"}
@@ -68,7 +68,7 @@ collections:
       - {label: "Short Description", name: "shortDescription", widget: "hidden"}
       - {label: "Ingredients", name: "ingredients", widget: "text", required: false, hint: "List of ingredients (supports markdown)"}
       - {label: "Price", name: "price", widget: "string", required: false, hint: "Price in dollars (e.g., '25'). Required only when 'Display Price On the Pie Card' is enabled."}
-      - {label: "Display Price On the Pie Card", name: "displayPrice", widget: "boolean", default: false, hint: "Check to show pricing instead of short description"}
+      - {label: "Display Price On the Pie Card", name: "displayPrice", widget: "boolean", required: false, default: false, hint: "Check to show pricing instead of short description"}
       - {label: "Sold Out", name: "sold_out", widget: "boolean", default: false, hint: "Check this box to mark the pie as sold out"}
       - {label: "Draft", name: "draft", widget: "hidden", default: false}
       - {label: "Type", name: "type", widget: "hidden", default: "special"}
@@ -88,7 +88,7 @@ collections:
       - {label: "Ingredients", name: "ingredients", widget: "text", required: false, hint: "List of ingredients (supports markdown)"}
       - {label: "Family Size Price", name: "price", widget: "string", required: false, hint: "Family size price in dollars (e.g., '30'). Required only when 'Display Price On the Pie Card' is enabled."}
       - {label: "Personal Size Price", name: "personalPrice", widget: "string", required: false, hint: "Personal size price in dollars (e.g., '7.50'). Leave empty if not available."}
-      - {label: "Display Price On the Pie Card", name: "displayPrice", widget: "boolean", default: false, hint: "Check to show pricing instead of short description (useful when no personal size)"}
+      - {label: "Display Price On the Pie Card", name: "displayPrice", widget: "boolean", required: false, default: false, hint: "Check to show pricing instead of short description (useful when no personal size)"}
       - {label: "Family Size Sold Out", name: "big_sold_out", widget: "boolean", default: false, hint: "Check if family size pies are sold out"}
       - {label: "Family Size Sold Out Message", name: "big_sold_out_comment", widget: "text", required: false, hint: "Message to display when family size is sold out (supports markdown)"}
       - {label: "Personal Size Sold Out", name: "small_sold_out", widget: "boolean", default: false, hint: "Check if personal size pies are sold out"}
@@ -110,7 +110,7 @@ collections:
       - {label: "Short Description", name: "shortDescription", widget: "hidden"}
       - {label: "Ingredients", name: "ingredients", widget: "text", required: false, hint: "List of ingredients (supports markdown)"}
       - {label: "Price", name: "price", widget: "string", required: false, hint: "Price in dollars (e.g., '25'). Required only when 'Display Price On the Pie Card' is enabled."}
-      - {label: "Display Price On the Pie Card", name: "displayPrice", widget: "boolean", default: false, hint: "Check to show pricing instead of short description"}
+      - {label: "Display Price On the Pie Card", name: "displayPrice", widget: "boolean", required: false, default: false, hint: "Check to show pricing instead of short description"}
       - {label: "Sold Out", name: "sold_out", widget: "boolean", default: false, hint: "Check this box to mark the pie as sold out"}
       - {label: "Draft", name: "draft", widget: "hidden", default: false}
       - {label: "Type", name: "type", widget: "hidden", default: "hand"}
