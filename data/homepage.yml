@@ -71,27 +71,22 @@ banner:
     videoURL: https://www.youtube.com/embed/wf4F2-9UXUo
 seasonal:
   enable: true
-  title: ""
+  title: "Happy New Year!"
   content: ""
-  event: xmas
+  event: newyear
   possible: newyear, valentine, patrick, spring, easter, summer, fall, thxgiving,
     xmas, winter
 special_event:
   enable: true
   content: >
-    ### Christmas week ordering for pies is closed.
+    ## Happy New Year / Welcome Winter
 
 
-    **Thank you for all of your support.**
+    ### Making pies all year, Winter is perfect for hot pot pies.
 
 
-    Merry Christmas and happy Holidays.
+    **Please place orders at least 24 hours in advance.**
 
-
-    I will resume orders on **12/26 for the New Year’s Celebrations** and the rest of the year.
-
-
-    - Otherwise, please order any time for year round pie making.
   image: images/produces.jpg
   imageAlt: Fresh pie ingredients
 handPies:
