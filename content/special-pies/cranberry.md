@@ -1,29 +1,15 @@
 ---
-title: "Cranberry Apple Walnut"
-date: 2019-10-14T11:22:16+06:00
-author: "Kelli"
-draft: false
-
-# meta description
-description : ""
-
-# Product Short Description
+title: Cranberry Apple Walnut
+description: ""
 shortDescription: ""
-
-ingredients: "Finley chopped fresh cranberries, apples, walnuts, orange zest and fall spices"
-
-# product Price
+ingredients: Finley chopped fresh cranberries, apples, walnuts, orange zest and fall spices
 price: "25"
+sold_out: true
+draft: false
 priceBefore: ""
-
-# type must be "products"
-type: "special"
-
-sold_out: false
-
-# product Images
-# first image will be shown in the product page
+author: Kelli
+type: special
+date: 2019-10-14T11:22:16+06:00
 images:
-  - image: "images/special-pies/cranberry-apple-site2.jpg"
-#  - image: "images/special-pies/cranberry-apple-site1.jpg"
+  - image: images/special-pies/cranberry-apple-site2.jpg
 ---
