@@ -1,27 +1,14 @@
 ---
-title: "Peach-Triple Berry Pie"
-date: 2019-10-17T11:22:16+06:00
-draft: false
-
-# meta description
-description : ""
-
-# Product Short Description
-shortDescription: 
-
-ingredients: "raspberry, blackberry & blueberry"
-
-# product Price
+title: Peach-Triple Berry Pie
+description: ""
+shortDescription: null
+ingredients: raspberry, blackberry & blueberry
 price: "25"
+sold_out: true
+draft: false
 priceBefore: ""
-
-# type must be "products"
-type: "fruit"
-
-sold_out: false
-
-# product Images
-# first image will be shown in the product page
+type: fruit
+date: 2019-10-17T11:22:16+06:00
 images:
-  - image: "images/fruit-pies/triple-berry.jpg"
+  - image: images/fruit-pies/triple-berry.jpg
 ---
