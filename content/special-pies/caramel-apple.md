@@ -1,23 +1,13 @@
 ---
-title: "Caramel Apple Pie"
-date: 2019-10-15T11:05:16+06:00
-draft: false
-
-# meta description
-description : ""
-
-# product Price
+title: Caramel Apple Pie
 price: "25"
+sold_out: false
+draft: false
 priceBefore: ""
-
-# type must be "products"
-type: "special"
-
-sold_out: true
-
-# product Images
-# first image will be shown in the product page
+description: ""
+type: special
+date: 2019-10-15T11:05:16+06:00
 images:
-  - image: "images/special-pies/caramel-apple-site2.jpg"
-  - image: "images/special-pies/caramel-apple-site3.jpg"
+  - image: images/special-pies/caramel-apple-site2.jpg
+  - image: images/special-pies/caramel-apple-site3.jpg
 ---
