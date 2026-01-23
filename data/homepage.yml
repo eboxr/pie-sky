@@ -71,19 +71,17 @@ banner:
     videoURL: https://www.youtube.com/embed/wf4F2-9UXUo
 seasonal:
   enable: true
-  title: "Happy New Year!"
+  title: "Enjoy Winter!"
   content: ""
-  event: newyear
+  event: winter
   possible: newyear, valentine, patrick, spring, easter, summer, fall, thxgiving,
     xmas, winter
 special_event:
   enable: true
   content: >
-    ## Happy New Year / Welcome Winter
+    ### Pie in the Sky will be closed for **pie pick ups February 4-12**. 
 
-
-    ### Making pies all year, Winter is perfect for hot pot pies.
-
+    #### I will still be taking orders for pick ups **after February 12th**.
 
     **Please place orders at least 24 hours in advance.**
 
