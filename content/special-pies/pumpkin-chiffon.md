@@ -5,7 +5,7 @@ shortDescription: ""
 ingredients: with Graham cracker crust
 price: "30"
 displayPrice: true
-sold_out: false
+sold_out: true
 draft: false
 priceBefore: ""
 type: special
