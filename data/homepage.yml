@@ -71,9 +71,9 @@ banner:
     videoURL: https://www.youtube.com/embed/wf4F2-9UXUo
 seasonal:
   enable: true
-  title: "Enjoy Winter!"
+  title: "Welcome Spring/Summer!"
   content: ""
-  event: winter
+  event: spring
   possible: newyear, valentine, patrick, spring, easter, summer, fall, thxgiving,
     xmas, winter
 special_event:
