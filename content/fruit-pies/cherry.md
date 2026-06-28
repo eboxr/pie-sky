@@ -18,8 +18,6 @@ priceBefore: ""
 # type must be "products"
 type: "fruit"
 
-sold_out: true
-
 # product Images
 # first image will be shown in the product page
 images:
