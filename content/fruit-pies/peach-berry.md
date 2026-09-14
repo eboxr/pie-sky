@@ -4,7 +4,7 @@ description: ""
 shortDescription: null
 ingredients: raspberry, blackberry & blueberry
 price: "25"
-sold_out: true
+sold_out: false
 draft: false
 priceBefore: ""
 type: fruit
