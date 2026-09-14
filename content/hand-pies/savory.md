@@ -7,7 +7,7 @@ draft: false
 description : "Available all year"
 
 # Product Short Description
-shortDescription: "Chicken, Philly Cheese Steak, Veggie"
+shortDescription: "Chicken, Veggie"
 
 # product Price
 price: "4"
@@ -22,10 +22,8 @@ type: "hand"
 images:
   - image: "images/hand-pies/taco/taco2.jpg"
   - image: "images/hand-pies/chicken/chicken4.jpg"
-  - image: "images/hand-pies/philly/philly1.jpg"
   - image: "images/hand-pies/veggie/veggie1.jpg"
 ---
 
 - **Chicken**: Chicken, peas, carrots, and gravy
-- **Philly Cheese Steak**: sliced steak, peppers and provolone cheese
 - **Veggie**: mushrooms, butternut squash, peas, carrots, onions
