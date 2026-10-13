@@ -12,11 +12,11 @@ ingredients: "Chicken, carrots, peas in a chicken cream sauce"
 shortDescription: "Available in personal and family sizes"
 
 # product Price
-price: "25"
+price: "30"
 priceBefore: ""
 
 # Personal size price (if available)
-personalPrice: "7.50"
+personalPrice: "8"
 
 # Display price instead of shortDescription
 displayPrice: true
@@ -37,5 +37,5 @@ images:
   - image: "images/dinner-pies/chicken.jpg"
 ---
 
-- personal size (serves 1-2) **$7.50**
-- family size (serves 4-6) **$25**
+- personal size (serves 1-2) **$8**
+- family size (serves 4-6) **$30**

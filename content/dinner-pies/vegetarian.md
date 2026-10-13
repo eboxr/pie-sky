@@ -12,11 +12,11 @@ ingredients: "Butternut squash, mushrooms, carrots, peas in a vegetable gravy"
 shortDescription: "Available in personal and family sizes"
 
 # product Price
-price: "25"
+price: "30"
 priceBefore: ""
 
 # Personal size price (if available)
-personalPrice: "7.50"
+personalPrice: "8"
 
 # Display price instead of shortDescription
 displayPrice: true
@@ -40,5 +40,5 @@ images:
 
 The butternut squash is roasted. For flavor there is a hint of celery, garlic, onion and spices in a creamy vegetable gravy.
 
-- personal size (serves 1-2) **$7.50**
-- family size (serves 4-6) **$25**
+- personal size (serves 1-2) **$8**
+- family size (serves 4-6) **$30**

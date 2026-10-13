@@ -3,7 +3,7 @@ title: Pumpkin Chiffon Pie
 description: ""
 shortDescription: ""
 ingredients: with Graham cracker crust
-price: "30"
+price: "35"
 displayPrice: true
 sold_out: true
 draft: false

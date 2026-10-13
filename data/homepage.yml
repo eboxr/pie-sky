@@ -2,7 +2,7 @@ specialPies:
   enable: true
   title: Signature Specialties
   description: ""
-  price: $25 except for the Pumpkin Chiffon Pie at $30
+  price: $30 except for the Pumpkin Chiffon Pie at $35
 pies:
   enable: false
   title: The Pies
@@ -13,25 +13,25 @@ pies:
       subtitle: Available in season until sold out
       content: strawberry-rhubarb, cherry, cherry-blueberry, peach, peach-berry,
         apple...
-      price: $20
+      price: $30
       anchor: fruitpies
     - title: Cream Classics
       icon: fab fa-cloudversify CatColor2
       subtitle: Available all year round. Comes with Graham cracker crust
       content: chocolate, banana, coconut
-      price: $25
+      price: $30
       anchor: creampies
     - title: Signature Specialties
       icon: fas fa-crown CatColor3
       subtitle: Availability depends on the season
       content: Pumpkin chiffon pie, Pecan pie, Caramel apple pie,...
-      price: $25
+      price: $30
       anchor: specialtypies
     - title: Savory Pies
       icon: fas fa-utensils CatColor4
       subtitle: Available in two different sizes
       content: Chicken, Turkey, Beef, or Vegetable
-      price: Starting at $25
+      price: Starting at $30
       anchor: dinnerpies
     - title: Handheld Pies
       icon: fas fa-hard-hat CatColor5
@@ -43,7 +43,7 @@ creamPies:
   enable: true
   title: Cream Classics
   description: Available all year round made with Graham cracker crust
-  price: $25
+  price: $30
 advantage:
   enable: true
   title: Fresh ingredients
@@ -110,7 +110,7 @@ fruitPies:
   enable: true
   title: Seasonal Fruit
   description: Available in season and beyond until sold out
-  price: $25
+  price: $30
 testimonial:
   enable: false
   title: They have tried our Pies

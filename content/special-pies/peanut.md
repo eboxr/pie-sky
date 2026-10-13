@@ -12,7 +12,7 @@ shortDescription: ""
 ingredients: "Whipped peanut butter cream covered with whipped chocolate ganache garnished with peanut butter cups"
 
 # product Price
-price: "25"
+price: "30"
 priceBefore: ""
 
 # type must be "products"

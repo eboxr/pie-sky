@@ -3,7 +3,7 @@ title: Cranberry Apple Walnut
 description: ""
 shortDescription: ""
 ingredients: Finley chopped fresh cranberries, apples, walnuts, orange zest and fall spices
-price: "25"
+price: "30"
 sold_out: true
 draft: false
 priceBefore: ""

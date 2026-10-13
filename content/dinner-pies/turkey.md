@@ -12,7 +12,7 @@ ingredients: "Turkey, carrots, peas, onion in a rich gravy"
 shortDescription: "Family size pie"
 
 # product Price
-price: "25"
+price: "30"
 priceBefore: ""
 
 # Personal size price (if available)
@@ -37,4 +37,4 @@ images:
   - image: "images/dinner-pies/turkey.jpg"
 ---
 
-- family size (serves 4-6) **$25**
+- family size (serves 4-6) **$30**

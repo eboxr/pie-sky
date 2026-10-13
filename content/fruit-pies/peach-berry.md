@@ -3,7 +3,7 @@ title: Peach-Triple Berry Pie
 description: ""
 shortDescription: null
 ingredients: raspberry, blackberry & blueberry
-price: "25"
+price: "30"
 sold_out: false
 draft: false
 priceBefore: ""

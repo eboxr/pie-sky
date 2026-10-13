@@ -3,7 +3,7 @@ title: Lemon Meringue Pie
 description: ""
 shortDescription: ""
 ingredients: Graham cracker crust, Fresh lemons, topped with meringue
-price: "25"
+price: "30"
 sold_out: false
 draft: false
 priceBefore: ""

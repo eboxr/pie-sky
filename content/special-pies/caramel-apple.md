@@ -1,6 +1,6 @@
 ---
 title: Caramel Apple Pie
-price: "25"
+price: "30"
 sold_out: false
 draft: false
 priceBefore: ""

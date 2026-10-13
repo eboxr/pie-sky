@@ -12,7 +12,7 @@ shortDescription: ""
 ingredients: "Double pastry crust filled with fresh lemons"
 
 # product Price
-price: "25"
+price: "30"
 priceBefore: ""
 
 # type must be "products"

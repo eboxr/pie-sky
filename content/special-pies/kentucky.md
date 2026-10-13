@@ -12,7 +12,7 @@ shortDescription: ""
 ingredients: "Walnuts, chocolate chips and bourbon"
 
 # product Price
-price: "25"
+price: "30"
 priceBefore: ""
 
 # type must be "products"
