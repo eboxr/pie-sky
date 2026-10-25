@@ -18,7 +18,7 @@ priceBefore: ""
 # type must be "products"
 type: "special"
 
-sold_out: true
+sold_out: false
 
 # product Images
 # first image will be shown in the product page
