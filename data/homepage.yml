@@ -79,13 +79,12 @@ seasonal:
 special_event:
   enable: true
   content: >
-    ### Now taking Thanksgiving pie orders until **11/19** 
-    ( for pick up the week of Thanksgiving ) 
+    ### Ordering will be closed for Thanksgiving Saturday 11/14. 
+    I have reached my maximum capacity.
     
-    ### or until I can’t make anymore (once I’ve reached the maximum number of pies the ordering will be closed). 
+    ### Thank you so much for all of your orders! I will resume regular pie orders starting Friday 11/27.
 
-
-    **Pie pick ups before and after the week of thanksgiving, please order as early as possible.**
+    ### Happy Thanksgiving 🦃
 
   image: images/produces.jpg
   imageAlt: Fresh pie ingredients
