@@ -33,7 +33,6 @@ small_sold_out_comment: "*Personal size pies are temporary SOLD OUT*"
 # product Images
 # first image will be shown in the product page
 images:
-  - image: "images/dinner-pies/vegetarian-site2.jpg"
   - image: "images/dinner-pies/vegetarian-site1.jpg"
   - image: "images/dinner-pies/vegetarian-site3.jpg"
 ---
