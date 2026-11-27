@@ -71,20 +71,19 @@ banner:
     videoURL: https://www.youtube.com/embed/wf4F2-9UXUo
 seasonal:
   enable: true
-  title: "Happy Thanksgiving"
+  title: "Happy Holidays"
   content: ""
-  event: thxgiving
+  event: xmas
   possible: newyear, valentine, patrick, spring, easter, summer, fall, thxgiving,
     xmas, winter
 special_event:
   enable: true
   content: >
-    ### Ordering will be closed for Thanksgiving Saturday 11/14. 
-    I have reached my maximum capacity.
+    ### I’m taking any and all pie orders with a 24 hour notice.
     
-    ### Thank you so much for all of your orders! I will resume regular pie orders starting Friday 11/27.
-
-    ### Happy Thanksgiving 🦃
+    ### Please place Orders for Christmas Eve by 12/18 
+    
+    ### And, New Year’s Eve by 12/28
 
   image: images/produces.jpg
   imageAlt: Fresh pie ingredients
